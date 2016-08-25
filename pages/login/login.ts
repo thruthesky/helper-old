@@ -3,9 +3,10 @@ import { NavController } from 'ionic-angular';
 import { AppHeader } from '../../template/app-header';
 import { Xforum } from '../../providers/xforum/xforum';
 import { HomePage } from '../home/home';
+import { Database } from '../../providers/database/database';
 @Component({
   templateUrl: 'build/pages/login/login.html',
-  providers: [ Xforum ],
+  providers: [ Xforum, Database ],
   directives: [AppHeader]
 })
 export class LoginPage {
@@ -16,7 +17,7 @@ export class LoginPage {
   private loadMessage: string;
   private showError: boolean = false;
   private errorMessage: string;
-  constructor(private navCtrl: NavController, private xforum: Xforum ) {
+  constructor(private navCtrl: NavController, private xforum: Xforum, private db: Database ) {
     this.testApp();
   }
 

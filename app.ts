@@ -1,13 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
-import { ionicBootstrap, Platform, Nav } from 'ionic-angular';
+import { ionicBootstrap, Platform, Nav, Storage, SqlStorage } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 
 import { HomePage } from './pages/home/home';
 import { LoginPage } from './pages/login/login';
+import { Database } from './providers/database/database';
 
 
 @Component({
-  templateUrl: 'build/app.html'
+  templateUrl: 'build/app.html',
+  providers: [ Database ]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -15,7 +17,7 @@ export class MyApp {
   pages: Array<{ title: string, component: any}>;
   
 
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform, private db: Database) {
     this.initialziaeApp();
     this.pages = [
       { title: 'Home', component: HomePage },
@@ -37,11 +39,21 @@ export class MyApp {
 
   initialziaeApp() {
 
+
+    // Okay, so the platform is ready and our plugins are available.
+    // Here you can do any higher level native things you might need.
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      
+      console.log("MyApp::initialziaeApp()");
+      
       StatusBar.styleDefault();
+      this.db.createTable();
+      this.db.set( 'a', 'apple' );
+      this.db.get( 'a' ).then( (re) => console.log("a: " + re ));
+
     });
+
+
 
   }
 }
