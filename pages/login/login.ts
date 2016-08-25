@@ -1,17 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-
-/*
-  Generated class for the LoginPage page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+import { AppHeader } from '../../template/app-header';
 @Component({
   templateUrl: 'build/pages/login/login.html',
+  directives: [AppHeader]
 })
 export class LoginPage {
-
+  private appTitle: string = "Login";
   constructor(private navCtrl: NavController) {
 
   }
