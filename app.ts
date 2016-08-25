@@ -17,13 +17,16 @@ export class MyApp {
 
   constructor(public platform: Platform) {
     this.initialziaeApp();
-
-
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Login', component: LoginPage }
     ];
 
+    this.testApp();
+
+  }
+  testApp() {
+    this.rootPage = LoginPage;
   }
 
 
