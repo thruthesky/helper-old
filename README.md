@@ -14,6 +14,11 @@ But somehow it disappeared.
 
 put it back.
 
+## Translate all language
+
+* by web view language
+* by user's choice
+
 
 # INSTALLATION
 
