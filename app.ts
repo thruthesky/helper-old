@@ -1,9 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { ionicBootstrap, Platform, Nav, Storage, SqlStorage } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
-import { HomePage, LoginPage, Database } from './etc/imports';
-
-
+import { Http } from '@angular/http';
+import { TranslateService, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
+import { HomePage, Database, LoginPage, ForumPage } from './etc/all';
+// import { Database } from './etc/providers';
+// import { HomePage, LoginPage, ForumPage } from './etc/pages';
 @Component({
   templateUrl: 'build/app.html',
   providers: [ Database ]
@@ -18,7 +20,8 @@ export class MyApp {
     this.initialziaeApp();
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'Login', component: LoginPage }
+      { title: 'Login', component: LoginPage },
+      { title: 'Forum', component: ForumPage }
     ];
 
     this.testApp();
@@ -26,13 +29,15 @@ export class MyApp {
 
   }
   testApp() {
-    this.rootPage = LoginPage;
+    //this.rootPage = LoginPage;
+    this.rootPage = ForumPage;
   }
 
 
   
   openPage(page) {
     this.nav.setRoot(page.component);
+    //this.nav.push( page.component );
   }
 
   initialziaeApp() {
@@ -45,15 +50,21 @@ export class MyApp {
       console.log("MyApp::initialziaeApp()");
       
       StatusBar.styleDefault();
-      this.db.createTable();
-      this.db.set( 'a', 'apple' );
-      this.db.get( 'a' ).then( (re) => console.log("a: " + re ));
+
+      // this.db.createTable();
+      // this.db.set( 'a', 'apple' );
+      // this.db.get( 'a' ).then( (re) => console.log("a: " + re ));
 
     });
-
-
 
   }
 }
 
-ionicBootstrap(MyApp);
+ionicBootstrap(MyApp, [
+  {
+    provide: TranslateLoader,
+    useFactory: ( http: Http ) => new TranslateStaticLoader( http, 'assets/i18n', '.json'),
+    deps: [Http]
+  },
+  TranslateService
+]);

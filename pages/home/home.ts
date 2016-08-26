@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AppHeader } from '../../template/app-header';
-import { Xforum } from '../../providers/xforum/xforum';
-
+import { AppHeader, Xforum } from '../../etc/all';
+// import { Xforum } from '../../etc/providers';
+// import { AppHeader } from '../../etc/all';
 @Component({
   templateUrl: 'build/pages/home/home.html',
   providers: [ Xforum ],

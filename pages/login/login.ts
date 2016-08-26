@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AppHeader } from '../../template/app-header';
-import { Xforum } from '../../providers/xforum/xforum';
-import { HomePage } from '../home/home';
-import { Database } from '../../providers/database/database';
+
+import { AppHeader, Xforum, HomePage, Database } from '../../etc/all';
+// import { AppHeader } from '../../template/app-header';
+// import { Xforum } from '../../providers/xforum/xforum';
+// import { HomePage } from '../home/home';
+//import { Database } from '../../providers/database/database';
 @Component({
   templateUrl: 'build/pages/login/login.html',
   providers: [ Xforum, Database ],

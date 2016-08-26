@@ -1,4 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { NavController } from 'ionic-angular';
+//import { HomePage } from '../etc/pages';
+import { HomePage } from '../etc/all';
 @Component({
     selector: 'app-header',
     template: `
@@ -6,7 +9,7 @@ import { Component, Input } from '@angular/core';
         <ion-toolbar>
 
             <ion-buttons left>
-            <button>
+            <button (click)="onClickHome()">
                 <ion-icon name="home"></ion-icon>
             </button>
             </ion-buttons>
@@ -14,8 +17,7 @@ import { Component, Input } from '@angular/core';
             <ion-title>
             {{ appTitle }}
             </ion-title>
-
-
+            
             <ion-buttons right>
             <button primary>Login</button>
             <button><ion-icon name="search"></ion-icon></button>
@@ -31,4 +33,11 @@ import { Component, Input } from '@angular/core';
 })
 export class AppHeader {
     @Input() appTitle: string = "App Title";
+    constructor(private navCtrl: NavController) {
+
+    }
+    onClickHome() {
+        console.log("AppHeader::onClickHome");
+        this.navCtrl.setRoot( HomePage );
+    }
 }
