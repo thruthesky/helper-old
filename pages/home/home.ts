@@ -10,10 +10,10 @@ import { Xforum } from '../../providers/xforum/xforum';
 })
 export class HomePage {
   private appTitle: string = "Login";
-  constructor( public navCtrl: NavController, private xforum: Xforum ) {
+  constructor( public navCtrl: NavController, private x: Xforum ) {
     this.appTitle = 'My Korean Boss';
 
-    this.xforum.ping().subscribe( (re) => console.log(JSON.parse(re['_body']).data.server_name) );
-
+    this.x.ping( (re) => console.log( re ) );
+    
   }
 }

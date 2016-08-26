@@ -1,10 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ionicBootstrap, Platform, Nav, Storage, SqlStorage } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
-
-import { HomePage } from './pages/home/home';
-import { LoginPage } from './pages/login/login';
-import { Database } from './providers/database/database';
+import { HomePage, LoginPage, Database } from './etc/imports';
 
 
 @Component({
@@ -16,7 +13,7 @@ export class MyApp {
   rootPage: any = HomePage;
   pages: Array<{ title: string, component: any}>;
   
-
+  
   constructor(public platform: Platform, private db: Database) {
     this.initialziaeApp();
     this.pages = [
@@ -25,6 +22,7 @@ export class MyApp {
     ];
 
     this.testApp();
+
 
   }
   testApp() {

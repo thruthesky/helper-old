@@ -17,19 +17,18 @@ export class LoginPage {
   private loadMessage: string;
   private showError: boolean = false;
   private errorMessage: string;
-  constructor(private navCtrl: NavController, private xforum: Xforum, private db: Database ) {
+  constructor(private navCtrl: NavController, private x: Xforum, private db: Database ) {
     this.testApp();
   }
 
   onClickSignIn() {
     this.onShowLoader();
     console.log('LoginPage::onClickSignIn() user_login:  ' + this.user_login);
-    this.xforum.login( this.user_login, this.user_pass).subscribe( (res) => {
+    this.x.login( this.user_login, this.user_pass, (res) => {
       console.log( res );
       this.onHideLoader();
-      let result = JSON.parse( res['_body'] );
-      if ( result['success'] ) this.goHome();
-      else this.onLoginError( result['data'] );
+      if ( res['success'] ) this.goHome();
+      else this.onLoginError( res['data'] );
     } );
   }
 
