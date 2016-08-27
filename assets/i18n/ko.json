@@ -1,8 +1,16 @@
 {
+    "home" : {
+        "title" : "필이모"
+    },
     "login" : {
         "title" : "로그인"
     },
     "forum" : {
         "title" : "게시판"
-    }
+    },
+
+    "HOME" : "홈",
+    "MENU" : "메뉴",
+    "LOGIN" : "로그인",
+    "FORUM" : "게시판"
 }

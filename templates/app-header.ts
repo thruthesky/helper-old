@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
-//import { HomePage } from '../etc/pages';
-//import { HomePage } from '../etc/all';
 import { HomePage } from '../pages/home/home';
+import { TranslatePipe, Language } from '../providers/language/language';
 @Component({
     selector: 'app-header',
     template: `
@@ -20,7 +19,7 @@ import { HomePage } from '../pages/home/home';
             </ion-title>
             
             <ion-buttons right>
-            <button primary>Login</button>
+            <button primary login>{{ 'LOGIN' | translate }}</button>
             <button><ion-icon name="search"></ion-icon></button>
             </ion-buttons>
 
@@ -30,11 +29,13 @@ import { HomePage } from '../pages/home/home';
 
         </ion-toolbar>
     </ion-header>
-    `
+    `,
+    providers: [ Language ],
+    pipes: [ TranslatePipe ]
 })
 export class AppHeader {
     @Input() appTitle: string = "App Title";
-    constructor(private navCtrl: NavController) {
+    constructor(private navCtrl: NavController, private language: Language) {
 
     }
     onClickHome() {

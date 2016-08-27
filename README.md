@@ -3,6 +3,7 @@ House helper app
 
 # TODO
 
+
 ## don't move when home button clicked if the user is at home already.
 
 
@@ -19,6 +20,10 @@ put it back.
 * by web view language
 * by user's choice
 
+## 의문점
+
+app.html 의 menu 가 어떤 과정을 거쳐서 메인에 포함되는 것인가?
+
 
 # INSTALLATION
 
@@ -26,34 +31,41 @@ put it back.
 
 ## install NG2-Translate for ionic 2
 
-## update gulp automation
+## install lodash
 
-    ...
-    gulp.task('watch', ['clean'], function(done){
-    runSequence(
-        ['assets', 'sass', 'html', 'fonts', 'scripts'],
-        function(){
-        ...
-        gulpWatch('app/assets/i18n/*.json', function(){ gulp.start('assets'); });
-        ....
-        }
-    );
-    });
+npm install lodash --save
+typings install lodash --save
 
-    gulp.task('build', ['clean'], function(done){
-    runSequence(
-        ['assets', 'sass', 'html', 'fonts', 'scripts'],
-        ….
-    });
+## copy gulpfile
 
-    gulp.task("assets", function() {
-        return gulp.src(["app/assets/i18n/*"])
-            .pipe(gulp.dest("www/assets/i18n"));
-    });
+copy app/etc/install/gulpfile.js .
 
 
-    gulp.task('sass', buildSass);
-    ...
+# Coding Guide
+
+## Language Tranlsation
+
+This is a wrapper of NG2-Translate and is more handy to use.
+
+* You don't have to put 'translate.setDefaultLang()', 'translate.use()' on every component class.
 
 
-## ..
+### prep
+
+  import { Language, TranslatePipe } from '../../providers/language/language';
+  @Component({
+    providers: [Language],
+    pipes: [TranslatePipe]
+  })
+
+### service
+
+  constructor( private language: Language) {
+      language.get('forum.title', (re)=> this.appTitle = re);
+    language.get('forum.title', {name: 'QnA'}, (re)=> this.appTitle = re);
+  }
+
+
+### pipe
+
+  {{ 'forum.title' | translate:{name: 'Free Talk'} }}

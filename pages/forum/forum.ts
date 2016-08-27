@@ -1,18 +1,16 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AppHeader } from '../../template/app-header';
-import {TranslatePipe, TranslateService} from 'ng2-translate/ng2-translate';
-
+import { AppHeader } from '../../templates/app-header';
+import { Language, TranslatePipe } from '../../providers/language/language';
 @Component({
   templateUrl: 'build/pages/forum/forum.html',
   directives: [ AppHeader ],
+  providers: [Language],
   pipes: [TranslatePipe]
 })
 export class ForumPage {
   private appTitle: string = "Forum";
-  constructor(private navCtrl: NavController, private translate: TranslateService) {
-    translate.setDefaultLang('en');
-    translate.use('ko');
-    translate.get('forum.title').subscribe((res:string)=> this.appTitle = res );
+  constructor(private navCtrl: NavController, private language: Language) {
+    language.get('forum.title', (re)=> this.appTitle = re);
   }
 }
