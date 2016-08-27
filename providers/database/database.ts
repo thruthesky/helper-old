@@ -23,8 +23,16 @@ export class Database {
   set( key: string, value: any ) : void {
       this.db.set( key, value );
   }
-  get( key: string ) : Promise<any> {
-      return this.db.get( key );
+  /**
+   * 
+   * @code
+   * this.db.set('run', Math.round(new Date().getTime() / 1000 ));
+      this.db.get('run', (v) => console.log(v));
+      @endcode
+   */
+  get( key: string, callback: any ) : void {
+      this.db.get( key )
+        .then( (x) => callback(x) );
   }
 }
 

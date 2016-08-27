@@ -3,7 +3,29 @@
 <ion-content padding>
 
 <p>...</p>
+<ion-list radio-group>
+  <ion-list-header>
+    {{ 'Select your language' | translate }}
+  </ion-list-header>
 
-Select your language?
+
+  <ion-item>
+    <ion-label>{{ 'English' | translate }}</ion-label>
+    <ion-radio (click)="onClickLanguage('en')" checked="{{ languages.en }}" value="en"></ion-radio>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-label>{{ 'Korean' | translate }}</ion-label>
+    <ion-radio (click)="onClickLanguage('ko')" checked="{{ languages.ko }}" value="ko"></ion-radio>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>{{ 'Chinese' | translate }}</ion-label>
+    <ion-radio (click)="onClickLanguage('ch')" checked="{{ languages.ch }}" value="ch"></ion-radio>
+  </ion-item>
+
+</ion-list>
+
 
 </ion-content>

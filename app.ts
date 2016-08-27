@@ -26,14 +26,14 @@ export class MyApp {
   ];
   constructor(public platform: Platform, private db: Database, private language: Language) {
 
-    console.log( this.pages );
     this.initialziaeApp();
     this.testApp();
+
 }
   testApp() {
-    // this.rootPage = LoginPage;
+    this.rootPage = LoginPage;
     // this.rootPage = ForumPage;
-    this.rootPage = SettingPage;
+    // this.rootPage = SettingPage;
     
   }
 
@@ -46,8 +46,13 @@ export class MyApp {
 
   initialziaeApp() {
 
-    this.initializePanel();
 
+    this.language.ready.subscribe( (x) => {
+      console.log("app.ts : " + x);
+      this.initializePanel();
+    } );
+    
+  
     // Okay, so the platform is ready and our plugins are available.
     // Here you can do any higher level native things you might need.
     this.platform.ready().then(() => {
@@ -60,6 +65,8 @@ export class MyApp {
       // this.db.set( 'a', 'apple' );
       // this.db.get( 'a' ).then( (re) => console.log("a: " + re ));
 
+      this.db.set('run', Math.round(new Date().getTime() / 1000 ));
+      // this.db.get('run', (v) => console.log(v));
     });
 
   }
@@ -74,9 +81,9 @@ export class MyApp {
 
   }
 
-updateMenuText( key: string ) :void {
-  let index = this.pages.findIndex( (x) => x.key == key );
-  this.language.get( key, (x) => this.pages[index].title = x );
+updateMenuText( key: string ) : void {
+  let index:number = this.pages.findIndex( (x: PanelMenu) => x.key == key );
+  this.language.get( key, (x: string) => this.pages[index].title = x );
 }
 
 }

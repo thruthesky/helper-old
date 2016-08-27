@@ -29,7 +29,13 @@ app.html 의 menu 가 어떤 과정을 거쳐서 메인에 포함되는 것인�
 
 ## replace app folder with http://github.com/thruthesk/helper
 
+  rm -rf app
+  git clone https://github.com/thruthesky/helper app
+
+
 ## install NG2-Translate for ionic 2
+
+  npm install ng2-translate@2.2.2 --save --save-exact
 
 
 ## Do not install lodash.
@@ -42,9 +48,10 @@ app.html 의 menu 가 어떤 과정을 거쳐서 메인에 포함되는 것인�
   // npm install lodash --save
   // typings install lodash --save
 
+
 ## copy gulpfile
 
-copy app/etc/install/gulpfile.js .
+cp app/etc/install/gulpfile.js .
 
 
 # Coding Guide

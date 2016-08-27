@@ -6,21 +6,29 @@ import { AppHeader } from '../../templates/app-header';
 import { Xforum } from '../../providers/xforum/xforum';
 import { HomePage } from '../home/home';
 import { Database } from '../../providers/database/database';
+import { Language, TranslatePipe } from '../../providers/language/language';
 @Component({
   templateUrl: 'build/pages/login/login.html',
-  providers: [ Xforum, Database ],
-  directives: [AppHeader]
+  providers: [ Xforum, Database, Language ],
+  directives: [AppHeader],
+  pipes: [ TranslatePipe ]
 })
 export class LoginPage {
-  private appTitle: string = "Login";
+  private appTitle: string = "";
   private user_login: string;
   private user_pass: string;
   private showLoader: boolean = false;
   private loadMessage: string;
   private showError: boolean = false;
   private errorMessage: string;
-  constructor(private navCtrl: NavController, private x: Xforum, private db: Database ) {
+  constructor(private navCtrl: NavController,
+        private x: Xforum,
+        private db: Database,
+        private language: Language ) {
     this.testApp();
+    language.ready.subscribe( (x) => {
+      language.get('login.title', (x) => this.appTitle = x );
+    });
   }
 
   onClickSignIn() {

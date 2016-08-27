@@ -11,6 +11,6 @@ import { Language, TranslatePipe } from '../../providers/language/language';
 export class ForumPage {
   private appTitle: string = "Forum";
   constructor(private navCtrl: NavController, private language: Language) {
-    language.get('forum.title', (re)=> this.appTitle = re);
+    language.get('forum.title', (x)=> this.appTitle = x);
   }
 }

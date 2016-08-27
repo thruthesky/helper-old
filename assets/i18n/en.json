@@ -3,10 +3,26 @@
         "title" : "My Korean Boss"
     },
     "login" : {
-        "title" : "Login"
+        "title" : "Login",
+        "sub_title" : "User Login",
+        "description"  : "Input User ID and Password."
     },
 
     "forum" : {
         "title" : "FORUM"
-    }
+    },
+    "setting" : {
+        "title" : "Settings"
+    },
+
+    "HOME" : "HOME",
+    "MENU" : "MENU",
+    "LOGIN" : "LOGIN",
+    "FORUM" : "FORUM",
+    "SETTING" : "SETTING",
+
+    "Korean" : "Korean",
+    "English" : "English",
+    "Chinese" : "Chinese"
+    
 }
