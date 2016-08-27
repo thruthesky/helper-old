@@ -10,7 +10,6 @@ import { LoginPage } from './pages/login/login';
 import { ForumPage } from './pages/forum/forum';
 import { SettingPage } from './pages/setting/setting';
 import { PanelMenu } from './interfaces/panel-menu';
-import * as _ from 'lodash';
 @Component({
   templateUrl: 'build/app.html',
   providers: [ Database, Language ],
@@ -20,37 +19,22 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = HomePage;
   pages: Array<PanelMenu>  = [
-
-      { key: 'home', title: 'Home', component: HomePage },
-      { key: 'login', title: 'Login', component: LoginPage },
-      { key: 'forum', title: 'Forum', component: ForumPage },
-      { key: 'setting', title: 'Setting', component: SettingPage }
-
+      { key: 'HOME', title: 'Home', component: HomePage },
+      { key: 'LOGIN', title: 'Login', component: LoginPage },
+      { key: 'FORUM', title: 'Forum', component: ForumPage },
+      { key: 'SETTING', title: 'Setting', component: SettingPage }
   ];
   constructor(public platform: Platform, private db: Database, private language: Language) {
 
     console.log( this.pages );
     this.initialziaeApp();
     this.testApp();
-
-    //translate.get('MENU').subscribe( (x) => console.log(x) );
-    language.get('MENU', (x) => console.log(x) );
-    language.get('HOME', (x) => {
-      let index = _.findIndex( this.pages, { key: 'home'} );
-      this.pages[ index ]['title'] = x;
-    });
-    language.get("FORUM", (x) => {
-      let index = _.findIndex( this.pages, { key: 'forum'} );
-      this.pages[ index ]['title'] = x;
-    });
-    language.get("LOGIN", (x) => {
-      let index = _.findIndex( this.pages, { key: 'login'} );
-      this.pages[ index ]['title'] = x;
-    });
 }
   testApp() {
     // this.rootPage = LoginPage;
     // this.rootPage = ForumPage;
+    this.rootPage = SettingPage;
+    
   }
 
 
@@ -62,6 +46,7 @@ export class MyApp {
 
   initialziaeApp() {
 
+    this.initializePanel();
 
     // Okay, so the platform is ready and our plugins are available.
     // Here you can do any higher level native things you might need.
@@ -82,21 +67,17 @@ export class MyApp {
 
   initializePanel() {
 
-
-//    console.log( this.pages );
-    //this.pages['home']['title'] = '홈';
-    /*
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Login', component: LoginPage },
-      { title: 'Forum', component: ForumPage },
-      { title: 'Setting', component: SettingPage }
-    ];
-    */
-
-
+    this.updateMenuText('HOME');
+    this.updateMenuText('LOGIN');
+    this.updateMenuText('FORUM');
+    this.updateMenuText('SETTING');
 
   }
+
+updateMenuText( key: string ) :void {
+  let index = this.pages.findIndex( (x) => x.key == key );
+  this.language.get( key, (x) => this.pages[index].title = x );
+}
 
 }
 

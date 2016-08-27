@@ -31,10 +31,16 @@ app.html 의 menu 가 어떤 과정을 거쳐서 메인에 포함되는 것인�
 
 ## install NG2-Translate for ionic 2
 
-## install lodash
 
-npm install lodash --save
-typings install lodash --save
+## Do not install lodash.
+
+* We will not use external functional functions like Underscore or Lodash.
+* ES6 is good enough without Underscore or Lodash.
+
+
+  // ## install lodash
+  // npm install lodash --save
+  // typings install lodash --save
 
 ## copy gulpfile
 

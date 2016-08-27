@@ -12,5 +12,6 @@
     "HOME" : "홈",
     "MENU" : "메뉴",
     "LOGIN" : "로그인",
-    "FORUM" : "게시판"
+    "FORUM" : "게시판",
+    "SETTING" : "설정"
 }
