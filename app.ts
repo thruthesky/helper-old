@@ -3,9 +3,11 @@ import { ionicBootstrap, Platform, Nav, Storage, SqlStorage } from 'ionic-angula
 import { StatusBar } from 'ionic-native';
 import { Http } from '@angular/http';
 import { TranslateService, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
-import { HomePage, Database, LoginPage, ForumPage } from './etc/all';
-// import { Database } from './etc/providers';
-// import { HomePage, LoginPage, ForumPage } from './etc/pages';
+// import { HomePage, Database, LoginPage, ForumPage } from './etc/all';
+import { Database } from './providers/database/database';
+import { HomePage } from './pages/home/home';
+import { LoginPage } from './pages/login/login';
+import { ForumPage } from './pages/forum/forum';
 @Component({
   templateUrl: 'build/app.html',
   providers: [ Database ]
@@ -14,7 +16,6 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = HomePage;
   pages: Array<{ title: string, component: any}>;
-  
   
   constructor(public platform: Platform, private db: Database) {
     this.initialziaeApp();
@@ -29,8 +30,8 @@ export class MyApp {
 
   }
   testApp() {
-    //this.rootPage = LoginPage;
-    this.rootPage = ForumPage;
+    // this.rootPage = LoginPage;
+    //this.rootPage = ForumPage;
   }
 
 

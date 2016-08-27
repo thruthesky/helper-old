@@ -24,7 +24,9 @@ put it back.
 
 ## replace app folder with http://github.com/thruthesk/helper
 
-## gulp automation
+## install NG2-Translate for ionic 2
+
+## update gulp automation
 
     ...
     gulp.task('watch', ['clean'], function(done){

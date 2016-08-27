@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
 //import { HomePage } from '../etc/pages';
-import { HomePage } from '../etc/all';
+//import { HomePage } from '../etc/all';
+import { HomePage } from '../pages/home/home';
 @Component({
     selector: 'app-header',
     template: `
@@ -38,6 +39,7 @@ export class AppHeader {
     }
     onClickHome() {
         console.log("AppHeader::onClickHome");
+        console.log( HomePage );
         this.navCtrl.setRoot( HomePage );
     }
 }
