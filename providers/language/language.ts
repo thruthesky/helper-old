@@ -10,7 +10,7 @@ export class Language {
   constructor( private translate: TranslateService, private db: Database ) {
     translate.setDefaultLang('en');
     this.db.get('language', (x) => {
-      console.log("language: " + x );
+      // console.log("language: " + x );
       if ( x ) translate.use(x);
       else translate.use('en');
       setTimeout( () => {

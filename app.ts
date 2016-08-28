@@ -22,7 +22,8 @@ export class MyApp {
       { key: 'HOME', title: 'Home', component: HomePage },
       { key: 'LOGIN', title: 'Login', component: LoginPage },
       { key: 'FORUM', title: 'Forum', component: ForumPage },
-      { key: 'SETTING', title: 'Setting', component: SettingPage }
+      { key: 'SETTING', title: 'Setting', component: SettingPage },
+      { key: 'CLOSE', title: 'Close (X)', component: SettingPage }
   ];
   constructor(public platform: Platform, private db: Database, private language: Language) {
 
@@ -48,7 +49,7 @@ export class MyApp {
 
 
     this.language.ready.subscribe( (x) => {
-      console.log("app.ts : " + x);
+      // console.log("app.ts : " + x);
       this.initializePanel();
     } );
     

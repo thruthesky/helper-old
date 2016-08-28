@@ -3,14 +3,7 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-
-
-/*
-  Generated class for the Xforum provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
+import { LoginResponse } from '../../providers/xforum/interfaces';
 @Injectable()
 export class Xforum {
 
@@ -18,8 +11,6 @@ export class Xforum {
   private serverUrl: string = "http://work.org/wordpress/index.php";
 
   constructor(private http: Http) {}
-
-
 
   /**
    * this.xforum.ping().subscribe( (re) => console.log(JSON.parse(re['_body']).data.server_name) );
@@ -31,21 +22,23 @@ export class Xforum {
   login(user_login: string, user_pass: string, callback) {
     console.log('Xforum::login()');
     let url = this.serverUrl + "?forum=user_login_check&response=ajax&user_login="+user_login+"&user_pass="+user_pass;
-    return this.get( url, callback );
+    return this.get( url, ( res : LoginResponse ) => callback( res ) );
   }
 
   get( url, callback ) {
     console.log("Xforum::get : " + url );
     return this.http.get( url )
       .map( (data) => data.json() )
-      .catch( ( err: any ) => {
-        let errMsg = (err.message) ?
+      .catch( ( e ) => this.errorHandler( e ) )
+      .subscribe( (res) => callback(res) );
+  }
+
+  errorHandler( err: any ) {
+    let errMsg = (err.message) ?
           err.message :
           err.status ? `${err.status} - ${err.statusText}` : 'Xforum got server error. Please check if server is alive and no error has been returned.';
-        console.error('ERROR on Http.get(): ', errMsg);
-        return Observable.throw(errMsg);
-      } )
-      .subscribe( (re) => callback(re) );
+    console.error('ERROR on Http.get(): ', errMsg);
+    return Observable.throw(errMsg);
   }
 }
 

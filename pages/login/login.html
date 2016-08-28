@@ -2,34 +2,43 @@
 <ion-content padding>
   <p>...</p>
   <h3>{{ 'login.sub_title' | translate }}</h3>
-  <div>{{ 'login.description' | translate }}</div>
-  
-  <ion-list>
-    <ion-item>
-      <ion-label primary stacked>User ID</ion-label>
-      <ion-input [(ngModel)]="user_login" placeholder="Please input your ID."></ion-input>
-    </ion-item>
 
-    <ion-item>
-      <ion-label primary stacked>Password</ion-label>
-      <ion-input type="password" [(ngModel)]="user_pass" placeholder="Input password."></ion-input>
-    </ion-item>
 
-    <ion-item *ngIf="showLoader">
-      <ion-spinner></ion-spinner>
-      {{ loadMessage }}
-    </ion-item>
+  <section *ngIf="! alreadyLoggedIn">
+    <div>{{ 'login.description' | translate }}</div>
     
-    <ion-item *ngIf="showError" text-wrap>
-      <ion-icon name="warning"></ion-icon>
-      {{ errorMessage }}
-    </ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-label primary stacked>User ID</ion-label>
+        <ion-input [(ngModel)]="user_login" placeholder="Please input your ID."></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label primary stacked>Password</ion-label>
+        <ion-input type="password" [(ngModel)]="user_pass" placeholder="Input password."></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="showLoader">
+        <ion-spinner></ion-spinner>
+        {{ loadMessage }}
+      </ion-item>
+      
+      <ion-item *ngIf="showError" text-wrap>
+        <ion-icon name="warning"></ion-icon>
+        {{ errorMessage }}
+      </ion-item>
 
 
-    <ion-item>
-      <button (click)="onClickSignIn()">Sign In</button>
-    </ion-item>
+      <ion-item>
+        <button (click)="onClickSignIn()">Sign In</button>
+      </ion-item>
 
-  </ion-list>
+    </ion-list>
+  </section>
+
+  <section *ngIf=" alreadyLoggedIn ">
+    You have logged in already.
+    <button (click)=" onClickLogout() ">Log Out</button>
+  </section>
 
 </ion-content>

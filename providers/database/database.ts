@@ -34,5 +34,12 @@ export class Database {
       this.db.get( key )
         .then( (x) => callback(x) );
   }
+
+  setUserSessionId( session_id : string ) : void {
+      this.set( 'session_id', session_id );
+  }
+  getUserSessionId( callback: any ) : void {
+      this.get( 'session_id', callback );
+  }
 }
 
