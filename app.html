@@ -7,6 +7,7 @@
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{ p.title }}
       </button>
+      <button ion-item menuClose>{{ 'CLOSE' | translate }}</button>
     </ion-list>
   </ion-content>
 </ion-menu>

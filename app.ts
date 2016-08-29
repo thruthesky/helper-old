@@ -3,16 +3,16 @@ import { ionicBootstrap, Platform, Nav, Storage, SqlStorage } from 'ionic-angula
 import { StatusBar } from 'ionic-native';
 import { Http } from '@angular/http';
 import { TranslatePipe, TranslateService, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
-import { Language } from './providers/language/language';
 import { Database } from './providers/database/database';
 import { HomePage } from './pages/home/home';
 import { LoginPage } from './pages/login/login';
 import { ForumPage } from './pages/forum/forum';
 import { SettingPage } from './pages/setting/setting';
 import { PanelMenu } from './interfaces/panel-menu';
+import { Core } from './providers/core/core';
 @Component({
   templateUrl: 'build/app.html',
-  providers: [ Database, Language ],
+  providers: [ Database, Core ],
   pipes: [ TranslatePipe ]
 })
 export class MyApp {
@@ -22,20 +22,21 @@ export class MyApp {
       { key: 'HOME', title: 'Home', component: HomePage },
       { key: 'LOGIN', title: 'Login', component: LoginPage },
       { key: 'FORUM', title: 'Forum', component: ForumPage },
-      { key: 'SETTING', title: 'Setting', component: SettingPage },
-      { key: 'CLOSE', title: 'Close (X)', component: SettingPage }
+      { key: 'SETTING', title: 'Setting', component: SettingPage }
   ];
-  constructor(public platform: Platform, private db: Database, private language: Language) {
-
+  constructor(public platform: Platform,
+      private db: Database,
+      private core: Core
+      ) {
+    
     this.initialziaeApp();
     this.testApp();
 
 }
   testApp() {
-    this.rootPage = LoginPage;
+     // this.rootPage = LoginPage;
     // this.rootPage = ForumPage;
-    // this.rootPage = SettingPage;
-    
+    // this.rootPage = SettingPage; 
   }
 
 
@@ -47,18 +48,23 @@ export class MyApp {
 
   initialziaeApp() {
 
+    // Core.event.subscribe( (x:string) => this.coreEvent(x) );
 
-    this.language.ready.subscribe( (x) => {
-      // console.log("app.ts : " + x);
-      this.initializePanel();
-    } );
+    // SettingPage.change.subscribe( (x) => console.log("Subscription in app.ts : " + x) );
+
+    // this.language.ready.subscribe( (x) => {
+    //   // console.log("app.ts : " + x);
+    //   this.initializePanel();
+    // } );
+
+
     
   
     // Okay, so the platform is ready and our plugins are available.
     // Here you can do any higher level native things you might need.
     this.platform.ready().then(() => {
       
-      console.log("MyApp::initialziaeApp()");
+      // console.log("MyApp::initialziaeApp()");
       
       StatusBar.styleDefault();
 
@@ -82,10 +88,18 @@ export class MyApp {
 
   }
 
-updateMenuText( key: string ) : void {
-  let index:number = this.pages.findIndex( (x: PanelMenu) => x.key == key );
-  this.language.get( key, (x: string) => this.pages[index].title = x );
-}
+  updateMenuText( key: string ) : void {
+    let index:number = this.pages.findIndex( (x: PanelMenu) => x.key == key );
+    Core.get( key, (x) => this.pages[index].title = x );
+    // this.core.trans( key, (x) => this.pages[index].title = x );
+    // this.language.get( key, (x: string) => this.pages[index].title = x );
+  }
+
+  // coreEvent( x: string ) {
+  //   if ( x == Core.eventCode.language ) {
+  //     this.initializePanel();
+  //   }
+  // }
 
 }
 

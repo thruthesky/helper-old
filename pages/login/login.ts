@@ -6,18 +6,19 @@ import { AppHeader } from '../../templates/app-header';
 import { Xforum } from '../../providers/xforum/xforum';
 import { HomePage } from '../home/home';
 import { Database } from '../../providers/database/database';
-import { Language, TranslatePipe } from '../../providers/language/language';
-
+import { TranslatePipe } from 'ng2-translate/ng2-translate';
+import { SettingPage } from '../setting/setting';
 import { LoginResponse } from '../../providers/xforum/interfaces';
-
+import { Core } from '../../providers/core/core';
 @Component({
   templateUrl: 'build/pages/login/login.html',
-  providers: [ Xforum, Database, Language ],
-  directives: [AppHeader],
+  providers: [ Xforum, Database, Core ],
+  directives: [AppHeader ],
   pipes: [ TranslatePipe ]
 })
 export class LoginPage {
   private appTitle: string = "";
+  private display: boolean = false;
   private user_login: string;
   private user_pass: string;
   private showLoader: boolean = false;
@@ -29,24 +30,49 @@ export class LoginPage {
   constructor(private navCtrl: NavController,
         private x: Xforum,
         private db: Database,
-        private language: Language ) {
+        private core: Core
+  ) {
     
+    // Core.event.subscribe( ( x: string ) => this.coreEvent(x) );
+
+      
     // this.testApp();
 
-    language.ready.subscribe( (x) => {
-      language.get('login.title', (x) => this.appTitle = x );
-    });
+    // language.ready.subscribe( (x) => {
+    //   language.get('login.title', (x) => this.appTitle = x );
+    // });
 
-    this.ifAlreadyLoggedIn();
+//    this.ifAlreadyLoggedIn();
 
 
-  }
+    // SettingPage.change.subscribe( (x) => console.log("Subscription in LoginPage : " + x) );
 
-  ifAlreadyLoggedIn() {
 
-    this.db.getUserSessionId( (x) => this.alreadyLoggedIn = true );
 
   }
+
+  // coreEvent( x: string ) {
+  //   if ( x == Core.eventCode.language ) {
+  //     this.core.trans( 'login.title', (x) => this.appTitle = x );
+  //   }
+  //   if ( x == Core.eventCode.logged_in ) {
+  //     this.alreadyLoggedIn = true;
+  //     this.display = true;
+  //   }
+  //   if ( x == Core.eventCode.logged_out ) {
+  //     this.alreadyLoggedIn = false;
+  //     this.display = true;
+  //   }
+  // }
+
+  // ifAlreadyLoggedIn() {
+
+  //   // this.db.getUserSessionId( (x) => {
+  //   //   if ( x ) this.alreadyLoggedIn = true;
+  //   //   else this.alreadyLoggedIn = false;
+  //   // } );
+
+  // }
 
   onClickLogout() {
     this.db.setUserSessionId( '' );
