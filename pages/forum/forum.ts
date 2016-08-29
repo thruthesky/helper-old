@@ -10,9 +10,11 @@ import { Core } from '../../providers/core/core';
 })
 export class ForumPage {
   private appTitle: string = "Forum";
-  constructor(private navCtrl: NavController,
-    private core: Core
+  constructor(
+    private navCtrl: NavController
   ) {
+    console.log("ForumPage::constrcutor()");
+    Core.translate( 'forum.title', (x) => this.appTitle = x );
     // language.get('forum.title', (x)=> this.appTitle = x);
   }
 }

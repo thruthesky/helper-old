@@ -20,9 +20,6 @@ export class Database {
   get db () : Storage {
       return Database.storage;
   }
-  set( key: string, value: any ) : void {
-      this.db.set( key, value );
-  }
   /**
    * 
    * @code
@@ -34,6 +31,18 @@ export class Database {
       this.db.get( key )
         .then( (x) => callback(x) );
   }
+
+  
+  /**
+   * 
+   */
+  set( key: string, value: any, callback?: any ) : void {
+      this.db.set( key, value )
+        .then( () => {
+            if ( callback ) { callback() }
+        } );
+  }
+
 
   setUserSessionId( session_id : string ) : void {
       this.set( 'session_id', session_id );

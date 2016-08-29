@@ -17,24 +17,61 @@ import { Core } from './providers/core/core';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = HomePage;
+  rootPage: any;
   pages: Array<PanelMenu>  = [
       { key: 'HOME', title: 'Home', component: HomePage },
       { key: 'LOGIN', title: 'Login', component: LoginPage },
       { key: 'FORUM', title: 'Forum', component: ForumPage },
       { key: 'SETTING', title: 'Setting', component: SettingPage }
   ];
+  events: Array<string> = [];
   constructor(public platform: Platform,
       private db: Database,
       private core: Core
       ) {
     
+
     this.initialziaeApp();
+
+    Core.event.subscribe( (x:string) => this.coreEvent(x) );
     this.testApp();
 
-}
+  }
+
+  coreEvent( x: string ) {
+    console.log('MyApp: got coreEvent: ' + x);
+    if ( x == Core.code.language ) { // language selection is now ready.
+      console.log('language: ' + Core.language );
+      this.initializePanel();
+      this.events.push( x );
+    }
+    if ( x == Core.code.login ) {
+      this.events.push( x );
+    }
+    
+    /**
+     * @note check if all event from Core has arrived.
+     */
+    if ( this.events.indexOf( Core.code.login ) != -1 && this.events.indexOf( Core.code.language ) != -1 ) {
+      this.coreReady();
+    }
+
+  }
+
+  /**
+   * Core is ready now.
+   * @note this method is called when the core is ready to play.
+   */
+  coreReady() {
+      this.goHome();
+  }
+  goHome() {
+      // this.rootPage = HomePage;
+      this.rootPage = LoginPage;
+      // this.rootPage = SettingPage;
+  }
   testApp() {
-     // this.rootPage = LoginPage;
+    // this.rootPage = LoginPage;
     // this.rootPage = ForumPage;
     // this.rootPage = SettingPage; 
   }
@@ -47,6 +84,7 @@ export class MyApp {
   }
 
   initialziaeApp() {
+
 
     // Core.event.subscribe( (x:string) => this.coreEvent(x) );
 
@@ -80,6 +118,7 @@ export class MyApp {
 
 
   initializePanel() {
+    console.log('MyApp initializePanel()');
 
     this.updateMenuText('HOME');
     this.updateMenuText('LOGIN');
@@ -90,17 +129,13 @@ export class MyApp {
 
   updateMenuText( key: string ) : void {
     let index:number = this.pages.findIndex( (x: PanelMenu) => x.key == key );
-    Core.get( key, (x) => this.pages[index].title = x );
+    Core.translate( key, (x) => {
+      console.log('updateMenuText: x: ' + x);
+      this.pages[index].title = x;
+    } );
     // this.core.trans( key, (x) => this.pages[index].title = x );
     // this.language.get( key, (x: string) => this.pages[index].title = x );
   }
-
-  // coreEvent( x: string ) {
-  //   if ( x == Core.eventCode.language ) {
-  //     this.initializePanel();
-  //   }
-  // }
-
 }
 
 ionicBootstrap(MyApp, [

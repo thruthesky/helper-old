@@ -39,14 +39,19 @@ import { Core } from '../providers/core/core';
 export class AppHeader {
     @Input() appTitle: string = "TITLE";
     static initialized: boolean = false;
-    constructor(private navCtrl: NavController,
-        private core: Core
+    constructor(private navCtrl: NavController
     ) {
-        this.init();
-        //if ( this.init() ) return;
-        //Core.event.subscribe( ( x: string ) => this.coreEvent( x ));
+        this.initialize();
     }
-    init() : boolean {
+    initialize() : boolean {
+
+        console.log( "AppHeader: User login? " + Core.loggedIn );
+        
+        console.log("AppHeader initialize() : user session_id: " + Core.user.session_id );
+
+
+
+
         if ( AppHeader.initialized ) {
             console.log('AppHeader::constructor() : already initialized !');
             return true;

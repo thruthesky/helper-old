@@ -3,9 +3,8 @@
   <p>...</p>
   <h3>{{ 'login.sub_title' | translate }}</h3>
 
-  <section *ngIf="display">
 
-    <section *ngIf="! alreadyLoggedIn">
+    <section *ngIf="! loggedIn">
       <div>{{ 'login.description' | translate }}</div>
       
       <ion-list>
@@ -31,16 +30,16 @@
 
 
         <ion-item>
-          <button (click)="onClickSignIn()">Sign In</button>
+          <button (click)="onClickLogin()">Sign In</button>
         </ion-item>
 
       </ion-list>
     </section>
 
-    <section *ngIf=" alreadyLoggedIn ">
+    <section *ngIf=" loggedIn ">
       You have logged in already.
       <button (click)=" onClickLogout() ">Log Out</button>
     </section>
-  </section>
+  
 
 </ion-content>

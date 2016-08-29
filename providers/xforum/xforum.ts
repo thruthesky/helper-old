@@ -7,8 +7,8 @@ import { LoginResponse } from '../../providers/xforum/interfaces';
 @Injectable()
 export class Xforum {
 
-  //private serverUrl: string = "http://wordpress46b1.org/index.php";
-  private serverUrl: string = "http://work.org/wordpress/index.php";
+  private serverUrl: string = "http://wordpress46b1.org/index.php";
+  //private serverUrl: string = "http://work.org/wordpress/index.php";
 
   constructor(private http: Http) {}
 

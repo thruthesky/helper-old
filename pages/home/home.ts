@@ -12,39 +12,29 @@ import { Core } from '../../providers/core/core';
   pipes: [TranslatePipe]
 })
 export class HomePage implements OnDestroy {
-  private appTitle: string;
-  static initialized: boolean = false;
-  static sub: any;
-  constructor( public navCtrl: NavController,
-      private core: Core,
-      private x: Xforum ) {
-      // HomePage.sub = Core.event.subscribe( (x: string) => this.coreEvent(x) );
-
-      this.init();
+    private appTitle: string;
+    static initialized: boolean = false;
+    static sub: any;
+    constructor( public navCtrl: NavController,
+        private core: Core,
+        private x: Xforum
+    ) {
+      this.initialize();
       console.log('HomePage: construtor: language: ' + Core.language );
   }
   ngOnDestroy() {
-      //HomePage.sub.unsubscribe();
-      console.log("HomePage: ngOnDescroty: unsubscribed");
+      console.log("HomePage: ngOnDescroty())");
   }
-
-    init() : boolean {
-
-        if ( HomePage.initialized ) {
-            console.log('HomePage::constructor() : already initialized !');
-            return true;
+  initialize() : boolean {
+      Core.translate('home.title', (x) => this.appTitle = x );
+      if ( HomePage.initialized ) {
+          console.log('HomePage::constructor() : already initialized !');
+          return true;
         }        
         else {
             HomePage.initialized = true;
-            console.log('HomePage::constructor() : initializing');
+            console.log('HomePage::constructor() : initializing. You can do some preprocess and save it into satic.');
             return false;
         }
     }
-  // coreEvent( x: string ) {
-  //   console.log('HomePage::contructor::coreEvent():' + x);
-  //   if ( x == Core.eventCode.language ) {
-  //     this.core.trans( 'home.title', (x) => this.appTitle = x );
-  //   }
-    
-  // }
 }
