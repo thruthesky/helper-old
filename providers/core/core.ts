@@ -3,6 +3,7 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Subject }    from 'rxjs/Subject';
 import { Database } from '../database/database';
 import { Storage } from 'ionic-angular';
+export * from '../app/app';
 
 @Injectable()
 export class Core {
@@ -20,6 +21,7 @@ export class Core {
         session_id: '',
         user_login: ''
     };
+
     static event = new Subject<string>();
     static language:string = '';
     static _translate: TranslateService;
@@ -68,7 +70,6 @@ export class Core {
                 Core.event.next( Core.code.login );
             });
             Core.db.get( Core.code.user_login ) .then( (x) => Core.user.user_login = x );
-            // this.__db.get( Core.code.user_login, (x) => Core.user.user_login = x );
         }
         else {
             if ( Core.user.user_login ) {
@@ -88,13 +89,11 @@ export class Core {
     static doUserLogin( session_id: string ) {
         Core.db.set( Core.code.session_id, session_id );
         Core.user.session_id = session_id;
-        //Core._db.setUserSessionId( session_id );
     }
 
     static doUserLogout() {
         Core.db.set( Core.code.session_id, '' );
         Core.user.session_id = '';
-        //Core._db.setUserSessionId( '' );
     }
 
 
@@ -103,12 +102,18 @@ export class Core {
     }
 
 
+
+    static appTitle( key: string, component: any ) {
+        Core.translate('login.title', (x) => component.appTitle = x );
+    }
+
+
     
 
     /**
      * Translate a text code.
      * @code
-     * Core.get('text-code', (x) => console.log(x) );
+     *      Core.translate('login.title', (x) => this.appTitle = x );
      * @endcode
      */
     static translate( key: string, params?, callback?) {
@@ -121,13 +126,5 @@ export class Core {
         .subscribe( (x: string) => callback( x ));
    }
 
-/*
-   static dbGet( key: string, callback: any ) {
-       Core._db.get( key, (x) => callback(x) );
-   }
-   static dbSet( key: string, value: any, callback?: any ) {
-       Core._db.set( key, value, callback );
-   }
-   */
 }
 

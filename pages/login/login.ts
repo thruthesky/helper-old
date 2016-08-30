@@ -7,7 +7,7 @@ import { HomePage } from '../home/home';
 import { TranslatePipe } from 'ng2-translate/ng2-translate';
 import { SettingPage } from '../setting/setting';
 import { LoginResponse } from '../../providers/xforum/interfaces';
-import { Core } from '../../providers/core/core';
+import { Core, app } from '../../providers/core/core';
 @Component({
   templateUrl: 'build/pages/login/login.html',
   providers: [ Xforum ],
@@ -30,7 +30,7 @@ export class LoginPage {
       private x: Xforum
   ) {
     console.log('LoginPage constructor()');
-    Core.translate('login.title', (x) => this.appTitle = x );
+    app.title( 'login.title', this );
     this.loggedIn = Core.loggedIn;
   }
 

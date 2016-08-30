@@ -16,7 +16,6 @@ export class HomePage implements OnDestroy {
     static initialized: boolean = false;
     static sub: any;
     constructor( public navCtrl: NavController,
-        private core: Core,
         private x: Xforum
     ) {
       this.initialize();
