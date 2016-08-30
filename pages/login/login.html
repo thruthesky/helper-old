@@ -34,12 +34,46 @@
         </ion-item>
 
       </ion-list>
+
+      
+    
+      <ion-list>
+
+        <h2>User Register</h2>
+        
+        <ion-item>
+          <ion-input [(ngModel)]="user_login" placeholder="Input User ID"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input [(ngModel)]="user_pass" placeholder="Input Password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input [(ngModel)]="user_email" placeholder="Input Email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <button (click)="onClickRegister()">Register</button>
+        </ion-item>
+
+      </ion-list>
+
+
     </section>
 
+
+
+
     <section *ngIf=" loggedIn ">
-      You have logged in already.
-      <button (click)=" onClickLogout() ">Log Out</button>
+      {{ 'login.already_logged_in' | translate:{username: user.user_login} }}
+      
+      <br />
+      <button (click)=" onClickLogout() ">Logout</button>
+
     </section>
   
+
+
 
 </ion-content>

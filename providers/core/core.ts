@@ -103,11 +103,6 @@ export class Core {
 
 
 
-    static appTitle( key: string, component: any ) {
-        Core.translate('login.title', (x) => component.appTitle = x );
-    }
-
-
     
 
     /**

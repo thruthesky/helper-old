@@ -5,7 +5,9 @@
     "login" : {
         "title" : "Login",
         "sub_title" : "User Login",
-        "description"  : "Input User ID and Password."
+        "description"  : "Input User ID and Password.",
+        "already_logged_in" : "Welcome {{ username }}, you have logged in already."
+
     },
 
     "forum" : {

@@ -89,8 +89,11 @@ app.html 의 menu 가 어떤 과정을 거쳐서 메인에 포함되는 것인�
 
 ## copy gulpfile
 
-cp app/etc/install/gulpfile.js .
+* linux / mac
+cp app/etc/install/gulpfile.js . 
 
+* windows
+copy app\etc\install\gulpfile.js .
 
 # Coding Guide
 
