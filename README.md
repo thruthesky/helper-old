@@ -5,19 +5,40 @@ House helper app
 
 ## 문제 발생.
 
-* event emitting 을 통해서 작업하는 것이 쉽고 편리하지만, 매우 복잡해 진다.
+* 컴포넌트 view 를 보여 줄 때마다, 새로운 컴포넌트 instance 를 생성한다.
 
-* 가능하면 event emitting 을 쓰지 않는다.
+  * 이 때, root @Component decorator 에서만 providers 로 service 를 한번만 instance 를 생성하고, 다른 컴포넌트에서는 service 인스턴스를 생성하지 않고 그냥 static 속성만 사용한다.
+  * Core 가 바로 그러하다.
+  * 이러한 문제는 service 의 constructor() 에 코드가 많이 입력되면 발생한다. 가능한 한 constructor() 에 코드를 넣지 않는다.
 
-* 특히 로그인 확인 및 언어 번역에서 event emitting 을 쓰지 않는다.
+* 문제: root component 에서 this.platform.ready.then() 이 호출 되기 전에 DB 접속을 한다.
+  * 즉, this.platform.ready().then() 이 호출되어야 plugin 이 사용가능하다고 하는데, 실제로 웹 브라우저에서는 그 전에 plugin 이 사용 가능 한 것 같다.
+  * this.platform.ready().then() 이 전에 plugin 이 사용가능한지 확인을 한번 한다.
 
-  * 그냥 각 컴포넌트에서 db 접속 한번만 하면 되는 것이다.
+* 문서화:
+  * 재귀적으로 컴포넌트를 import 하고 내부적으로 사용하면, ( 컴포넌트에서 자식 컴포넌트를 포함하는데, 자식 컴포넌트에서 부모 컴포넌트를 import 하려 할 때 에러 발생. )
+    온갖 에러가 발생한다.
+    특히, Unexpected directive value 'undefined' on the View of component 'LoginPage' 와 같은 에러가 발생한다.
 
-* 새로운 view 에서 모든 service 와 관련 컴포넌트가 새로 생성되는 것이 기본 원칙이다.
+  * 또한
+    import { NavController } from 'ionic-angular'; // 와 같이하고,
+    providers: [ NavController ], // 와 같이하면,
 
-* 따라서 그냥 모든 service 와 컴포넌트가 새로 생성되게 한다.
+    Uncaught EXCEPTION: Error in ./AppHeader class AppHeader - inline template 4:20 ORIGINAL EXCEPTION: TypeError: this.navCtrl.setRoot is not a function at AppHeader.onClickHome 와 같이 에러가 난다.
 
-* db 접속 같은 경우만 클래스에서 static 으로 하고 constructor 에서 중복 접속을 피한다.
+    어떤 때에 providers: [...] 에 추가를 해야하는지 말아야하는지,
+
+    또한 에러 메세지가 providers: [ ... ] 와 관련이 없는 메세지라서 에러 메세지 해결이 너무 힘들다.
+    
+
+## create wordpress tables.
+
+  * create all the wordpress tables onto app db.
+    * first download 50 latest posts with and 10 per each category.
+    * after 1 minutes from last download, do the same over and over again.
+  * and show posts from load db.
+  * show only from local db !!
+    * Even if it has to download from remote server, save into local db and display from local db.
 
 
 

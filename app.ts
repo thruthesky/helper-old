@@ -29,7 +29,6 @@ export class MyApp {
       private db: Database,
       private core: Core
       ) {
-    
 
     this.initialziaeApp();
 
@@ -80,29 +79,15 @@ export class MyApp {
   
   openPage(page) {
     this.nav.setRoot(page.component);
-    //this.nav.push( page.component );
   }
 
   initialziaeApp() {
-
-
-    // Core.event.subscribe( (x:string) => this.coreEvent(x) );
-
-    // SettingPage.change.subscribe( (x) => console.log("Subscription in app.ts : " + x) );
-
-    // this.language.ready.subscribe( (x) => {
-    //   // console.log("app.ts : " + x);
-    //   this.initializePanel();
-    // } );
-
-
-    
   
     // Okay, so the platform is ready and our plugins are available.
     // Here you can do any higher level native things you might need.
     this.platform.ready().then(() => {
       
-      // console.log("MyApp::initialziaeApp()");
+      console.log("MyApp::initialziaeApp(). App ready now!");
       
       StatusBar.styleDefault();
 
@@ -110,7 +95,7 @@ export class MyApp {
       // this.db.set( 'a', 'apple' );
       // this.db.get( 'a' ).then( (re) => console.log("a: " + re ));
 
-      this.db.set('run', Math.round(new Date().getTime() / 1000 ));
+      // this.db.set('run', Math.round(new Date().getTime() / 1000 ));
       // this.db.get('run', (v) => console.log(v));
     });
 

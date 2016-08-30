@@ -10,24 +10,15 @@ import { Core } from '../../providers/core/core';
   pipes: [TranslatePipe]
 })
 export class SettingPage {
-  private appTitle: string = 's';
+  private appTitle: string = '...4';
   private languages = { en: false, ko: false, ch: false };
 
   static initialized: boolean = false;
   constructor(private navCtrl: NavController,
     private core: Core
     ) {
-
-
     this.initialize();
     this.translate();
-
-    // console.log('core? : ' + Core.language);
-
-    // if ( this.init() ) {
-    //   SettingPage.sub.unsubscribe();
-    // }
-    // SettingPage.sub = Core.event.subscribe( (x: string) => this.coreEvent(x) );
   }
   initialize() : boolean {
     if ( SettingPage.initialized ) {
@@ -43,28 +34,22 @@ export class SettingPage {
   translate() {
     Core.translate('setting.title', (x) => this.appTitle = x );
 
-    Core.db.get( Core.code.language )
-      .then( (v) => {
-        if ( v ) this.languages[ v ] = true;
-      });
+    this.languages[ Core.language ] = true;
+
+    // Core.db.get( Core.code.language )
+    //   .then( (v) => {
+    //     if ( v ) this.languages[ v ] = true;
+    //   });
 
   }
-
-
-
-
 
   /**
    * @attention README#Coding Guide#Settings
    */
   onClickLanguage( ln: string ) {
     
-    Core.db.set( Core.code.language, ln ).then( () => location.reload() );
+    Core.db.set( Core.code.language, ln )
+      .then( () => location.reload() );
     
-    // setTimeout(()=>location.reload(), 1000);
-    
-    
-    // SettingPage.change.next('language-change');
-    // this.language.get('setting.title', (x)=> this.appTitle = x);
   }
 }

@@ -86,13 +86,15 @@ export class Core {
     }
 
     static doUserLogin( session_id: string ) {
-        Core._db.setUserSessionId( session_id );
+        Core.db.set( Core.code.session_id, session_id );
         Core.user.session_id = session_id;
+        //Core._db.setUserSessionId( session_id );
     }
 
     static doUserLogout() {
-        Core._db.setUserSessionId( '' );
+        Core.db.set( Core.code.session_id, '' );
         Core.user.session_id = '';
+        //Core._db.setUserSessionId( '' );
     }
 
 

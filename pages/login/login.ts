@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-//import { AppHeader, Xforum, HomePage, Database } from '../../etc/all';
 import { AppHeader } from '../../templates/app-header';
 import { Xforum } from '../../providers/xforum/xforum';
 import { HomePage } from '../home/home';
@@ -26,13 +25,15 @@ export class LoginPage {
   private errorMessage: string;
   private loggedIn: boolean = false;
 
-  constructor(private navCtrl: NavController,
-        private x: Xforum
+  constructor(
+      private navCtrl: NavController,
+      private x: Xforum
   ) {
     console.log('LoginPage constructor()');
     Core.translate('login.title', (x) => this.appTitle = x );
     this.loggedIn = Core.loggedIn;
   }
+
 
   onClickLogout() {
     Core.doUserLogout();
@@ -78,5 +79,5 @@ export class LoginPage {
     this.user_pass = "test";
     this.onClickLogin();
   }
-
+  
 }

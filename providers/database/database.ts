@@ -22,6 +22,8 @@ export class Database {
   }
   /**
    * 
+   * @deprecated. Do not use this method. Use Core.db.get();
+   * 
    * @code
    * this.db.set('run', Math.round(new Date().getTime() / 1000 ));
       this.db.get('run', (v) => console.log(v));
@@ -34,6 +36,8 @@ export class Database {
 
   
   /**
+   * @deprecated. Do not use this method. Use Core.db.set();
+   * 
    * 
    */
   set( key: string, value: any, callback?: any ) : void {
@@ -44,11 +48,11 @@ export class Database {
   }
 
 
-  setUserSessionId( session_id : string ) : void {
-      this.set( 'session_id', session_id );
-  }
-  getUserSessionId( callback: any ) : void {
-      this.get( 'session_id', callback );
-  }
+//   setUserSessionId( session_id : string ) : void {
+//       this.set( 'session_id', session_id );
+//   }
+//   getUserSessionId( callback: any ) : void {
+//       this.get( 'session_id', callback );
+//   }
 }
 

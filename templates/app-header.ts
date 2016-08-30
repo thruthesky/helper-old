@@ -8,7 +8,6 @@ import { Core } from '../providers/core/core';
     template: `
     <ion-header>
         <ion-toolbar>
-
             <ion-buttons left>
             <button (click)="onClickHome()">
                 <ion-icon name="home"></ion-icon>
@@ -21,9 +20,9 @@ import { Core } from '../providers/core/core';
             
             <ion-buttons right>
             
-            <button primary login *ngIf="isLoggedIn">{{ 'LOGIN' | translate }}</button>
+                <button primary login *ngIf=" ! loggedIn " (click)="onClickLogin()">{{ 'LOGIN' | translate }}</button>
 
-            <button><ion-icon name="search"></ion-icon></button>
+                <button><ion-icon name="search"></ion-icon></button>
             </ion-buttons>
 
             <button menuToggle right>
@@ -37,20 +36,17 @@ import { Core } from '../providers/core/core';
     pipes: [ TranslatePipe ]
 })
 export class AppHeader {
-    @Input() appTitle: string = "TITLE";
-    static initialized: boolean = false;
-    constructor(private navCtrl: NavController
+    @Input() appTitle: string = "AppTitle";
+    static initialized: boolean;
+    private loggedIn: boolean;
+    constructor(
+        private navCtrl: NavController
     ) {
         this.initialize();
     }
     initialize() : boolean {
-
-        console.log( "AppHeader: User login? " + Core.loggedIn );
-        
-        console.log("AppHeader initialize() : user session_id: " + Core.user.session_id );
-
-
-
+        this.loggedIn = Core.loggedIn;
+        console.log("AppHeader initialize() : Core.loggedIn=" + Core.loggedIn + ", user session_id: " + Core.user.session_id );
 
         if ( AppHeader.initialized ) {
             console.log('AppHeader::constructor() : already initialized !');
@@ -62,14 +58,21 @@ export class AppHeader {
             return false;
         }
     }
+
     // coreEvent( x: string ) {
     //     console.log('AppHeader::contructor::coreEvent():' + x);
     //     if ( x == 'language-set' ) this.translate();
     // }
     onClickHome() {
         console.log("AppHeader::onClickHome");
-        console.log( HomePage );
+        // console.log( HomePage );
         this.navCtrl.setRoot( HomePage );
+    }
+
+    onClickLogin() {
+        console.log('app-header::onClickLogin() : ');
+        // console.log( LoginPage );
+        // this.navCtrl.setRoot( LoginPage );
     }
 
     translate() {
