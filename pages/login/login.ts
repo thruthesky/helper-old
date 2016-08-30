@@ -9,13 +9,9 @@ import { SettingPage } from '../setting/setting';
 import { LoginResponse } from '../../providers/xforum/interfaces';
 import { Core, app } from '../../providers/core/core';
 
-import { Http, HTTP_PROVIDERS } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/toPromise';
-
 @Component({
   templateUrl: 'build/pages/login/login.html',
-  providers: [ Xforum, Http, HTTP_PROVIDERS],
+  providers: [ Xforum ],
   directives: [ AppHeader ],
   pipes: [ TranslatePipe ]
 })
@@ -35,14 +31,15 @@ export class LoginPage {
 
   constructor(
       private navCtrl: NavController,
-      private x: Xforum,
-      private http: Http
+      private x: Xforum
   ) {
     console.log('LoginPage constructor()');
     app.title( 'login.title', this );
     this.loggedIn = Core.loggedIn;
     //this.user = Core.user;
     this.user.user_login = Core.user.session_id;
+    //
+
   }
 
 
@@ -62,17 +59,6 @@ export class LoginPage {
       else this.onLoginError( res );
     } );
     
-
-  }
-
-  onClickRegister() {
-    console.log('LoginPage::onClickRegister()');
-    let data = "forum=user_register&user_login="+this.user_login+"&user_pass="+this.user_pass+"&user_email="+this.user_email+"&birthday=19731016&gener=M";
-    let url = "http://wordpress46b1.org/index.php?" + data;
-
-    this.http.get( url ).subscribe( (res) => console.log(res.json()) );
-
-    //this.http.get( url ).toPromise().then( (res) => console.log(res.json()) );
 
   }
 

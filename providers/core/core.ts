@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from 'ng2-translate/ng2-translate';
-import { Subject }    from 'rxjs/Subject';
+//import { Subject }    from 'rxjs/Subject';
 import { Database } from '../database/database';
-import { Storage } from 'ionic-angular';
+import { Storage, Events } from 'ionic-angular';
 export * from '../app/app';
 
 @Injectable()
 export class Core {
+
+
 
     static code = {
         logged_in: 'logged_in',
@@ -22,20 +24,23 @@ export class Core {
         user_login: ''
     };
 
-    static event = new Subject<string>();
+    //static event = new Subject<string>();
     static language:string = '';
     static _translate: TranslateService;
 
     static _db: Database;
+    static events: Events;
 
 
     constructor( public translate: TranslateService,
-                    public __db: Database
+        public __db: Database,
+        private _events: Events
     ) {
         console.log("Core::constructor(): initializing");
         Core._translate = translate;
         this.initialize();
         Core._db = __db;
+        Core.events = _events;
     }
 
 
@@ -49,7 +54,7 @@ export class Core {
             Core.language = 'en';
             this.translate.setDefaultLang('en');
             
-            Core.db.get( Core.code.language ).then ( (x) => {
+            Core.get( Core.code.language, (x) => {
                 if ( x ) {
                     this.translate.use(x);
                     Core.language = x;
@@ -58,18 +63,18 @@ export class Core {
                 else {
                     console.log("Core::initialize() got language from db but it's undefiend: " + x );
                 }
-                Core.event.next( Core.code.language );
+                Core.events.publish( 'app', { 'code': Core.code.language } );
             } );
         }
 
         if ( ! Core.user.session_id ) {
             console.log("Core initialize() : Going to get session_id from DB ... ");
-            Core.db.get( Core.code.session_id ) .then ( (x) => {
+            Core.get( Core.code.session_id, (x) => {
                 console.log('Core initialize() : Got session_id from DB: ' + x );
                 if ( x ) Core.user.session_id = x;
-                Core.event.next( Core.code.login );
+                Core.events.publish( 'app', { 'code': Core.code.login } );
             });
-            Core.db.get( Core.code.user_login ) .then( (x) => Core.user.user_login = x );
+            Core.get( Core.code.user_login, (x) => Core.user.user_login = x );
         }
         else {
             if ( Core.user.user_login ) {
@@ -86,13 +91,31 @@ export class Core {
         return Database.storage;
     }
 
+    /**
+     * 
+     * Returns a value from Database option/config table.
+     * 
+     */
+    static get( key: string, callback ) : any {
+        Core.db.get(  key ).then ( callback );
+    }
+
+    /**
+     * 
+     * Saves a key/value into App Database option/config table.
+     * 
+     */
+    static set( key: string, value: any, callback? ) {
+        Core.db.set( key, value ).then( callback );
+    }
+
     static doUserLogin( session_id: string ) {
-        Core.db.set( Core.code.session_id, session_id );
+        Core.set( Core.code.session_id, session_id );
         Core.user.session_id = session_id;
     }
 
     static doUserLogout() {
-        Core.db.set( Core.code.session_id, '' );
+        Core.set( Core.code.session_id, '' );
         Core.user.session_id = '';
     }
 

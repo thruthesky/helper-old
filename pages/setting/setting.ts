@@ -48,8 +48,7 @@ export class SettingPage {
    */
   onClickLanguage( ln: string ) {
     
-    Core.db.set( Core.code.language, ln )
-      .then( () => location.reload() );
+    Core.set( Core.code.language, ln, () => location.reload() );
     
   }
 }

@@ -9,13 +9,13 @@
       
       <ion-list>
         <ion-item>
-          <ion-label primary stacked>User ID</ion-label>
-          <ion-input [(ngModel)]="user_login" placeholder="Please input your ID."></ion-input>
+          <ion-label primary stacked>{{ 'User ID' | translate }}</ion-label>
+          <ion-input [(ngModel)]="user_login" placeholder="{{ 'Input User ID' | translate }}"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label primary stacked>Password</ion-label>
-          <ion-input type="password" [(ngModel)]="user_pass" placeholder="Input password."></ion-input>
+          <ion-label primary stacked>{{ 'Password' | translate }}</ion-label>
+          <ion-input type="password" [(ngModel)]="user_pass" placeholder="{{ 'Input Password' | translate }}"></ion-input>
         </ion-item>
 
         <ion-item *ngIf="showLoader">
@@ -37,29 +37,6 @@
 
       
     
-      <ion-list>
-
-        <h2>User Register</h2>
-        
-        <ion-item>
-          <ion-input [(ngModel)]="user_login" placeholder="Input User ID"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-input [(ngModel)]="user_pass" placeholder="Input Password"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-input [(ngModel)]="user_email" placeholder="Input Email"></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <button (click)="onClickRegister()">Register</button>
-        </ion-item>
-
-      </ion-list>
-
-
     </section>
 
 

@@ -1,0 +1,52 @@
+<app-header [appTitle]="appTitle"></app-header>
+<ion-content padding>
+
+  <p>...</p>
+
+  <ion-list>
+    
+  
+      <h2>User Register</h2>
+      
+      <ion-item>
+        
+        <ion-label primary stacked>{{ 'User ID' | translate }}</ion-label>
+        <ion-input [(ngModel)]="user_login" placeholder="Input User ID"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label primary stacked>{{ 'Password' | translate }}</ion-label>
+        <ion-input [(ngModel)]="user_pass" placeholder="Input Password"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label primary stacked>{{ 'Email' | translate }}</ion-label>
+        <ion-input [(ngModel)]="user_email" placeholder="Input Email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label primary stacked>{{ 'Mobile' | translate }}</ion-label>
+        <ion-input [(ngModel)]="mobile" placeholder="Input Mobile"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label primary stacked>{{ 'Birthday' | translate }}</ion-label>
+        <ion-input [(ngModel)]="birthday" placeholder="Input Birthday"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label primary stacked>{{ 'Gender' | translate }}</ion-label>
+        <ion-input [(ngModel)]="gender" placeholder="Input Gender"></ion-input>
+      </ion-item>
+
+
+
+      <ion-item>
+        <button (click)="onClickRegister()">Register</button>
+      </ion-item>
+
+
+
+  </ion-list>
+
+</ion-content>

@@ -25,10 +25,33 @@ export class Xforum {
     return this.get( url, ( res : LoginResponse ) => callback( res ) );
   }
 
+
+  register( data: any, callback ) {
+
+    let e = encodeURIComponent;
+    let q = Object.keys( data )
+      .map( (k) => e(k) + '=' + e( data[k] ) )
+      .join( '&' );
+    let url = this.serverUrl + '?forum=user_register&' + q;
+
+    console.log('Xforum::register() : ' + url);
+
+    this.get( url, (x) => callback(x));
+  }
+
+
   get( url, callback ) {
     console.log("Xforum::get : " + url );
     return this.http.get( url )
-      .map( (data) => data.json() )
+      .map( (data) => {
+        /// @todo error handling.
+        try {
+          data.json();
+        }
+        catch ( e ) {
+          
+        }
+      } )
       .catch( ( e ) => this.errorHandler( e ) )
       .subscribe( (res) => callback(res) );
   }

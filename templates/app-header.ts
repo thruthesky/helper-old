@@ -1,34 +1,33 @@
 import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HomePage } from '../pages/home/home';
+// import { LoginPage } from '../pages/login/login';
 import { TranslatePipe } from 'ng2-translate/ng2-translate';
-import { Core } from '../providers/core/core';
+import { Events } from 'ionic-angular';
+import { Core, app } from '../providers/core/core';
 @Component({
     selector: 'app-header',
     template: `
     <ion-header>
         <ion-toolbar>
             <ion-buttons left>
-            <button (click)="onClickHome()">
-                <ion-icon name="home"></ion-icon>
-            </button>
+                <button (click)="onClickHome()">
+                    <ion-icon name="home"></ion-icon>
+                </button>
             </ion-buttons>
 
             <ion-title>
-            {{ appTitle }}
+                {{ appTitle }}
             </ion-title>
             
             <ion-buttons right>
-            
                 <button primary login *ngIf=" ! loggedIn " (click)="onClickLogin()">{{ 'LOGIN' | translate }}</button>
-
                 <button><ion-icon name="search"></ion-icon></button>
             </ion-buttons>
 
             <button menuToggle right>
-            <ion-icon name="menu"></ion-icon>
+                <ion-icon name="menu"></ion-icon>
             </button>
-
         </ion-toolbar>
     </ion-header>
     `,
@@ -40,7 +39,8 @@ export class AppHeader {
     static initialized: boolean;
     private loggedIn: boolean;
     constructor(
-        private navCtrl: NavController
+        private navCtrl: NavController,
+        private events: Events
     ) {
         this.initialize();
     }
@@ -73,6 +73,9 @@ export class AppHeader {
         console.log('app-header::onClickLogin() : ');
         // console.log( LoginPage );
         // this.navCtrl.setRoot( LoginPage );
+        // app.showLoginPage();
+        
+        this.events.publish('app', { code:'show-component', 'component': 'LOGIN'} );
     }
 
     translate() {

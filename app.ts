@@ -6,10 +6,12 @@ import { TranslatePipe, TranslateService, TranslateLoader, TranslateStaticLoader
 import { Database } from './providers/database/database';
 import { HomePage } from './pages/home/home';
 import { LoginPage } from './pages/login/login';
+import { RegisterPage } from './pages/register/register';
 import { ForumPage } from './pages/forum/forum';
 import { SettingPage } from './pages/setting/setting';
 import { PanelMenu } from './interfaces/panel-menu';
 import { Core } from './providers/core/core';
+import { Events } from 'ionic-angular';
 @Component({
   templateUrl: 'build/app.html',
   providers: [ Database, Core ],
@@ -22,37 +24,56 @@ export class MyApp {
       { key: 'HOME', title: 'Home', component: HomePage },
       { key: 'LOGIN', title: 'Login', component: LoginPage },
       { key: 'FORUM', title: 'Forum', component: ForumPage },
-      { key: 'SETTING', title: 'Setting', component: SettingPage }
+      { key: 'SETTING', title: 'Setting', component: SettingPage },
+      { key: 'REGISTER', title: 'Register', component: RegisterPage },
   ];
-  events: Array<string> = [];
+  private eventStack: Array<string> = [];
+  static _this: MyApp;
   constructor(public platform: Platform,
       private db: Database,
-      private core: Core
+      private core: Core,
+      private events: Events
       ) {
 
+        MyApp._this = this;
     this.initialziaeApp();
 
-    Core.event.subscribe( (x:string) => this.coreEvent(x) );
+    //Core.event.subscribe( (x:string) => this.coreEvent(x) );
     this.testApp();
 
+    events.subscribe('app', this.onEvents );
   }
+  
 
-  coreEvent( x: string ) {
-    console.log('MyApp: got coreEvent: ' + x);
-    if ( x == Core.code.language ) { // language selection is now ready.
-      console.log('language: ' + Core.language );
-      this.initializePanel();
-      this.events.push( x );
+  onEvents( events: any ) {
+    let e = events[0];
+    let a = MyApp._this;
+    console.log('MyApp: onEvents: ' + e.code);
+    if ( e.code == Core.code.language ) { // language selection is now ready.
+      console.log('Core language is set : ' + Core.language );
+      a.initializePanel();
+      a.eventStack.push( e.code );
+      a.coreReady();
+     
     }
-    if ( x == Core.code.login ) {
-      this.events.push( x );
+    if ( e.code == Core.code.login ) {
+      a.eventStack.push( e.code );
+      a.coreReady();
     }
     
+
     /**
-     * @note check if all event from Core has arrived.
+     * 
+     * Move to or show another component by event.
+     * 
+     * @note since circular improt of component is not working ( producing an error ),
+     *    it does with event.
+     * 
      */
-    if ( this.events.indexOf( Core.code.login ) != -1 && this.events.indexOf( Core.code.language ) != -1 ) {
-      this.coreReady();
+    if ( e.code == 'show-component' ) {
+     let index = a.pages.findIndex( (page) => page.key == e.component );
+     console.log( 'index: ' + index + ', component: ' + a.pages[index].component );
+     a.nav.setRoot( a.pages[ index ].component );
     }
 
   }
@@ -62,12 +83,24 @@ export class MyApp {
    * @note this method is called when the core is ready to play.
    */
   coreReady() {
+     
+    /**
+     * @note check if all event from Core has arrived.
+     */
+    if ( this.eventStack.indexOf( Core.code.login ) != -1 && this.eventStack.indexOf( Core.code.language ) != -1 ) {
+      
+      console.log('coreReady()');
       this.goHome();
+
+    }
+
   }
+
   goHome() {
       // this.rootPage = HomePage;
-      this.rootPage = LoginPage;
+      // this.rootPage = LoginPage;
       // this.rootPage = SettingPage;
+      this.rootPage = RegisterPage;
   }
   testApp() {
     // this.rootPage = LoginPage;
@@ -103,8 +136,8 @@ export class MyApp {
 
 
   initializePanel() {
-    console.log('MyApp initializePanel()');
 
+    console.log('MyApp initializePanel()');
     this.updateMenuText('HOME');
     this.updateMenuText('LOGIN');
     this.updateMenuText('FORUM');
