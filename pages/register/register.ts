@@ -5,7 +5,8 @@ import { TranslatePipe } from 'ng2-translate/ng2-translate';
 //import { Xforum } from '../../providers/xforum/xforum';
 import { Xapi } from '../../providers/xapi/xapi';
 import { Core, app } from '../../providers/core/core';
-import { RegisterResponse } from '../../providers/xapi/interfaces';
+import { HomePage } from '../home/home';
+import * as xi from '../../providers/xapi/interfaces';
 @Component({
   templateUrl: 'build/pages/register/register.html',
   providers: [ Xapi ],
@@ -15,15 +16,12 @@ import { RegisterResponse } from '../../providers/xapi/interfaces';
 export class RegisterPage {
 
   private appTitle: string = 'R...';
-  
-  private user_login;
-  private user_pass;
-  private user_email;
-  private mobile;
-  private gender;
-  private birthday;
+  private user: xi.UserRegisterData  = xi.userRegisterData;
 
-  constructor(private navCtrl: NavController,
+
+
+  constructor(
+    private navCtrl: NavController,
     private x: Xapi
   ) {
     console.log('RegisterPage::constructor()');
@@ -36,19 +34,13 @@ export class RegisterPage {
   onClickRegister() {
     console.log('RegisterPage::onClickRegister()');
 
-    let user =  {
-      user_login: this.user_login,
-      user_pass: this.user_pass,
-      user_email: this.user_email,
-      mobile: this.mobile,
-      birthday: this.birthday,
-      gender: this.gender
-    };
 
-    this.x.register(user, (res: RegisterResponse) => {
+    console.log('user form data : ', this.user );
+    this.x.register( this.user, (res: xi.RegisterResponse) => {
       if ( res.success ) {
         console.log("RegisterPage::onClickRegister::success");
         Core.onUserRegisterSuccess( res );
+        this.goHome();
         //Core.set( Core.code.user, JSON.stringify(re.data), () => { } );
       }
       else {
@@ -56,15 +48,12 @@ export class RegisterPage {
         console.log("RegisterPage::onClickRegister::error");
       }
     });
+  }
 
-
-    // let data = "forum=user_register&user_login="+this.user_login+"&user_pass="+this.user_pass+"&user_email="+this.user_email+"&birthday=19731016&gener=M";
-    // let url = "http://wordpress46b1.org/index.php?" + data;
-
-    // this.http.get( url ).subscribe( (res) => console.log(res.json()) );
-
-    //this.http.get( url ).toPromise().then( (res) => console.log(res.json()) );
-
+  
+  goHome() {
+    console.log("RegisterPage::goHome");
+    this.navCtrl.setRoot(HomePage); 
   }
 
 }

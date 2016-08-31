@@ -16,3 +16,22 @@ export interface RegisterResponse {
   success: boolean,
   data: UserData
 }
+
+
+
+export interface UserRegisterData {
+    user_login;
+    user_pass;
+    user_email;
+    mobile;
+    gender;
+    birthday;
+}
+export let userRegisterData: UserRegisterData = {
+    user_login: '',
+    user_pass: '',
+    user_email: '',
+    mobile: '',
+    gender:  '',
+    birthday: ''
+};
