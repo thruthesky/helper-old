@@ -12,9 +12,10 @@ import { SettingPage } from './pages/setting/setting';
 import { PanelMenu } from './interfaces/panel-menu';
 import { Core } from './providers/core/core';
 import { Events } from 'ionic-angular';
+import { Xforum } from './providers/xforum/xforum';
 @Component({
   templateUrl: 'build/app.html',
-  providers: [ Database, Core ],
+  providers: [ Database, Core, Xforum ],
   pipes: [ TranslatePipe ]
 })
 export class MyApp {
@@ -32,14 +33,13 @@ export class MyApp {
   constructor(public platform: Platform,
       private db: Database,
       private core: Core,
-      events: Events
+      events: Events,
+      private x: Xforum
       ) {
 
         MyApp.instance = this;
     this.initialziaeApp();
 
-    //Core.event.subscribe( (x:string) => this.coreEvent(x) );
-    this.testApp();
 
     events.subscribe('app', this.subscribeEvent );
   }
@@ -106,6 +106,7 @@ export class MyApp {
       console.log('coreReady()');
       this.goHome();
 
+      this.testApp();
 
   }
 
@@ -119,6 +120,32 @@ export class MyApp {
     // this.rootPage = LoginPage;
     // this.rootPage = ForumPage;
     // this.rootPage = SettingPage; 
+
+    
+    let user_login = 'user' + new Date().getSeconds();
+    let user =  {
+      user_login: user_login,
+      user_pass: '1234',
+      user_email: user_login + '@gmail.com',
+      mobile: '0917-467-8603',
+      birthday: '731016',
+      gender: 'M'
+    };
+
+    this.x.register(user, (re) => {
+      console.log(re);
+      if ( re.success ) {
+        console.log("RegisterPage::onClickRegister::success");
+        Core.set( 'user', user, () => { } );
+        
+      }
+      else {
+        console.log("RegisterPage::onClickRegister::error");
+      }
+    });
+
+
+
   }
 
 

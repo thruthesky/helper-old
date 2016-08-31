@@ -44,16 +44,18 @@ export class Xforum {
     console.log("Xforum::get : " + url );
     return this.http.get( url )
       .map( (data) => {
-        /// @todo error handling.
         try {
-          data.json();
+          return data.json();
         }
         catch ( e ) {
-          
+          console.error( "Failed on map() data.json ", data);
         }
       } )
       .catch( ( e ) => this.errorHandler( e ) )
-      .subscribe( (res) => callback(res) );
+      .subscribe( (res) => {
+        console.log(res);
+        callback(res);
+      } );
   }
 
   errorHandler( err: any ) {
