@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AppHeader } from '../../templates/app-header';
 import { TranslatePipe } from 'ng2-translate/ng2-translate';
-import { Xforum } from '../../providers/xforum/xforum';
+//import { Xforum } from '../../providers/xforum/xforum';
+import { Xapi } from '../../providers/xapi/xapi';
 import { Core, app } from '../../providers/core/core';
+import { RegisterResponse } from '../../providers/xapi/interfaces';
 @Component({
   templateUrl: 'build/pages/register/register.html',
-  providers: [ Xforum ],
+  providers: [ Xapi ],
   directives: [ AppHeader ],
   pipes: [ TranslatePipe ]
 })
@@ -22,11 +24,13 @@ export class RegisterPage {
   private birthday;
 
   constructor(private navCtrl: NavController,
-    private x: Xforum
+    private x: Xapi
   ) {
     console.log('RegisterPage::constructor()');
     app.title( 'register.title', this);
   }
+
+
 
 
   onClickRegister() {
@@ -41,12 +45,14 @@ export class RegisterPage {
       gender: this.gender
     };
 
-    this.x.register(user, (re) => {
-      if ( re.success ) {
+    this.x.register(user, (res: RegisterResponse) => {
+      if ( res.success ) {
         console.log("RegisterPage::onClickRegister::success");
-        Core.set( 'user', user, () => { } );
+        Core.onUserRegisterSuccess( res );
+        //Core.set( Core.code.user, JSON.stringify(re.data), () => { } );
       }
       else {
+        // @todo display error message.
         console.log("RegisterPage::onClickRegister::error");
       }
     });

@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { AppHeader } from '../../templates/app-header';
-import { Xforum } from '../../providers/xforum/xforum';
+//import { Xforum } from '../../providers/xforum/xforum';
+import { Xapi } from '../../providers/xapi/xapi';
 import { HomePage } from '../home/home';
 import { TranslatePipe } from 'ng2-translate/ng2-translate';
 import { SettingPage } from '../setting/setting';
@@ -11,7 +12,7 @@ import { Core, app } from '../../providers/core/core';
 
 @Component({
   templateUrl: 'build/pages/login/login.html',
-  providers: [ Xforum ],
+  providers: [ Xapi ],
   directives: [ AppHeader ],
   pipes: [ TranslatePipe ]
 })
@@ -31,14 +32,13 @@ export class LoginPage {
 
   constructor(
       private navCtrl: NavController,
-      private x: Xforum
+//      private x: Xforum,
+      private x: Xapi
   ) {
     console.log('LoginPage constructor()');
     app.title( 'login.title', this );
     this.loggedIn = Core.loggedIn;
-    //this.user = Core.user;
-    this.user.user_login = Core.user.session_id;
-    //
+    this.user = Core.user;
 
   }
 
@@ -71,7 +71,7 @@ export class LoginPage {
   }
 
   onLoginSuccess( res: LoginResponse ) : void {
-    Core.doUserLogin(res.data.session_id);
+    Core.onLoginSuccess( res );
     this.goHome();
   }
   goHome() {

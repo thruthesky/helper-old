@@ -1,5 +1,6 @@
 export interface PanelMenu {
   key: string,
   title: string,
-  component: any
+  component: any,
+  icon?: string
 }

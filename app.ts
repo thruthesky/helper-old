@@ -22,9 +22,9 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any;
   pages: Array<PanelMenu>  = [
-      { key: 'HOME', title: 'Home', component: HomePage },
-      { key: 'LOGIN', title: 'Login', component: LoginPage },
-      { key: 'FORUM', title: 'Forum', component: ForumPage },
+      { key: 'HOME', title: 'Home', component: HomePage, icon : 'home' },
+      { key: 'LOGIN', title: 'Login', component: LoginPage, icon : 'person-add' },
+      { key: 'FORUM', title: 'Forum', component: ForumPage, icon : '' },
       { key: 'SETTING', title: 'Setting', component: SettingPage },
       { key: 'REGISTER', title: 'Register', component: RegisterPage },
   ];
@@ -39,34 +39,24 @@ export class MyApp {
 
         MyApp.instance = this;
     this.initialziaeApp();
-
-
     events.subscribe('app', this.subscribeEvent );
   }
-
   static getInstance() : MyApp {
     return MyApp.instance;
   }
-
   hasEvent( code: string ) : boolean {
     return this.events.indexOf( code ) != -1;
   }
   saveEvent( event: any ) {
     this.events.push( event.code );
-
     /**
      * @note check if all event from Core has arrived.
      */
     if ( this.hasEvent( Core.code.login ) && this.hasEvent( Core.code.language ) ) {
-      
       console.log('coreReady()');
       this.coreReady();
-
     }
-
   }
-  
-
   subscribeEvent( events: any ) {
     let e = events[0];
     let a = MyApp.getInstance();
@@ -112,9 +102,9 @@ export class MyApp {
 
   goHome() {
       // this.rootPage = HomePage;
-      // this.rootPage = LoginPage;
+      this.rootPage = LoginPage;
       // this.rootPage = SettingPage;
-      this.rootPage = RegisterPage;
+      // this.rootPage = RegisterPage;
   }
   testApp() {
     // this.rootPage = LoginPage;
@@ -131,20 +121,18 @@ export class MyApp {
       birthday: '731016',
       gender: 'M'
     };
-
+/*
     this.x.register(user, (re) => {
       console.log(re);
       if ( re.success ) {
         console.log("RegisterPage::onClickRegister::success");
         Core.set( 'user', user, () => { } );
-        
       }
       else {
         console.log("RegisterPage::onClickRegister::error");
       }
     });
-
-
+    */
 
   }
 

@@ -3,6 +3,7 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 //import { Subject }    from 'rxjs/Subject';
 import { Database } from '../database/database';
 import { Storage, Events } from 'ionic-angular';
+import { UserData, UserResponse } from '../xapi/interfaces';
 export * from '../app/app';
 
 @Injectable()
@@ -16,13 +17,11 @@ export class Core {
         language: 'language',
         login: 'login',
         session_id: 'session_id',
-        user_login: 'user_login'
+        user_login: 'user_login',
+        user: 'user'
     };
 
-    static user = {
-        session_id: '',
-        user_login: ''
-    };
+    static user: UserData = <UserData>{};
 
     //static event = new Subject<string>();
     static language:string = '';
@@ -65,22 +64,36 @@ export class Core {
             } );
         }
 
-        if ( ! Core.user.session_id ) {
-            console.log("Core initialize() : Going to get session_id from DB ... ");
-            Core.get( Core.code.session_id, (x) => {
-                console.log('Core initialize() : Got session_id from DB: ' + x );
-                if ( x ) Core.user.session_id = x;
-                Core.events.publish( 'app', { 'code': Core.code.login } );
-            });
-            Core.get( Core.code.user_login, (x) => Core.user.user_login = x );
-        }
-        else {
+        if ( Core.user.session_id ) {
+            
             if ( Core.user.user_login ) {
                 console.log("Core initialize() : user already logged in. session_id: " + Core.user.session_id);
             }
             else {
                 console.log("Core initialize() : user not logged in.");
             }
+
+        }
+        else {
+            console.log("Core initialize() : Going to get session_id from DB ... ");
+            Core.get( Core.code.user, (x) => {
+                console.log('Core initialize() : Got user data from DB: ');
+                if ( x ) {
+                    try {
+                        Core.user = JSON.parse(x);
+                        console.log( Core.user );
+                    }
+                    catch ( e ) {
+                        console.log( 'ERROR: on JSON.parse user info')
+                    }
+                }
+                else {
+                    console.log('User data is empty');
+                }
+                Core.events.publish( 'app', { 'code': Core.code.login } );
+            });
+            // Core.get( Core.code.user_login, (x) => Core.user.user_login = x );
+            
         }
 
     }
@@ -107,15 +120,21 @@ export class Core {
         Core.db.set( key, value ).then( callback );
     }
 
-    static doUserLogin( session_id: string ) {
-        Core.set( Core.code.session_id, session_id );
-        Core.user.session_id = session_id;
+    static onLoginSuccess( res: UserResponse ) {
+        //Core.set( Core.code.user, res.data );
+        Core.set( Core.code.user, JSON.stringify(res.data), () => { } );
+        Core.user = res.data;
+    }
+    static onUserRegisterSuccess( res: UserResponse ) {
+        Core.set( Core.code.user, JSON.stringify(res.data), () => { } );
     }
 
+
     static doUserLogout() {
-        Core.set( Core.code.session_id, '' );
-        Core.user.session_id = '';
+        Core.set( Core.code.user, '' );
+        Core.user = <UserData>{};
     }
+
 
 
     static get loggedIn() {
