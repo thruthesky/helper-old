@@ -27,41 +27,59 @@ export class MyApp {
       { key: 'SETTING', title: 'Setting', component: SettingPage },
       { key: 'REGISTER', title: 'Register', component: RegisterPage },
   ];
-  private eventStack: Array<string> = [];
-  static _this: MyApp;
+  private events: Array<string> = [];
+  static instance: MyApp;
   constructor(public platform: Platform,
       private db: Database,
       private core: Core,
-      private events: Events
+      events: Events
       ) {
 
-        MyApp._this = this;
+        MyApp.instance = this;
     this.initialziaeApp();
 
     //Core.event.subscribe( (x:string) => this.coreEvent(x) );
     this.testApp();
 
-    events.subscribe('app', this.onEvents );
+    events.subscribe('app', this.subscribeEvent );
+  }
+
+  static getInstance() : MyApp {
+    return MyApp.instance;
+  }
+
+  hasEvent( code: string ) : boolean {
+    return this.events.indexOf( code ) != -1;
+  }
+  saveEvent( event: any ) {
+    this.events.push( event.code );
+
+    /**
+     * @note check if all event from Core has arrived.
+     */
+    if ( this.hasEvent( Core.code.login ) && this.hasEvent( Core.code.language ) ) {
+      
+      console.log('coreReady()');
+      this.coreReady();
+
+    }
+
   }
   
 
-  onEvents( events: any ) {
+  subscribeEvent( events: any ) {
     let e = events[0];
-    let a = MyApp._this;
+    let a = MyApp.getInstance();
     console.log('MyApp: onEvents: ' + e.code);
     if ( e.code == Core.code.language ) { // language selection is now ready.
       console.log('Core language is set : ' + Core.language );
       a.initializePanel();
-      a.eventStack.push( e.code );
-      a.coreReady();
-     
+      a.saveEvent( e );
     }
-    if ( e.code == Core.code.login ) {
-      a.eventStack.push( e.code );
-      a.coreReady();
+    else if ( e.code == Core.code.login ) {
+      a.saveEvent( e );
     }
     
-
     /**
      * 
      * Move to or show another component by event.
@@ -84,15 +102,10 @@ export class MyApp {
    */
   coreReady() {
      
-    /**
-     * @note check if all event from Core has arrived.
-     */
-    if ( this.eventStack.indexOf( Core.code.login ) != -1 && this.eventStack.indexOf( Core.code.language ) != -1 ) {
-      
+     
       console.log('coreReady()');
       this.goHome();
 
-    }
 
   }
 

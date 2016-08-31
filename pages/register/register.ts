@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { AppHeader } from '../../templates/app-header';
 import { TranslatePipe } from 'ng2-translate/ng2-translate';
 import { Xforum } from '../../providers/xforum/xforum';
-import { Core } from '../../providers/core/core';
+import { Core, app } from '../../providers/core/core';
 @Component({
   templateUrl: 'build/pages/register/register.html',
   providers: [ Xforum ],
@@ -12,7 +12,7 @@ import { Core } from '../../providers/core/core';
 })
 export class RegisterPage {
 
-  private appTitle: string = 'Register';
+  private appTitle: string = 'R...';
   
   private user_login;
   private user_pass;
@@ -25,7 +25,7 @@ export class RegisterPage {
     private x: Xforum
   ) {
     console.log('RegisterPage::constructor()');
-    
+    app.title( 'register.title', this);
   }
 
 

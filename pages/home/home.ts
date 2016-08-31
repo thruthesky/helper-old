@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { AppHeader } from '../../templates/app-header';
 import { Xforum } from '../../providers/xforum/xforum';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
-import { Core } from '../../providers/core/core';
+import { Core, app } from '../../providers/core/core';
 
 @Component({
   templateUrl: 'build/pages/home/home.html',
@@ -25,7 +25,8 @@ export class HomePage implements OnDestroy {
       console.log("HomePage: ngOnDescroty())");
   }
   initialize() : boolean {
-      Core.translate('home.title', (x) => this.appTitle = x );
+      // Core.translate('home.title', (x) => this.appTitle = x );
+      app.title( 'home.title', this );
       if ( HomePage.initialized ) {
           console.log('HomePage::constructor() : already initialized !');
           return true;

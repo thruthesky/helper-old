@@ -4,9 +4,13 @@
     },
     "login" : {
         "title" : "로그인",
-        "sub_title" : "회원 로그인",
+        "sub-title" : "회원 로그인",
         "description"  : "아이디와 비밀번호를 입력하십시오.",
         "already_logged_in" : "{{ username }}님, 이미 로그인을 하였습니다."
+    },
+    "register" : {
+        "title" : "회원가입",
+        "sub-title" : "회원 가입 양식"
     },
     "forum" : {
         "title" : "게시판"
@@ -27,5 +31,11 @@
     "Chinese" : "중국어",
 
     "User ID" : "사용자 아이디",
-    "Password" : "비밀번호"
+    "Password" : "비밀번호",
+
+    "Email" : "이메일",
+    "Mobile" : "휴대폰",
+    "Mobile No." : "휴대폰 번호",
+    "Birthday" : "생년월일",
+    "Gender" : "성별"
 }

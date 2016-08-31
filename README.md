@@ -16,8 +16,9 @@ House helper app
   * this.platform.ready().then() 이 전에 plugin 이 사용가능한지 확인을 한번 한다.
 
 * 문서화:
-  * 재귀적으로 컴포넌트를 import 하고 내부적으로 사용하면, ( 컴포넌트에서 자식 컴포넌트를 포함하는데, 자식 컴포넌트에서 부모 컴포넌트를 import 하려 할 때 에러 발생. )
+  * circular 방식으로 컴포넌트를 import 하고 내부적으로 사용하면, ( 컴포넌트에서 자식 컴포넌트를 포함하는데, 자식 컴포넌트에서 부모 컴포넌트를 import 하려 할 때 에러 발생. )
     온갖 에러가 발생한다.
+    * 문제: home.ts 와 app-header.ts 역시 circular 호출인데, 에러가 안난다.
     특히, Unexpected directive value 'undefined' on the View of component 'LoginPage' 와 같은 에러가 발생한다.
 
   * 또한

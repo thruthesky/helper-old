@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AppHeader } from '../../templates/app-header';
 import { TranslatePipe } from 'ng2-translate/ng2-translate';
-import { Core } from '../../providers/core/core';
+import { Core, app } from '../../providers/core/core';
 @Component({
   templateUrl: 'build/pages/setting/setting.html',
   directives: [ AppHeader ],
@@ -21,8 +21,9 @@ export class SettingPage {
     this.translate();
   }
   initialize() : boolean {
+    app.title('setting.title', this);
     if ( SettingPage.initialized ) {
-      console.log('SettingPage::constructor() : already initialized !');
+      console.log('SettingPage::constructor() : called again !');
       return true;
     }
     else {
@@ -32,7 +33,7 @@ export class SettingPage {
     }
   }
   translate() {
-    Core.translate('setting.title', (x) => this.appTitle = x );
+    
 
     this.languages[ Core.language ] = true;
 

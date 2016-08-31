@@ -26,37 +26,35 @@ export class Core {
 
     //static event = new Subject<string>();
     static language:string = '';
-    static _translate: TranslateService;
+    static instanceOfTranslate: TranslateService;
 
-    static _db: Database;
     static events: Events;
 
 
-    constructor( public translate: TranslateService,
-        public __db: Database,
+    constructor( public trans: TranslateService,
         private _events: Events
     ) {
         console.log("Core::constructor(): initializing");
-        Core._translate = translate;
+        Core.instanceOfTranslate = trans;
         this.initialize();
-        Core._db = __db;
         Core.events = _events;
     }
 
 
     initialize() {
+        let translate = this.trans;
         if ( Core.language ) {
             console.log("Core initialize() : Core.language already set: " + Core.language);
-            this.translate.setDefaultLang( Core.language );
+            translate.setDefaultLang( Core.language );
         }
         else {
             console.log("Core initialize() : Going to set 'en' as default and get language from db");
             Core.language = 'en';
-            this.translate.setDefaultLang('en');
+            translate.setDefaultLang('en');
             
             Core.get( Core.code.language, (x) => {
                 if ( x ) {
-                    this.translate.use(x);
+                    translate.use(x);
                     Core.language = x;
                     console.log("Core::initialize() set language to : " + x );
                 }
@@ -139,7 +137,7 @@ export class Core {
            callback = params;
            params = {};
        }
-       this._translate
+       this.instanceOfTranslate
         .get(key, params)
         .subscribe( (x: string) => callback( x ));
    }
