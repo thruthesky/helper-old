@@ -8,18 +8,24 @@ import { LoginResponse, RegisterResponse } from './interfaces.ts';
 export class Xapi {
     private serverUrl: string = "http://wordpress46b1.org/wp-json/wp/v2/";
     constructor(private http: Http) {}
-    get( url, callback ) {
+    /**
+     * @param error - is error callback. This is called only on server fault.
+     */
+    get( url, callback, error? ) {
         console.log("Xforum::get : " + url );
         return this.http.get( url )
         .map( (data) => {
             try {
-            return data.json();
+                return data.json();
             }
             catch ( e ) {
-            console.error( "Failed on map() data.json ", data);
+                console.error( "Failed on map() data.json ", data);
             }
         } )
-        .catch( ( e ) => this.errorHandler( e ) )
+        .catch( ( e ) => {
+            error( e );
+            return this.errorHandler( e );
+        } )
         .subscribe( (res) => {
             console.log(res);
             callback(res);
@@ -42,10 +48,10 @@ export class Xapi {
     }
 
 
-    login(user_login: string, user_pass: string, callback) {
+    login(user_login: string, user_pass: string, callback, error) {
         console.log('Xforum::login()');
         let url = this.serverUrl + "?xapi=user.login&user_login="+user_login+"&user_pass="+user_pass;
-        return this.get( url, ( res : LoginResponse ) => callback( res ) );
+        return this.get( url, ( res : LoginResponse ) => callback( res ), error );
     }
 
 
@@ -53,7 +59,7 @@ export class Xapi {
     errorHandler( err: any ) {
         let errMsg = (err.message) ?
             err.message :
-            err.status ? `${err.status} - ${err.statusText}` : 'Xforum got server error. Please check if server is alive and no error has been returned.';
+            err.status ? `${err.status} - ${err.statusText}` : 'Xapi got server error. Please check if xapi server is alive and no error has been returned.';
         console.error('ERROR on Http.get(): ', errMsg);
         return Observable.throw(errMsg);
     }

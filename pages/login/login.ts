@@ -53,12 +53,17 @@ export class LoginPage {
     this.onShowLoader();
     console.log('LoginPage::onClickSignIn() user_login:  ' + this.user_login);
     
-    this.x.login( this.user_login, this.user_pass, ( res: LoginResponse ) => {
-      console.log( res );
-      this.onHideLoader();
-      if ( res.success ) this.onLoginSuccess(res);
-      else this.onLoginError( res );
-    } );
+    this.x.login( this.user_login, this.user_pass,
+      ( res: LoginResponse ) => {
+        console.log( res );
+        this.onHideLoader();
+        if ( res.success ) this.onLoginSuccess(res);
+        else this.onLoginError( res.data.message );
+        },
+      ( error: any ) => {
+        Core.translate( 'server-error', (x) => this.onLoginError(x));
+      }
+    );
     
 
   }
@@ -81,9 +86,9 @@ export class LoginPage {
     console.log("LoginPage::goHome");
     this.navCtrl.setRoot(HomePage); 
   }
-  onLoginError( res: LoginResponse ) : void {
+  onLoginError( message: string ) : void {
     this.showError = true;
-    this.errorMessage = res.data.message;
+    this.errorMessage = message;
   }
 
 

@@ -37,5 +37,7 @@
     "Mobile" : "휴대폰",
     "Mobile No." : "휴대폰 번호",
     "Birthday" : "생년월일",
-    "Gender" : "성별"
+    "Gender" : "성별",
+
+    "server-error" : "서버 연결 에러. 인터넷을 확인하십시오. 또는 관리자에게 문의하십시오."
 }
