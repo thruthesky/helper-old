@@ -17,5 +17,9 @@ export class ForumPage {
     app.title( 'forum.title', this );
     // Core.translate( 'forum.title', (x) => this.appTitle = x );
     // language.get('forum.title', (x)=> this.appTitle = x);
+
+
+    
+
   }
 }
