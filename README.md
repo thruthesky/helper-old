@@ -3,6 +3,8 @@ House helper app
 
 # TODO
 
+
+
 ## 화상영어 앱 개발.
   * 홈페이지가 워드프레스로 되어져 있으므로, 앱과 워드프레스 글/질문/요청 연결.
   * 앱에 화상솔루션 추가.
@@ -105,6 +107,16 @@ cp app/etc/install/gulpfile.js .
 copy app\etc\install\gulpfile.js .
 
 # Coding Guide
+
+
+
+## methods of Xapi which are related in wordpress are the same as wordpress.
+
+* it uses the same function name and its case.
+
+  * for instance, it uses 'get_post()' instead of 'getPost()'.
+  
+
 
 ## Component and Service Initialization
 

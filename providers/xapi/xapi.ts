@@ -6,7 +6,7 @@ import 'rxjs/add/operator/catch';
 import { LoginResponse, RegisterResponse } from './interfaces.ts';
 @Injectable()
 export class Xapi {
-    private serverUrl: string = "http://wordpress46b1.org/wp-json/wp/v2/";
+    private serverUrl: string = "http://work.org/wordpress/wp-json/wp/v2/";
     constructor(private http: Http) {}
     /**
      * @param error - is error callback. This is called only on server fault.
@@ -65,4 +65,17 @@ export class Xapi {
     }
 
 
+
+    /**
+     * 
+     *      WORDPRESS FUNCTIONS
+     * 
+     */
+
+    /**
+     * Gets a post. It's exactly same as get_post() of wordpress.
+     */
+    get_post() {
+
+    }
 }

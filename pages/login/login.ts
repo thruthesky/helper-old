@@ -60,7 +60,6 @@ export class LoginPage {
         Core.translate( 'server-error', (x) => this.onLoginError(x));
       }
     );
-    
 
   }
 
