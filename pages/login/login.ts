@@ -47,7 +47,7 @@ export class LoginPage {
 
   onClickLogin() {
     this.onShowLoader();
-    console.log('LoginPage::onClickSignIn() user_login:  ' + this.user_login);
+    console.log('LoginPage::onClickSignIn() user_login: ...  ' + this.user_login);
     
     this.x.login( this.user_login, this.user_pass,
       ( res: LoginResponse ) => {
