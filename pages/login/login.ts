@@ -6,7 +6,7 @@ import { Xapi } from '../../providers/xapi/xapi';
 import { HomePage } from '../home/home';
 import { TranslatePipe } from 'ng2-translate/ng2-translate';
 import { SettingPage } from '../setting/setting';
-import { LoginResponse } from '../../providers/xforum/interfaces';
+import * as xi from '../../providers/xapi/interfaces';
 import { Core, app } from '../../providers/core/core';
 
 @Component({
@@ -50,11 +50,11 @@ export class LoginPage {
     console.log('LoginPage::onClickSignIn() user_login: ...  ' + this.user_login);
     
     this.x.login( this.user_login, this.user_pass,
-      ( res: LoginResponse ) => {
+      ( res: xi.LoginResponse ) => {
         console.log( res );
         this.onHideLoader();
         if ( res.success ) this.onLoginSuccess(res);
-        else this.onLoginError( res.data.message );
+        else this.onLoginError( res.data.code );
         },
       ( error: any ) => {
         Core.translate( 'server-error', (x) => this.onLoginError(x));
@@ -73,7 +73,7 @@ export class LoginPage {
   
 
 
-  onLoginSuccess( res: LoginResponse ) : void {
+  onLoginSuccess( res: xi.LoginResponse ) : void {
     Core.onLoginSuccess( res );
     this.goHome();
   }

@@ -1,13 +1,13 @@
 import { Component, OnDestroy } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AppHeader } from '../../templates/app-header';
-import { Xforum } from '../../providers/xforum/xforum';
+import { Xapi } from '../../providers/xapi/xapi';
 import {TranslatePipe} from 'ng2-translate/ng2-translate';
 import { Core, app } from '../../providers/core/core';
 
 @Component({
   templateUrl: 'build/pages/home/home.html',
-  providers: [ Xforum ],
+  providers: [ Xapi ],
   directives: [ AppHeader ],
   pipes: [TranslatePipe]
 })
@@ -16,7 +16,7 @@ export class HomePage implements OnDestroy {
     static initialized: boolean = false;
     static sub: any;
     constructor( public navCtrl: NavController,
-        private x: Xforum
+        private x: Xapi
     ) {
       this.initialize();
       console.log('HomePage: construtor: language: ' + Core.language );

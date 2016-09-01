@@ -12,10 +12,10 @@ import { SettingPage } from './pages/setting/setting';
 import { PanelMenu } from './interfaces/panel-menu';
 import { Core } from './providers/core/core';
 import { Events } from 'ionic-angular';
-import { Xforum } from './providers/xforum/xforum';
+import { Xapi } from './providers/xapi/xapi';
 @Component({
   templateUrl: 'build/app.html',
-  providers: [ Database, Core, Xforum ],
+  providers: [ Database, Core, Xapi ],
   pipes: [ TranslatePipe ]
 })
 export class MyApp {
@@ -34,7 +34,7 @@ export class MyApp {
       private db: Database,
       private core: Core,
       events: Events,
-      private x: Xforum
+      private x: Xapi
       ) {
 
         MyApp.instance = this;

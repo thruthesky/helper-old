@@ -20,16 +20,10 @@ export class ForumPage implements OnInit {
     // Core.translate( 'forum.title', (x) => this.appTitle = x );
     // language.get('forum.title', (x)=> this.appTitle = x);
 
-
-
-
-
-    
-
   }
 
 
   ngOnInit () {
-    this.x.get_post();
+    
   }
 }

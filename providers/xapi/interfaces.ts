@@ -1,5 +1,5 @@
 export interface UserData {
-    code?: number,
+    code?: string,
     session_id?: string,
     user_login?: string,
     user_nicename?: string

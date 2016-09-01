@@ -109,12 +109,16 @@ copy app\etc\install\gulpfile.js .
 # Coding Guide
 
 
+## 워드프레스와 동일한 함수를 사용한다.
 
-## methods of Xapi which are related in wordpress are the same as wordpress.
+  그래야지만 워드프레스 공부를 같이 할 수 있다.
 
-* it uses the same function name and its case.
+  함수명, 인자, 기능을 동일하게 맞춘다.
 
-  * for instance, it uses 'get_post()' instead of 'getPost()'.
+  예를 들어 함수명을 파스칼 형식으로 하지 말고 그냥 워드프레스 방식으로
+
+  'get_post()' 와 같이 사용한다. 'getPost()' 와 같이 하지 않는다.
+
   
 
 
