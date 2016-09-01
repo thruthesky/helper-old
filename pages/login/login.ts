@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { AppHeader } from '../../templates/app-header';
-//import { Xforum } from '../../providers/xforum/xforum';
 import { Xapi } from '../../providers/xapi/xapi';
 import { HomePage } from '../home/home';
 import { TranslatePipe } from 'ng2-translate/ng2-translate';
@@ -19,7 +18,6 @@ import { Core, app } from '../../providers/core/core';
 export class LoginPage {
   private appTitle: string = "";
   
-  
   private user:any = {};
   private user_login: string;
   private user_pass: string;
@@ -32,7 +30,6 @@ export class LoginPage {
 
   constructor(
       private navCtrl: NavController,
-//      private x: Xforum,
       private x: Xapi
   
   ) {
@@ -42,7 +39,6 @@ export class LoginPage {
     this.user = Core.user;
 
   }
-
 
   onClickLogout() {
     Core.doUserLogout();
@@ -83,19 +79,13 @@ export class LoginPage {
     this.goHome();
   }
   goHome() {
-    console.log("LoginPage::goHome");
+    console.log("LoginPage::goHome()");
     this.navCtrl.setRoot(HomePage); 
   }
   onLoginError( message: string ) : void {
     this.showError = true;
     this.errorMessage = message;
   }
-
-
-
-
-
-
 
   testApp() {
     this.user_login = "test";
