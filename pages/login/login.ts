@@ -34,6 +34,7 @@ export class LoginPage {
       private navCtrl: NavController,
 //      private x: Xforum,
       private x: Xapi
+  
   ) {
     console.log('LoginPage constructor()');
     app.title( 'login.title', this );
@@ -69,6 +70,8 @@ export class LoginPage {
   onHideLoader() {
     this.showLoader = false;
   }
+  
+
 
   onLoginSuccess( res: LoginResponse ) : void {
     Core.onLoginSuccess( res );
@@ -82,6 +85,12 @@ export class LoginPage {
     this.showError = true;
     this.errorMessage = res.data.message;
   }
+
+
+
+
+
+
 
   testApp() {
     this.user_login = "test";
