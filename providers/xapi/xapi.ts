@@ -11,7 +11,7 @@ export class Xapi {
     /**
      * @param error - is error callback. This is called only on server fault.
      */
-    get( url, callback, error? ) {
+    get( url: string, callback, error? ) {
         console.log("Xforum::get : " + url );
         return this.http.get( url )
         .map( (data) => {
@@ -69,6 +69,26 @@ export class Xapi {
      * 
      */
 
+
+    /**
+     * Gets categories from WordPress.
+     * @code
+     * 
+        let args: xi.CategoryListArgument = {};
+        args.search = "my";
+        this.x.get_categories( args, (res: Array<xi.Category>) => {
+            this.categories = res;
+        });
+     * @endcode
+     */
+    get_categories( args: xi.CategoryListArgument, callback: (res: Array<xi.Category>) => void ) {
+
+        let params = Object.keys( args )
+                    .map( k => k + '=' + args[k] )
+                    .join( '&' );
+        let url = this.serverUrl + 'categories?' + params;
+        return this.get( url, (x: Array<xi.Category>) => callback( x ) );
+    }
     /**
      * Gets a post. It's exactly same as get_post() of wordpress.
      */

@@ -126,10 +126,12 @@ export class MyApp {
     */
 
 
+
+/*
     this.x.get_posts( <xi.PostListArgument>{}, res => {
 
     });
-
+*/
   }
 
 

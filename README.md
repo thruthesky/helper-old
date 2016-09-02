@@ -3,7 +3,17 @@ House helper app
 
 # TODO
 
+
+## back-button
+It is okay not to show back-button on top.
+but when a user touches back-button on the device, the back button should work.
+
+
 ## 재택 강사 앱을 따로 만든다.
+
+## 필리핀 앱을 만든다.
+
+헬로필리핀과 나란히 명칭이 "필리핀앱" 인 필리핀앱을 만든다.
 
 
 ## 화상영어 앱 개발.
@@ -120,7 +130,21 @@ copy app\etc\install\gulpfile.js .
 
   'get_post()' 와 같이 사용한다. 'getPost()' 와 같이 하지 않는다.
 
-  
+## How to get categories from wordpress
+
+* it is important to use 'res.forEach(...)', because we don't know which one will resoved first.
+
+    private categories: Array<xi.Category> = [];
+
+    let args: xi.CategoryListArgument = {};
+    args.search = "its";
+    this.x.get_categories( args, (res: Array<xi.Category>) => {
+      res.forEach( i => this.categories.push( i ) );
+    });
+    args.search = "my";
+    this.x.get_categories( args, (res: Array<xi.Category>) => {
+      res.forEach( i => this.categories.push( i ) );
+    });
 
 
 ## Component and Service Initialization

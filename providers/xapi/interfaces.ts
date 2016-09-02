@@ -42,6 +42,27 @@ export interface LoginError {
   data: 'wrong-password' | 'wrong-id';
 }
 
+
+
+export interface Category {
+  id: number;
+  count: number;
+  description: string;
+  link: string;
+  name: string;
+  slug: string;
+  taxonomy: string;
+  parent: number;
+}
+
+
+export interface CategoryListArgument {
+  include?: string;
+  search?: string;
+  parent?: number;
+  slug?: string;
+}
+
 export interface PostListArgument {
   page?: number;
   per_page?: number;
@@ -67,6 +88,5 @@ export interface Post {
   title: string;
 }
 export interface PostList {
-  count: number;
   posts: Array<Post>;
 }
