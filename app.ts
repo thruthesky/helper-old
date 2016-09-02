@@ -54,7 +54,6 @@ export class MyApp {
      * @note check if all event from Core has arrived.
      */
     if ( this.hasEvent( Core.code.login ) && this.hasEvent( Core.code.language ) ) {
-      console.log('coreReady()');
       this.coreReady();
     }
   }

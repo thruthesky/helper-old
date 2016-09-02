@@ -9,7 +9,7 @@ This is forum page.
     {{ 'forum.title' | translate:{name: 'Free Talk'} }}
 </p>
 <ion-list>
-    <ion-item *ngFor=" let category of categories ">
+    <ion-item *ngFor=" let category of categories " (click)=" onClickForum( category.id ) ">
         {{ category.name }}
         <span *ngIf=" category.count ">({{ category.count }})</span>
     </ion-item>

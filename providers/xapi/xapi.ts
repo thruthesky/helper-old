@@ -81,21 +81,29 @@ export class Xapi {
         });
      * @endcode
      */
-    get_categories( args: xi.CategoryListArgument, callback: (res: Array<xi.Category>) => void ) {
+    get_categories( args: xi.CategoryQueryArgument, callback: (res: xi.Categories) => void, serverError ) {
 
         let params = Object.keys( args )
                     .map( k => k + '=' + args[k] )
                     .join( '&' );
         let url = this.serverUrl + 'categories?' + params;
-        return this.get( url, (x: Array<xi.Category>) => callback( x ) );
+        return this.get( url, (x: xi.Categories) => callback( <xi.Categories>x ), serverError );
     }
     /**
-     * Gets a post. It's exactly same as get_post() of wordpress.
+     * Gets a post.
      */
     get_post() {
 
     }
-    get_posts( arg: xi.PostListArgument, callback : (res:xi.PostList) => void ) {
 
+    /**
+     * Gets posts from WordPress
+     */
+    get_posts( arg: xi.PostQueryArgument, callback : (res:xi.Posts) => void, serverError ) {
+        let params = Object.keys( arg )
+                        .map( k => k + '=' + arg[k] )
+                        .join( '&' );
+        let url = this.serverUrl + 'posts?' + params;
+        return this.get( url, (x: xi.Posts)=>callback( <xi.Posts>x ), serverError );
     }
 }

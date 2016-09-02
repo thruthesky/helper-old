@@ -27,15 +27,26 @@ export class ForumPage implements OnInit {
 
   ngOnInit () {
     
-    let args: xi.CategoryListArgument = {};
-    args.search = "its";
-    this.x.get_categories( args, (res: Array<xi.Category>) => {
+    var catQuery: xi.CategoryQueryArgument = {};
+    catQuery.search = "its";
+    this.x.get_categories( catQuery, (res: xi.Categories) : void => {
       res.forEach( c => this.categories.push( c ) );
     });
-    args.search = "my";
-    this.x.get_categories( args, (res: Array<xi.Category>) => {
+    catQuery.search = "my";
+    this.x.get_categories( catQuery, (res: xi.Categories) : void => {
       res.forEach( c => this.categories.push( c ) );
     });
-    
+
+
+    var postQuery: xi.PostQueryArgument;
+    this.x.get_posts( postQuery, ( res: xi.Posts ) : void => {
+
+    });
+
+  }
+
+
+  onClickForum( id: number ) {
+    console.log(id);
   }
 }

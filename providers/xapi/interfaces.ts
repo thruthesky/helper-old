@@ -44,6 +44,10 @@ export interface LoginError {
 
 
 
+/**
+ * Category schema
+ * @refer http://v2.wp-api.org/reference/categories/
+ */
 export interface Category {
   id: number;
   count: number;
@@ -55,15 +59,29 @@ export interface Category {
   parent: number;
 }
 
+/**
+ * Category schema array
+ */
+export type Categories = Array<Category>;
 
-export interface CategoryListArgument {
+
+/**
+ * Category list query arguments.
+ * @refer http://v2.wp-api.org/reference/categories/
+ */
+export interface CategoryQueryArgument {
   include?: string;
   search?: string;
   parent?: number;
   slug?: string;
 }
 
-export interface PostListArgument {
+/**
+ * 
+ * post list query argument.
+ * @refer http://v2.wp-api.org/reference/posts/
+ */
+export interface PostQueryArgument {
   page?: number;
   per_page?: number;
   search?: string;
@@ -75,18 +93,16 @@ export interface PostListArgument {
   slug?: string;
   categories: string;
   context?: 'view' | 'embed' | 'edit';
-  author_exclude?: Array<number>;
+  author_exclude?: string;
   before?: string;
-  exclude?: Array<number>;
-  include?: Array<number>;
+  exclude?: string;
+  include?: string;
   status?: 'publish';
-  filter?: Array<string>;
+  // filter?: Array< Array<{ key: string, value: string}>>;
   tags?: string;
 }
 
 export interface Post {
   title: string;
 }
-export interface PostList {
-  posts: Array<Post>;
-}
+export type Posts = Array<Post>;
