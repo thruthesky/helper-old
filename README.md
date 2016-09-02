@@ -3,6 +3,7 @@ House helper app
 
 # TODO
 
+## 재택 강사 앱을 따로 만든다.
 
 
 ## 화상영어 앱 개발.
