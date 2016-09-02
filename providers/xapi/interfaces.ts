@@ -89,9 +89,9 @@ export interface PostQueryArgument {
   author?: number;
   offset?: number;
   orderby?: 'date' | 'id' | 'include' | 'title' | 'slug';
-  order: 'asc' | 'desc';
+  order?: 'asc' | 'desc';
   slug?: string;
-  categories: string;
+  categories?: string;
   context?: 'view' | 'embed' | 'edit';
   author_exclude?: string;
   before?: string;

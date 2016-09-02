@@ -135,17 +135,18 @@ copy app\etc\install\gulpfile.js .
 * it is important to use 'res.forEach(...)', because we don't know which one will resoved first.
 
     private categories: Array<xi.Category> = [];
-
-    let args: xi.CategoryListArgument = {};
-    args.search = "its";
-    this.x.get_categories( args, (res: Array<xi.Category>) => {
-      res.forEach( i => this.categories.push( i ) );
-    });
-    args.search = "my";
-    this.x.get_categories( args, (res: Array<xi.Category>) => {
-      res.forEach( i => this.categories.push( i ) );
-    });
-
+    
+    var catQuery: xi.CategoryQueryArgument = {};
+    catQuery.search = "its";
+    this.x.get_categories( catQuery, (res: xi.Categories) : void => {
+      res.forEach( c => this.categories.push( c ) );
+    },
+    (x) => console.log(x));
+    catQuery.search = "my";
+    this.x.get_categories( catQuery, (res: xi.Categories) : void => {
+      res.forEach( c => this.categories.push( c ) );
+    },
+    (x) => console.log(x));
 
 ## Component and Service Initialization
 

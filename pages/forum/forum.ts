@@ -31,17 +31,21 @@ export class ForumPage implements OnInit {
     catQuery.search = "its";
     this.x.get_categories( catQuery, (res: xi.Categories) : void => {
       res.forEach( c => this.categories.push( c ) );
-    });
+    },
+    (x) => console.log(x));
     catQuery.search = "my";
     this.x.get_categories( catQuery, (res: xi.Categories) : void => {
       res.forEach( c => this.categories.push( c ) );
-    });
+    },
+    (x) => console.log(x));
 
 
-    var postQuery: xi.PostQueryArgument;
+    var postQuery: xi.PostQueryArgument = {};
     this.x.get_posts( postQuery, ( res: xi.Posts ) : void => {
+      console.log(res);
+    },
+    (x) => console.log(x));
 
-    });
 
   }
 
