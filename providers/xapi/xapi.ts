@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { LoginResponse, RegisterResponse } from './interfaces.ts';
+import * as xi from './interfaces.ts';
 @Injectable()
 export class Xapi {
     private serverUrl: string = "http://work.org/wordpress/wp-json/wp/v2/";
@@ -37,24 +37,21 @@ export class Xapi {
     }
     
 
-    register( data: any, callback ) {
+    register( data: xi.UserRegisterData, callback: (res:xi.RegisterResponse) => void ) {
         let e = encodeURIComponent;
         let q = Object.keys( data )
-            .map( (k) => e(k) + '=' + e( data[k] ) )
+            .map( k => e(k) + '=' + e( data[k] ) )
             .join( '&' );
         let url = this.serverUrl + '?xapi=user.register&' + q;
         console.log('Xforum::register() : ' + url);
-        this.get( url, (x:RegisterResponse) => callback(x));
+        this.get( url, (x:xi.RegisterResponse) => callback(x));
     }
-
 
     login(user_login: string, user_pass: string, callback, error) {
         console.log('Xforum::login()');
         let url = this.serverUrl + "?xapi=user.login&user_login="+user_login+"&user_pass="+user_pass;
-        return this.get( url, ( res : LoginResponse ) => callback( res ), error );
+        return this.get( url, ( res : xi.LoginResponse ) => callback( res ), error );
     }
-
-
     
     errorHandler( err: any ) {
         let errMsg = (err.message) ?
@@ -78,7 +75,7 @@ export class Xapi {
     get_post() {
 
     }
-    get_posts() {
+    get_posts( arg: xi.PostListArgument, callback : (res:xi.PostList) => void ) {
 
     }
 }

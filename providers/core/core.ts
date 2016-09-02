@@ -3,7 +3,7 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 //import { Subject }    from 'rxjs/Subject';
 import { Database } from '../database/database';
 import { Storage, Events } from 'ionic-angular';
-import { UserData, UserResponse } from '../xapi/interfaces';
+import * as xi from '../xapi/interfaces';
 export * from '../app/app';
 
 @Injectable()
@@ -21,7 +21,7 @@ export class Core {
         user: 'user'
     };
 
-    static user: UserData = <UserData>{};
+    static user: xi.UserData = <xi.UserData>{};
 
     //static event = new Subject<string>();
     static language:string = '';
@@ -120,19 +120,21 @@ export class Core {
         Core.db.set( key, value ).then( callback );
     }
 
-    static onLoginSuccess( res: UserResponse ) {
-        //Core.set( Core.code.user, res.data );
-        Core.set( Core.code.user, JSON.stringify(res.data), () => { } );
-        Core.user = res.data;
+    static onLoginSuccess( res: xi.UserResponse ) {
+        Core.setUserLogin( res );
     }
-    static onUserRegisterSuccess( res: UserResponse ) {
-        Core.set( Core.code.user, JSON.stringify(res.data), () => { } );
+    static onUserRegisterSuccess( res: xi.UserResponse ) {
+        Core.setUserLogin( res );
+    }
+    static setUserLogin( res: xi.UserResponse ) {
+        Core.set( Core.code.user, JSON.stringify(res.data) );
+        Core.user = res.data;
     }
 
 
     static doUserLogout() {
         Core.set( Core.code.user, '' );
-        Core.user = <UserData>{};
+        Core.user = <xi.UserData>{};
     }
 
 

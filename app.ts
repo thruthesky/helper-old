@@ -13,6 +13,7 @@ import { PanelMenu } from './interfaces/panel-menu';
 import { Core } from './providers/core/core';
 import { Events } from 'ionic-angular';
 import { Xapi } from './providers/xapi/xapi';
+import * as xi from './providers/xapi/interfaces';
 @Component({
   templateUrl: 'build/app.html',
   providers: [ Database, Core, Xapi ],
@@ -38,8 +39,8 @@ export class MyApp {
       ) {
 
         MyApp.instance = this;
-    this.initialziaeApp();
-    events.subscribe('app', this.subscribeEvent );
+        this.initialziaeApp();
+        events.subscribe('app', this.subscribeEvent );
   }
   static getInstance() : MyApp {
     return MyApp.instance;
@@ -102,18 +103,19 @@ export class MyApp {
 
   goHome() {
       // this.rootPage = HomePage;
-      this.rootPage = LoginPage;
+      // this.rootPage = LoginPage;
       // this.rootPage = SettingPage;
       // this.rootPage = RegisterPage;
+      this.rootPage = ForumPage;
   }
   testApp() {
     // this.rootPage = LoginPage;
     // this.rootPage = ForumPage;
     // this.rootPage = SettingPage; 
 
-    
+    /*
     let user_login = 'user' + new Date().getSeconds();
-    let user =  {
+    let user : xi.UserRegisterData =  {
       user_login: user_login,
       user_pass: '1234',
       user_email: user_login + '@gmail.com',
@@ -121,18 +123,12 @@ export class MyApp {
       birthday: '731016',
       gender: 'M'
     };
-/*
-    this.x.register(user, (re) => {
-      console.log(re);
-      if ( re.success ) {
-        console.log("RegisterPage::onClickRegister::success");
-        Core.set( 'user', user, () => { } );
-      }
-      else {
-        console.log("RegisterPage::onClickRegister::error");
-      }
-    });
     */
+
+
+    this.x.get_posts( <xi.PostListArgument>{}, res => {
+
+    });
 
   }
 
@@ -159,6 +155,8 @@ export class MyApp {
       // this.db.set('run', Math.round(new Date().getTime() / 1000 ));
       // this.db.get('run', (v) => console.log(v));
     });
+
+
 
   }
 

@@ -35,3 +35,38 @@ export let userRegisterData: UserRegisterData = {
     gender:  '',
     birthday: ''
 };
+
+
+export interface LoginError {
+  success: boolean;
+  data: 'wrong-password' | 'wrong-id';
+}
+
+export interface PostListArgument {
+  page?: number;
+  per_page?: number;
+  search?: string;
+  after?: string;
+  author?: number;
+  offset?: number;
+  orderby?: 'date' | 'id' | 'include' | 'title' | 'slug';
+  order: 'asc' | 'desc';
+  slug?: string;
+  categories: string;
+  context?: 'view' | 'embed' | 'edit';
+  author_exclude?: Array<number>;
+  before?: string;
+  exclude?: Array<number>;
+  include?: Array<number>;
+  status?: 'publish';
+  filter?: Array<string>;
+  tags?: string;
+}
+
+export interface Post {
+  title: string;
+}
+export interface PostList {
+  count: number;
+  posts: Array<Post>;
+}
