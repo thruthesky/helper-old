@@ -25,6 +25,8 @@
     "FORUM" : "게시판",
     "SETTING" : "설정",
     "CLOSE" : "종료",
+    "POSTWRITE" : "글 작성",
+    "POSTEDIT" : "글 수정",
 
     "Korean" : "한국어",
     "English" : "영어",

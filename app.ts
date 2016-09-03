@@ -9,6 +9,7 @@ import { LoginPage } from './pages/login/login';
 import { RegisterPage } from './pages/register/register';
 import { ForumPage } from './pages/forum/forum';
 import { SettingPage } from './pages/setting/setting';
+import { PostEditPage } from './pages/post-edit/post-edit';
 import { PanelMenu } from './interfaces/panel-menu';
 import { Core } from './providers/core/core';
 import { Events } from 'ionic-angular';
@@ -109,10 +110,13 @@ export class MyApp {
   }
   testApp() {
 
+//     @ViewChild('fileInput') fileInput:ElementRef;
+
+
     setTimeout( () => {
       //this.nav.push( LoginPage );
       // this.nav.push( SettingPage );
-      //this.nav.push( ForumPage );
+      this.nav.push( ForumPage );
       // this.nav.push( RegisterPage );
     }, 500);
 

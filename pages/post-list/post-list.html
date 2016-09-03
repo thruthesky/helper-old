@@ -1,0 +1,17 @@
+<app-header [appTitle]="appTitle"></app-header>
+<ion-content padding>
+  <p>..</p>
+  <ion-list>
+    <ion-item *ngFor=" let post of posts ">
+      <h3>{{ post.title.rendered }}</h3>
+      <div>
+        {{ post.content.rendered }}
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+ </ion-infinite-scroll>
+ 
+</ion-content>

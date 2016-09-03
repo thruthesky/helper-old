@@ -24,6 +24,7 @@ import { Core, app } from '../providers/core/core';
             
             <ion-buttons right>
                 <button primary login *ngIf=" ! loggedIn " (click)="onClickLogin()">{{ 'LOGIN' | translate }}</button>
+                <button (click)="onClickPostEdit()"><ion-icon name="chatbubbles"></ion-icon></button>
                 <button><ion-icon name="search"></ion-icon></button>
             </ion-buttons>
 
@@ -82,6 +83,9 @@ export class AppHeader {
         // app.showLoginPage();
         
         this.events.publish('app', { code:'showComponent', 'component': 'LOGIN'} );
+    }
+    onClickPostEdit() {
+        this.events.publish('app', { code:'showComponent', 'component': 'POSTEDIT'} );
     }
 
     translate() {

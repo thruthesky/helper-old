@@ -4,6 +4,8 @@ House helper app
 # TODO
 
 
+## Is it bug that on deskstop browser, click event on list-item is not fired on first click. it works on second click.
+
 ## back-button
 It is okay not to show back-button on top.
 but when a user touches back-button on the device, the back button should work.
