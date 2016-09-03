@@ -37,7 +37,7 @@ export class MyApp {
       events: Events,
       private x: Xapi
       ) {
-
+        console.log( 'MyApp Component - root component');
         MyApp.instance = this;
         this.initialziaeApp();
         events.subscribe('app', this.subscribeEvent );
@@ -100,14 +100,25 @@ export class MyApp {
 
   }
 
+  /**
+   * View home after core initialization.
+   */
   goHome() {
-      // this.rootPage = HomePage;
+      this.rootPage = HomePage;
       // this.rootPage = LoginPage;
       // this.rootPage = SettingPage;
       // this.rootPage = RegisterPage;
-      this.rootPage = ForumPage;
+      // this.rootPage = ForumPage;
   }
   testApp() {
+
+    setTimeout( () => {
+      //this.nav.push( LoginPage );
+      // this.nav.push( SettingPage );
+      //this.nav.push( ForumPage );
+      // this.nav.push( RegisterPage );
+    }, 500);
+
     // this.rootPage = LoginPage;
     // this.rootPage = ForumPage;
     // this.rootPage = SettingPage; 
@@ -136,7 +147,8 @@ export class MyApp {
 
   
   openPage(page) {
-    this.nav.setRoot(page.component);
+    // this.nav.setRoot(page.component);
+    this.nav.push( page.component );
   }
 
   initialziaeApp() {

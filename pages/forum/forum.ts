@@ -39,13 +39,13 @@ export class ForumPage implements OnInit {
     },
     (x) => console.log(x));
 
-
+/*
     var postQuery: xi.PostQueryArgument = {};
     this.x.get_posts( postQuery, ( res: xi.Posts ) : void => {
       console.log(res);
     },
     (x) => console.log(x));
-
+*/
 
   }
 

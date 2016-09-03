@@ -9,12 +9,14 @@ import { Core, app } from '../providers/core/core';
     selector: 'app-header',
     template: `
     <ion-header>
-        <ion-toolbar>
+        <ion-navbar>
+            <!--
             <ion-buttons left>
                 <button (click)="onClickHome()">
                     <ion-icon name="home"></ion-icon>
                 </button>
             </ion-buttons>
+            -->
 
             <ion-title>
                 {{ appTitle }}
@@ -28,7 +30,7 @@ import { Core, app } from '../providers/core/core';
             <button menuToggle right>
                 <ion-icon name="menu"></ion-icon>
             </button>
-        </ion-toolbar>
+        </ion-navbar>
     </ion-header>
     `,
     providers: [ ],
@@ -63,10 +65,14 @@ export class AppHeader {
     //     console.log('AppHeader::contructor::coreEvent():' + x);
     //     if ( x == 'language-set' ) this.translate();
     // }
+
+    /**
+     * Goes home on toolbar.
+     */
     onClickHome() {
         console.log("AppHeader::onClickHome");
         // console.log( HomePage );
-        this.navCtrl.setRoot( HomePage );
+        // this.navCtrl.setRoot( HomePage );
     }
 
     onClickLogin() {

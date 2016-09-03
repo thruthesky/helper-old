@@ -135,7 +135,7 @@ copy app\etc\install\gulpfile.js .
 * it is important to use 'res.forEach(...)', because we don't know which one will resoved first.
 
     private categories: Array<xi.Category> = [];
-    
+
     var catQuery: xi.CategoryQueryArgument = {};
     catQuery.search = "its";
     this.x.get_categories( catQuery, (res: xi.Categories) : void => {
@@ -145,6 +145,16 @@ copy app\etc\install\gulpfile.js .
     catQuery.search = "my";
     this.x.get_categories( catQuery, (res: xi.Categories) : void => {
       res.forEach( c => this.categories.push( c ) );
+    },
+    (x) => console.log(x));
+
+
+## How get posts from wordpress
+
+
+    var postQuery: xi.PostQueryArgument = {};
+    this.x.get_posts( postQuery, ( res: xi.Posts ) : void => {
+      console.log(res);
     },
     (x) => console.log(x));
 
