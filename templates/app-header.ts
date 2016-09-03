@@ -81,7 +81,7 @@ export class AppHeader {
         // this.navCtrl.setRoot( LoginPage );
         // app.showLoginPage();
         
-        this.events.publish('app', { code:'show-component', 'component': 'LOGIN'} );
+        this.events.publish('app', { code:'showComponent', 'component': 'LOGIN'} );
     }
 
     translate() {

@@ -14,6 +14,7 @@ import { Core } from './providers/core/core';
 import { Events } from 'ionic-angular';
 import { Xapi } from './providers/xapi/xapi';
 import * as xi from './providers/xapi/interfaces';
+import * as share from './providers/share/share';
 @Component({
   templateUrl: 'build/app.html',
   providers: [ Database, Core, Xapi ],
@@ -22,13 +23,7 @@ import * as xi from './providers/xapi/interfaces';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any;
-  pages: Array<PanelMenu>  = [
-      { key: 'HOME', title: 'Home', component: HomePage, icon : 'home' },
-      { key: 'LOGIN', title: 'Login', component: LoginPage, icon : 'person-add' },
-      { key: 'FORUM', title: 'Forum', component: ForumPage, icon : '' },
-      { key: 'SETTING', title: 'Setting', component: SettingPage },
-      { key: 'REGISTER', title: 'Register', component: RegisterPage },
-  ];
+  pages: share.PanelMenus  = share.panelMenus;
   private events: Array<string> = [];
   static instance: MyApp;
   constructor(public platform: Platform,
@@ -78,10 +73,12 @@ export class MyApp {
      *    it does with event.
      * 
      */
-    if ( e.code == 'show-component' ) {
-     let index = a.pages.findIndex( (page) => page.key == e.component );
+    if ( e.code == 'showComponent' ) {
+
+     let index = a.pages.findIndex( (page) => page.title == e.component ); // find index of the component
      console.log( 'index: ' + index + ', component: ' + a.pages[index].component );
-     a.nav.setRoot( a.pages[ index ].component );
+     //a.nav.setRoot( a.pages[ index ].component );
+     a.nav.push( a.pages[index].component );
     }
 
   }
@@ -177,13 +174,23 @@ export class MyApp {
   initializePanel() {
 
     console.log('MyApp initializePanel()');
+    
+    /**
+     * @deprecated. use 'tranlsate' pipe.
     this.updateMenuText('HOME');
     this.updateMenuText('LOGIN');
     this.updateMenuText('FORUM');
     this.updateMenuText('SETTING');
+    */
 
   }
 
+  /**
+   * 
+   * @deprecated. Just use 'translate pipe'.
+   * 
+   * @note this translate menu text.
+   * 
   updateMenuText( key: string ) : void {
     let index:number = this.pages.findIndex( (x: PanelMenu) => x.key == key );
     Core.translate( key, (x) => {
@@ -193,6 +200,7 @@ export class MyApp {
     // this.core.trans( key, (x) => this.pages[index].title = x );
     // this.language.get( key, (x: string) => this.pages[index].title = x );
   }
+  */
 }
 
 ionicBootstrap(MyApp, [

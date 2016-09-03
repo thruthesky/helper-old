@@ -7,7 +7,7 @@
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
 
         <ion-icon name="{{ p.icon }}" *ngIf="p.icon"></ion-icon>
-        {{ p.title }}
+        {{ p.title | translate }}
 
       </button>
       <button ion-item menuClose>{{ 'CLOSE' | translate }}</button>
