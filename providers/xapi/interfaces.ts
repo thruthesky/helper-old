@@ -103,6 +103,29 @@ export interface PostQueryArgument {
 }
 
 export interface Post {
-  title: string;
+  date: string;
+  date_gmt: string;
+  guid: { rendered: string };
+  id: number;
+  link: string;
+  modified: string;
+  modified_gmt: string;
+  password: string;
+  slug: string;
+  status: 'publish' | 'future' | 'draft' | 'pending' | 'private';
+  type: string;
+  title: { rendered: string };
+  content: { rendered: string };
+  author: number;
+  excerpt: { rendered: string };
+  featured_media: number;
+  comment_status: 'open' | 'close';
+  ping_status: 'open' | 'close';
+  format: 'standard' | 'aside' | 'chat' | 'gallery' | 'link' | 'image' | 'quote' | 'status' | 'video' | 'audio';
+  sticky: boolean;
+  categories: Array<number>;
+  tags: Array<string>;
+  _links: any;
+  
 }
 export type Posts = Array<Post>;
