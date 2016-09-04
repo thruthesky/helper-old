@@ -10,6 +10,7 @@ import { RegisterPage } from './pages/register/register';
 import { ForumPage } from './pages/forum/forum';
 import { SettingPage } from './pages/setting/setting';
 import { PostEditPage } from './pages/post-edit/post-edit';
+import { PostListPage } from './pages/post-list/post-list';
 import { PanelMenu } from './interfaces/panel-menu';
 import { Core } from './providers/core/core';
 import { Events } from 'ionic-angular';
@@ -107,6 +108,7 @@ export class MyApp {
       // this.rootPage = SettingPage;
       // this.rootPage = RegisterPage;
       // this.rootPage = ForumPage;
+      // this.rootPage = PostEditPage;
   }
   testApp() {
 
@@ -116,8 +118,9 @@ export class MyApp {
     setTimeout( () => {
       //this.nav.push( LoginPage );
       // this.nav.push( SettingPage );
-      this.nav.push( ForumPage );
+      // this.nav.push( ForumPage );
       // this.nav.push( RegisterPage );
+      this.nav.push( PostEditPage );
     }, 500);
 
     // this.rootPage = LoginPage;

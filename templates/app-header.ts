@@ -23,7 +23,7 @@ import { Core, app } from '../providers/core/core';
             </ion-title>
             
             <ion-buttons right>
-                <button primary login *ngIf=" ! loggedIn " (click)="onClickLogin()">{{ 'LOGIN' | translate }}</button>
+                <!--<button primary login *ngIf=" ! loggedIn " (click)="onClickLogin()">{{ 'LOGIN' | translate }}</button>-->
                 <button (click)="onClickPostEdit()"><ion-icon name="chatbubbles"></ion-icon></button>
                 <button><ion-icon name="search"></ion-icon></button>
             </ion-buttons>

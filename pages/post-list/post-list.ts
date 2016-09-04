@@ -24,7 +24,7 @@ export class PostListPage implements OnInit {
     private x: Xapi
   ) {
     console.log("PostList::constructor()");
-    this.appTitle = this.navParams.get('name') ;
+    app.title('FORUM', this);
   }
 
 
@@ -32,13 +32,13 @@ export class PostListPage implements OnInit {
     console.log("PostList::ngOnInit()");
     // console.log(this.navParams.data);
 
-
     this.getPostData();
   }
 
   getPostData(callback?) {
     var postQuery: xi.PostQueryArgument = {};
-    postQuery.categories = this.navParams.data.id;
+    // debugger; // no good to use.
+    postQuery.categories = '223'; // this.navParams.data.id;
     postQuery.per_page = 10;
     postQuery.page = ++ this.page;
     this.x.get_posts( postQuery, ( res: xi.Posts ) : void => {

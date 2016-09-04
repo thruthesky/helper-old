@@ -34,7 +34,6 @@ export class RegisterPage {
   onClickRegister() {
     console.log('RegisterPage::onClickRegister()');
 
-
     console.log('user form data : ', this.user );
     this.x.register( this.user, (res: xi.RegisterResponse) => {
       if ( res.success ) {
@@ -55,5 +54,6 @@ export class RegisterPage {
     console.log("RegisterPage::goHome");
     this.navCtrl.setRoot(HomePage); 
   }
+
 
 }

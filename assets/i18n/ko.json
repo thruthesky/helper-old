@@ -1,6 +1,6 @@
 {
     "home" : {
-        "title" : "필이모"
+        "title" : "필리핀 하우스메이드"
     },
     "login" : {
         "title" : "로그인",
@@ -22,11 +22,10 @@
     "HOME" : "홈",
     "MENU" : "메뉴",
     "LOGIN" : "로그인",
-    "FORUM" : "게시판",
+    "FORUM" : "하우스메이드 찾기",
     "SETTING" : "설정",
     "CLOSE" : "종료",
-    "POSTWRITE" : "글 작성",
-    "POSTEDIT" : "글 수정",
+    "POST" : "하우스메이드 등록",
 
     "Korean" : "한국어",
     "English" : "영어",
