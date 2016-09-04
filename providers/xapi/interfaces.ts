@@ -129,3 +129,13 @@ export interface Post {
   
 }
 export type Posts = Array<Post>;
+
+
+export interface PostEdit {
+  password: string;
+  mobile: string;
+  birthday: string;
+  gender: string;
+  title: string;
+  content: string;
+}

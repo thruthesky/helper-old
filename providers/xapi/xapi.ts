@@ -32,6 +32,20 @@ export class Xapi {
         } );
     }
 
+
+    post( url: string, body: any, callback, error? ) {
+        console.log("Xforum::post : " + url );
+        return this.http.post( url, body )
+            .map( e => e.json() )
+            .catch( (e) =>{
+                console.log( e );
+                return Observable.throw( e );
+            } )
+            .subscribe( (res) => {
+
+            });
+    }
+
     ping( callback ) {
         return this.get( this.serverUrl + "?xapi=ping", callback);
     }

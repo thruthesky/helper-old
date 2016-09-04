@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { AppHeader } from '../../templates/app-header';
 import { Core, app } from '../../providers/core/core';
 import { TranslatePipe } from 'ng2-translate/ng2-translate';
+import * as xi from '../../providers/xapi/interfaces';
 
 /*
   Generated class for the PostEditPage page.
@@ -17,12 +18,25 @@ import { TranslatePipe } from 'ng2-translate/ng2-translate';
 })
 export class PostEditPage {
   private appTitle: string = 'POSTWRITE';
+  private post: xi.PostEdit = <xi.PostEdit> {};
   constructor(private navCtrl: NavController) {
 
   }
-
   ngOnInit () {
     app.title( this.appTitle, this);
+    this.post.password = '1234';
+    this.post.mobile = '09174678603';
+    this.post.birthday = '19731016';
+    this.post.gender = 'M';
+    this.post.title = "Housemaid write. This is the title.";
+    this.post.content = "Make it easy.";
+
+    this.onClickPost();
+
+  }
+
+  onClickPost() {
+    console.log( this.post );
   }
 
 

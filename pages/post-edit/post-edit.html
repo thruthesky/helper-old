@@ -7,35 +7,42 @@
 
       <ion-item>
         <ion-label primary stacked>{{ 'Password' | translate }}</ion-label>
-        <ion-input [(ngModel)]="password" placeholder="Input Password"></ion-input>
+        <ion-input [(ngModel)]="post.password" placeholder="Input Password"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label primary stacked>{{ 'Mobile No.' | translate }}</ion-label>
-        <ion-input [(ngModel)]="mobile" placeholder="Input Mobile"></ion-input>
+        <ion-input [(ngModel)]="post.mobile" placeholder="Input Mobile"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label primary stacked>{{ 'Birthday' | translate }}</ion-label>
-        <ion-input [(ngModel)]="birthday" placeholder="Input Birthday"></ion-input>
+        <ion-input [(ngModel)]="post.birthday" placeholder="Input Birthday"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label primary stacked>{{ 'Gender' | translate }}</ion-label>
-        <ion-input [(ngModel)]="gender" placeholder="Input Gender"></ion-input>
+        <ion-input [(ngModel)]="post.gender" placeholder="Input Gender"></ion-input>
       </ion-item>
 
 
       <ion-item>
         <ion-label primary stacked>{{ 'Title' | translate }}</ion-label>
-        <ion-input [(ngModel)]="title" placeholder="Input Title"></ion-input>
+        <ion-input [(ngModel)]="post.title" placeholder="Input Title"></ion-input>
       </ion-item>
 
 
       <ion-item>
         <ion-label primary stacked>{{ 'Content' | translate }}</ion-label>
-        <ion-input [(ngModel)]="content" placeholder="Input Content"></ion-input>
+        <ion-input [(ngModel)]="post.content" placeholder="Input Content"></ion-input>
       </ion-item>
+
+
+
+      <ion-item>
+        <button (click)="onClickPost()">{{ 'POST CREATE SUBMIT' | translate }}</button>
+      </ion-item>
+
 
 
         

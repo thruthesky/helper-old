@@ -26,6 +26,7 @@
     "SETTING" : "설정",
     "CLOSE" : "종료",
     "POST" : "하우스메이드 등록",
+    "POST CREATE SUBMIT" : "글 등록",
 
     "Korean" : "한국어",
     "English" : "영어",
@@ -39,6 +40,9 @@
     "Mobile No." : "휴대폰 번호",
     "Birthday" : "생년월일",
     "Gender" : "성별",
+
+    "Title" : "제목",
+    "Content" : "내용",
 
     "server-error" : "서버 연결 에러. 인터넷을 확인하십시오. 또는 관리자에게 문의하십시오."
 }
