@@ -17,6 +17,7 @@ export class HomePage implements OnDestroy {
     static initialized: boolean = false;
     static sub: any;
     private panelMenus = share.panelMenus;
+    private design: number = 1;
     constructor( public navCtrl: NavController,
         private x: Xapi
     ) {

@@ -119,7 +119,7 @@ export class MyApp {
       // this.nav.push( SettingPage );
       // this.nav.push( ForumPage );
       // this.nav.push( RegisterPage );
-      this.nav.push( PostListPage );
+      // this.nav.push( PostListPage );
       // this.nav.push( PostEditPage );
     }, 500);
 
