@@ -24,3 +24,5 @@ export let panelMenus: PanelMenus = [
       // { title: 'REGISTER',  component: RegisterPage },
       
     ];
+
+export const category = 713;

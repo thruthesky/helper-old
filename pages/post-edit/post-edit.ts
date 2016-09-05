@@ -4,7 +4,8 @@ import { AppHeader } from '../../templates/app-header';
 import { Core, app } from '../../providers/core/core';
 import { TranslatePipe } from 'ng2-translate/ng2-translate';
 import * as xi from '../../providers/xapi/interfaces';
-
+import { Xapi } from '../../providers/xapi/xapi';
+import * as share from '../../providers/share/share';
 /*
   Generated class for the PostEditPage page.
 
@@ -14,12 +15,16 @@ import * as xi from '../../providers/xapi/interfaces';
 @Component({
   templateUrl: 'build/pages/post-edit/post-edit.html',
   directives: [ AppHeader ],
+  providers: [ Xapi ],
   pipes: [ TranslatePipe ]
 })
 export class PostEditPage {
   private appTitle: string = 'POSTWRITE';
   private post: xi.PostEdit = <xi.PostEdit> {};
-  constructor(private navCtrl: NavController) {
+  constructor(
+    private navCtrl: NavController,
+    private x: Xapi
+  ) {
 
   }
   ngOnInit () {
@@ -35,8 +40,15 @@ export class PostEditPage {
 
   }
 
+
   onClickPost() {
     console.log( this.post );
+    this.post.category = share.category;
+    this.x.post_insert( this.post,
+      ( res ) => { console.log( res ); },
+      ( e ) => { console.log( e ); }
+    );
+    
   }
 
 

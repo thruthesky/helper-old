@@ -82,6 +82,7 @@ export interface CategoryQueryArgument {
  * @refer http://v2.wp-api.org/reference/posts/
  */
 export interface PostQueryArgument {
+  categories?: string | number;
   page?: number;
   per_page?: number;
   search?: string;
@@ -91,7 +92,6 @@ export interface PostQueryArgument {
   orderby?: 'date' | 'id' | 'include' | 'title' | 'slug';
   order?: 'asc' | 'desc';
   slug?: string;
-  categories?: string;
   context?: 'view' | 'embed' | 'edit';
   author_exclude?: string;
   before?: string;
@@ -132,10 +132,11 @@ export type Posts = Array<Post>;
 
 
 export interface PostEdit {
+  category: number;
+  title: string;
+  content: string;
   password: string;
   mobile: string;
   birthday: string;
   gender: string;
-  title: string;
-  content: string;
 }

@@ -4,6 +4,8 @@ import { Core, app } from '../../providers/core/core';
 import { AppHeader } from '../../templates/app-header';
 import { Xapi } from '../../providers/xapi/xapi';
 import * as xi from '../../providers/xapi/interfaces';
+import * as share from '../../providers/share/share';
+
 /*
   Generated class for the PostListPage page.
 
@@ -38,7 +40,7 @@ export class PostListPage implements OnInit {
   getPostData(callback?) {
     var postQuery: xi.PostQueryArgument = {};
     // debugger; // no good to use.
-    postQuery.categories = '223'; // this.navParams.data.id;
+    postQuery.categories = share.category; // this.navParams.data.id;
     postQuery.per_page = 10;
     postQuery.page = ++ this.page;
     this.x.get_posts( postQuery, ( res: xi.Posts ) : void => {

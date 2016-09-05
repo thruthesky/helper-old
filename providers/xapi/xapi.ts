@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { Headers, RequestOptions } from '@angular/http';
 import * as xi from './interfaces.ts';
 @Injectable()
 export class Xapi {
@@ -33,23 +35,30 @@ export class Xapi {
     }
 
 
+
     post( url: string, body: any, callback, error? ) {
-        console.log("Xforum::post : " + url );
-        return this.http.post( url, body )
+        console.log("Xforum::post : " + url, body );
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        body = JSON.stringify( body );
+        return this.http.post( url, body, options )
             .map( e => e.json() )
-            .catch( (e) =>{
+            .catch( (e) => {
                 console.log( e );
+                if ( error ) error( e );
                 return Observable.throw( e );
             } )
             .subscribe( (res) => {
-
+                callback( res );
             });
     }
+
 
     ping( callback ) {
         return this.get( this.serverUrl + "?xapi=ping", callback);
     }
     
+
 
     register( data: xi.UserRegisterData, callback: (res:xi.RegisterResponse) => void ) {
         let e = encodeURIComponent;
@@ -119,5 +128,14 @@ export class Xapi {
                         .join( '&' );
         let url = this.serverUrl + 'posts?' + params;
         return this.get( url, (x: xi.Posts)=>callback( <xi.Posts>x ), serverError );
+    }
+
+
+    post_insert( data: xi.PostEdit, callback, error ) {
+        console.log('Xforum::post_insert()', data);
+        return this.post( this.serverUrl + '?xapi=post.insert',
+                data,
+                callback,
+                error );
     }
 }
