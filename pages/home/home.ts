@@ -33,7 +33,7 @@ export class HomePage implements OnDestroy {
       if ( HomePage.initialized ) {
           console.log('HomePage::constructor() : already initialized !');
           return true;
-        }        
+        }
         else {
             HomePage.initialized = true;
             console.log('HomePage::constructor() : initializing. You can do some preprocess and save it into satic.');

@@ -4,16 +4,20 @@
   <p>...</p>
 
 
-
   <section *ngIf="design == 1">
     <h2>Home</h2>
     <h3>Do you want Korean boss?</h3>
     We have 1209 Korean boss who are looking for assistance.
     <h2>Menu</h2>
     <ion-list>
-      <ion-item *ngFor=" let item of panelMenus " (click)=" openPage( item ) ">
-        {{ item.title | translate }}
-      </ion-item>
+      
+
+    <ion-item *ngFor=" let item of panelMenus " (click)=" openPage( item ) ">
+      <ion-icon name="{{ item.icon }}" *ngIf="item.icon"></ion-icon>
+      {{ item.title | translate }}
+    </ion-item>
+
+
     </ion-list>
   </section>
 
