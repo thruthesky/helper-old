@@ -23,7 +23,9 @@
     "HOME" : "HOME",
     "MENU" : "MENU",
     "LOGIN" : "LOGIN",
-    "FORUM" : "FORUM",
+    "FORUM" : "Housemaid List",
+    "POST" : "Register a Housemaid",
+    "POST CREATE SUBMIT" : "UPLOAD",
     "SETTING" : "SETTING",
     "CLOSE" : "Close",
 

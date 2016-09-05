@@ -77,6 +77,7 @@ export class LoginPage {
     Core.onLoginSuccess( res );
     this.goHome();
   }
+  
   goHome() {
     console.log("LoginPage::goHome()");
     this.navCtrl.setRoot(HomePage); 

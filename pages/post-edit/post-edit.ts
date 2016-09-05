@@ -40,12 +40,11 @@ export class PostEditPage {
 
   }
 
-
   onClickPost() {
     console.log( this.post );
     this.post.category = share.category;
     this.x.post_insert( this.post,
-      ( res ) => { console.log( res ); },
+      ( res: xi.Post ) => { console.log( res ); },
       ( e ) => { console.log( e ); }
     );
     

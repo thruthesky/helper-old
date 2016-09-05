@@ -13,6 +13,7 @@ interface PanelMenu {
   icon?:string;
 }
 
+
 export type PanelMenus = Array<PanelMenu>;
 
 export let panelMenus: PanelMenus = [
@@ -25,4 +26,8 @@ export let panelMenus: PanelMenus = [
       
     ];
 
-export const category = 713;
+
+
+
+export const category: string = 'housemaid';
+

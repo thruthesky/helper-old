@@ -122,12 +122,12 @@ export class Xapi {
     /**
      * Gets posts from WordPress
      */
-    get_posts( arg: xi.PostQueryArgument, callback : (res:xi.Posts) => void, serverError ) {
+    get_posts( arg: xi.PostQuery, callback, serverError ) {
         let params = Object.keys( arg )
                         .map( k => k + '=' + arg[k] )
                         .join( '&' );
         let url = this.serverUrl + 'posts?' + params;
-        return this.get( url, (x: xi.Posts)=>callback( <xi.Posts>x ), serverError );
+        return this.get( url, callback, serverError );
     }
 
 

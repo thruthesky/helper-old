@@ -11,7 +11,6 @@ import { ForumPage } from './pages/forum/forum';
 import { SettingPage } from './pages/setting/setting';
 import { PostEditPage } from './pages/post-edit/post-edit';
 import { PostListPage } from './pages/post-list/post-list';
-import { PanelMenu } from './interfaces/panel-menu';
 import { Core } from './providers/core/core';
 import { Events } from 'ionic-angular';
 import { Xapi } from './providers/xapi/xapi';
@@ -120,7 +119,8 @@ export class MyApp {
       // this.nav.push( SettingPage );
       // this.nav.push( ForumPage );
       // this.nav.push( RegisterPage );
-      this.nav.push( PostEditPage );
+      this.nav.push( PostListPage );
+      // this.nav.push( PostEditPage );
     }, 500);
 
     // this.rootPage = LoginPage;

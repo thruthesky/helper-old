@@ -38,24 +38,29 @@ export class PostListPage implements OnInit {
   }
 
   getPostData(callback?) {
-    var postQuery: xi.PostQueryArgument = {};
+    var postQuery: xi.PostQuery = <xi.PostQuery>{};
     // debugger; // no good to use.
-    postQuery.categories = share.category; // this.navParams.data.id;
-    postQuery.per_page = 10;
-    postQuery.page = ++ this.page;
+    postQuery.xapi = 'post.page';
+    postQuery.category = share.category; // this.navParams.data.id;
+    postQuery.per_page = 20;
+    postQuery.paged = ++ this.page;
     this.x.get_posts( postQuery, ( res: xi.Posts ) : void => {
       this.onRecvPostData( res );
       if ( callback ) callback();
     },
     (x) => console.log(x));
   }
-  onRecvPostData ( posts: xi.Posts ) {
+  onRecvPostData ( res ) {
     console.log("PostList::onRecvPostData()");
-    posts.forEach( ( post:xi.Post ) => {
-      console.log(post.title.rendered);
-      this.posts.push( post );
-      console.log( "length: " + this.posts.length );
-    });
+    let posts: xi.Posts = res.data.posts;
+    if ( posts.length ) {
+      posts.forEach( ( post:xi.Post ) => {
+        console.log( post.title );
+        this.posts.push( post );
+        console.log( "length: " + this.posts.length );
+      });
+    }
+    
   }
 
 

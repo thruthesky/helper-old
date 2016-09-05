@@ -81,58 +81,31 @@ export interface CategoryQueryArgument {
  * post list query argument.
  * @refer http://v2.wp-api.org/reference/posts/
  */
-export interface PostQueryArgument {
-  categories?: string | number;
-  page?: number;
+export interface PostQuery {
+  xapi: string;
+  category: string;
+  paged: number;
   per_page?: number;
-  search?: string;
-  after?: string;
-  author?: number;
-  offset?: number;
-  orderby?: 'date' | 'id' | 'include' | 'title' | 'slug';
-  order?: 'asc' | 'desc';
-  slug?: string;
-  context?: 'view' | 'embed' | 'edit';
-  author_exclude?: string;
-  before?: string;
-  exclude?: string;
-  include?: string;
-  status?: 'publish';
-  // filter?: Array< Array<{ key: string, value: string}>>;
-  tags?: string;
 }
 
 export interface Post {
   date: string;
-  date_gmt: string;
-  guid: { rendered: string };
+  guid: string;
   id: number;
   link: string;
   modified: string;
-  modified_gmt: string;
   password: string;
   slug: string;
-  status: 'publish' | 'future' | 'draft' | 'pending' | 'private';
-  type: string;
-  title: { rendered: string };
-  content: { rendered: string };
+  title: string;
+  content: string;
   author: number;
-  excerpt: { rendered: string };
-  featured_media: number;
-  comment_status: 'open' | 'close';
-  ping_status: 'open' | 'close';
-  format: 'standard' | 'aside' | 'chat' | 'gallery' | 'link' | 'image' | 'quote' | 'status' | 'video' | 'audio';
-  sticky: boolean;
-  categories: Array<number>;
-  tags: Array<string>;
-  _links: any;
-  
+  excerpt: string;
 }
 export type Posts = Array<Post>;
 
 
 export interface PostEdit {
-  category: number;
+  category: number | string;
   title: string;
   content: string;
   password: string;
