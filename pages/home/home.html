@@ -10,6 +10,7 @@
   <ion-list>
 
     <ion-item *ngFor=" let item of panelMenus " (click)=" openPage( item ) ">
+      <ion-icon name="{{ item.icon }}" *ngIf="item.icon"></ion-icon>
       {{ item.title | translate }}
     </ion-item>
 

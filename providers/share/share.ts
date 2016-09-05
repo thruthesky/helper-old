@@ -18,12 +18,12 @@ export type PanelMenus = Array<PanelMenu>;
 
 export let panelMenus: PanelMenus = [
       // { title: 'HOME',      component: HomePage, icon : 'home' },
-      { title: 'FORUM',     component: PostListPage, icon : '' },
-      { title: 'POST',  component: PostEditPage },
+      { title: 'FORUM',     component: PostListPage, icon : 'chatboxes' },
+      { title: 'POST',  component: PostEditPage, icon : 'create' },
      //  { title: 'LOGIN',     component: LoginPage, icon : 'person-add' },
-      { title: 'SETTING',   component: SettingPage }
+      { title: 'SETTING',   component: SettingPage, icon : 'options' }
       // { title: 'REGISTER',  component: RegisterPage },
-      
+
     ];
 
 
