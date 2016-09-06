@@ -6,6 +6,9 @@ import { TranslatePipe } from 'ng2-translate/ng2-translate';
 import * as xi from '../../providers/xapi/interfaces';
 import { Xapi } from '../../providers/xapi/xapi';
 import * as share from '../../providers/share/share';
+import { Camera } from 'ionic-native';
+
+
 /*
   Generated class for the PostEditPage page.
 
@@ -21,6 +24,7 @@ import * as share from '../../providers/share/share';
 export class PostEditPage {
   private appTitle: string = 'POSTWRITE';
   private post: xi.PostEdit = <xi.PostEdit> {};
+  imageUri;
   constructor(
     private navCtrl: NavController,
     private x: Xapi
@@ -39,6 +43,18 @@ export class PostEditPage {
     this.post.title = "Title: I am looking for a japanese boss.";
     this.post.content = "Will it really give me a boss?";
     this.onClickPost();
+
+  Camera.getPicture({destinationType: 2, saveToPhotoAlbum:true}).then((imageData) => {
+    // imageData is either a base64 encoded string or a file URI
+    // If it's base64:
+      // let base64Image = 'data:image/jpeg;base64,' + imageData;
+      console.log( imageData );
+      this.imageUri = imageData;
+    }, (err) => {
+    // Handle error
+  });
+
+
   }
 
   onClickPost() {

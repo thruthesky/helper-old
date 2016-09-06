@@ -99,6 +99,9 @@ app.html 의 menu 가 어떤 과정을 거쳐서 메인에 포함되는 것인�
 
   npm install ng2-translate@2.2.2 --save --save-exact
 
+## install camera plugin
+
+  ionic plugin add cordova-plugin-camera
 
 ## Do not install lodash.
 
