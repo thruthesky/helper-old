@@ -65,14 +65,14 @@ export class MyApp {
     else if ( e.code == Core.code.login ) {
       a.saveEvent( e );
     }
-    
+
     /**
-     * 
+     *
      * Move to or show another component by event.
-     * 
+     *
      * @note since circular improt of component is not working ( producing an error ),
      *    it does with event.
-     * 
+     *
      */
     if ( e.code == 'showComponent' ) {
 
@@ -89,8 +89,8 @@ export class MyApp {
    * @note this method is called when the core is ready to play.
    */
   coreReady() {
-     
-     
+
+
       console.log('coreReady()');
       this.goHome();
 
@@ -120,12 +120,14 @@ export class MyApp {
       // this.nav.push( ForumPage );
       // this.nav.push( RegisterPage );
       // this.nav.push( PostListPage );
-      this.nav.push( PostEditPage );
+      // this.nav.push( PostEditPage );
+      //this.nav.push( PostListPage );
+      // this.nav.push( PostEditPage );
     }, 500);
 
     // this.rootPage = LoginPage;
     // this.rootPage = ForumPage;
-    // this.rootPage = SettingPage; 
+    // this.rootPage = SettingPage;
 
     /*
     let user_login = 'user' + new Date().getSeconds();
@@ -149,20 +151,20 @@ export class MyApp {
   }
 
 
-  
+
   openPage(page) {
     // this.nav.setRoot(page.component);
     this.nav.push( page.component );
   }
 
   initialziaeApp() {
-  
+
     // Okay, so the platform is ready and our plugins are available.
     // Here you can do any higher level native things you might need.
     this.platform.ready().then(() => {
-      
+
       console.log("MyApp::initialziaeApp(). App ready now!");
-      
+
       StatusBar.styleDefault();
 
       // this.db.createTable();
@@ -181,7 +183,7 @@ export class MyApp {
   initializePanel() {
 
     console.log('MyApp initializePanel()');
-    
+
     /**
      * @deprecated. use 'tranlsate' pipe.
     this.updateMenuText('HOME');
@@ -193,11 +195,11 @@ export class MyApp {
   }
 
   /**
-   * 
+   *
    * @deprecated. Just use 'translate pipe'.
-   * 
+   *
    * @note this translate menu text.
-   * 
+   *
   updateMenuText( key: string ) : void {
     let index:number = this.pages.findIndex( (x: PanelMenu) => x.key == key );
     Core.translate( key, (x) => {

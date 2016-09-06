@@ -22,7 +22,7 @@ export let panelMenus: PanelMenus = [
       { title: 'FORUM',     component: PostListPage, icon : 'chatboxes' },
       { title: 'POST',  component: PostEditPage, icon : 'create' },
       //{ title: 'LOGIN',     component: LoginPage, icon : 'person-add' },
-      { title: 'POLICY',     component: PolicyPage, icon : 'person-add' },
+      { title: 'POLICY',     component: PolicyPage, icon : 'paper' },
       { title: 'SETTING',   component: SettingPage, icon : 'options' }
       // { title: 'REGISTER',  component: RegisterPage },
 

@@ -1,63 +1,76 @@
 <app-header [appTitle]="appTitle"></app-header>
-<ion-content padding>
 
+/* Design 1*/
+<ion-content padding-vertical *ngIf="design == 1">
   <p>...</p>
-
-
-  <section *ngIf="design == 1">
-    <h2>Home</h2>
-    <h3>Do you want Korean boss?</h3>
-    We have 1209 Korean boss who are looking for assistance.
-    <h2>Menu</h2>
-    <ion-list>
-      
-
-    <ion-item *ngFor=" let item of panelMenus " (click)=" openPage( item ) ">
-      <ion-icon name="{{ item.icon }}" *ngIf="item.icon"></ion-icon>
-      {{ item.title | translate }}
-    </ion-item>
-
-
-    </ion-list>
-  </section>
-
-
-  <section *ngIf="design == 2">
-    <h1>Home</h1>
-    <h3>Do you want Korean boss?</h3>
-    1209 Korean bosses are looking for thier assistants.
-    <h2>What do you want?</h2>
-    <ion-list>
-      <ion-item *ngFor=" let item of panelMenus " (click)=" openPage( item ) ">
-        <ion-icon name="person"></ion-icon>{{ item.title | translate }}
+  <section>
+    <ion-list >
+      <ion-list-header>
+        <h2>Menu</h2>
+      </ion-list-header>
+      <ion-item class="design-one" *ngFor=" let item of panelMenus " (click)=" openPage( item ) ">
+        <ion-icon name="{{ item.icon }}" *ngIf="item.icon"></ion-icon>
+        {{ item.title | translate }}
       </ion-item>
     </ion-list>
   </section>
-
-
-
-  <section *ngIf="design == 3">
-    <h1>Housemaid Wanted !!</h1>
-    <h3>Foreign Bosses are waiting for you.</h3>
-    Please register and 1209 Foreign bosses will begin to look for you.
-    <h2>Menus</h2>
-    <ion-list>
-      <ion-item *ngFor=" let item of panelMenus " (click)=" openPage( item ) ">
-        <ion-icon name="list"></ion-icon>{{ item.title | translate }}
-      </ion-item>
-    </ion-list>
-  </section>
-
-
-
-
-  <p>&nbsp;</p>
+  <br clear="all"/>
   <p>&nbsp;</p>
   <p>Choose Design</p>
   <hr>
-
   <button primary (click)="design=1">Design 1</button>
   <button primary (click)="design=2">Design 2</button>
   <button primary (click)="design=3">Design 3</button>
+</ion-content>
 
+/* Design 2*/
+<ion-content padding-vertical="" *ngIf="design == 2">
+  <p>...</p>
+  <section text-wrap>
+    <ion-list>
+      <ion-list-header>
+        My Dashboard
+      </ion-list-header>
+      <ion-card class="design-two" no-margin *ngFor=" let item of panelMenus " (click)="( item.title == 'SETTING') ? showRadio() : openPage( item )">
+        <ion-card-header>
+          <ion-icon name="{{ item.icon }}"></ion-icon>
+        </ion-card-header>
+        <ion-card-content>
+          {{ item.title | translate }}
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </section>
+  <br clear="all"/>
+  <p>Choose Design</p>
+  <hr>
+  <button primary (click)="design=1">Design 1</button>
+  <button primary (click)="design=2">Design 2</button>
+  <button primary (click)="design=3">Design 3</button>
+</ion-content>
+
+/* Design 3*/
+<ion-content padding-vertical *ngIf="design == 3">
+  <p>...</p>
+  <section text-wrap>
+    <ion-list>
+      <ion-list-header>
+        My Dashboard
+      </ion-list-header>
+      <ion-card class="design-three" margin *ngFor=" let item of panelMenus " (click)=" openPage( item ) ">
+        <ion-card-header>
+          <ion-icon name="{{ item.icon }}"></ion-icon>
+        </ion-card-header>
+        <ion-card-content>
+          {{ item.title | translate }}
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </section>
+  <br clear="all"/>
+  <p>Choose Design</p>
+  <hr>
+  <button primary (click)="design=1">Design 1</button>
+  <button primary (click)="design=2">Design 2</button>
+  <button primary (click)="design=3">Design 3</button>
 </ion-content>
