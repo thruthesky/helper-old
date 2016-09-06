@@ -1,3 +1,34 @@
-.home {
-  
+.home-page {
+  ion-content {
+    background-color: $light-color;
+  }
+
+  ion-list-header {
+    background-color: $secondary-color;
+    color: #2d2d2d;
+  }
+
+  .design-one {
+    background-color: $primary-color;
+  }
+  .design-two {
+    float: left;
+    width: 50vw;
+    height: 40vw;
+    text-align: center;
+    background-color: $primary-color;
+      ion-icon {
+        font-size: 5rem;
+      }
+  }
+  .design-three {
+    float: left;
+    width: 40vw;
+    height: 40vw;
+    text-align: center;
+    background-color: $primary-color;
+    ion-icon {
+      font-size: 5rem;
+    }
+  }
 }
