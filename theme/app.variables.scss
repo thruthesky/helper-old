@@ -34,9 +34,10 @@ $colors: (
   favorite:   #69BB7B
 );
 
-
-$primary-color : #99D3DF;
-$secondary-color : #88BBD6;
-$dark-color : #CDCDCD;
-$light-color : #E9E9E9;
-$danger-color : #f53d3d;
+$cleanAndCrips: (
+  primary :   #99D3DF,
+  secondary : #88BBD6,
+  dark :      #CDCDCD,
+  light :     #E9E9E9,
+  danger :    #f53d3d,
+);

@@ -1,22 +1,23 @@
 .home-page {
   ion-content {
-    background-color: $light-color;
+    background-color: map_get($cleanAndCrips, light);
   }
 
   ion-list-header {
-    background-color: $secondary-color;
-    color: #2d2d2d;
+    background-color: map_get($cleanAndCrips, secondary);
+    color: map_get($colors, dark);
   }
 
   .design-one {
-    background-color: $primary-color;
+    background-color: map_get($cleanAndCrips, primary);
   }
+  
   .design-two {
     float: left;
     width: 50vw;
     height: 40vw;
     text-align: center;
-    background-color: $primary-color;
+    background-color: map_get($cleanAndCrips, primary);
       ion-icon {
         font-size: 5rem;
       }
@@ -26,7 +27,7 @@
     width: 40vw;
     height: 40vw;
     text-align: center;
-    background-color: $primary-color;
+    background-color: map_get($cleanAndCrips, primary);
     ion-icon {
       font-size: 5rem;
     }
