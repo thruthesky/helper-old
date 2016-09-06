@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HomePage } from '../pages/home/home';
+// import { PostEditPage } from '../pages/post-edit/post-edit';
 // import { LoginPage } from '../pages/login/login';
 import { TranslatePipe } from 'ng2-translate/ng2-translate';
 import { Events } from 'ionic-angular';
@@ -24,7 +25,7 @@ import { Core, app } from '../providers/core/core';
             
             <ion-buttons right>
                 <!--<button primary login *ngIf=" ! loggedIn " (click)="onClickLogin()">{{ 'LOGIN' | translate }}</button>-->
-                <button (click)="onClickPostEdit()"><ion-icon name="chatbubbles"></ion-icon></button>
+                <button (click)="onClickPostEdit()" *ngIf="!hideCreateButton"><ion-icon name="create"></ion-icon></button>
                 <button><ion-icon name="search"></ion-icon></button>
             </ion-buttons>
 
@@ -35,10 +36,12 @@ import { Core, app } from '../providers/core/core';
     </ion-header>
     `,
     providers: [ ],
-    pipes: [ TranslatePipe ]
+    pipes: [ TranslatePipe ],
+    directives: [ ]
 })
 export class AppHeader {
     @Input() appTitle: string = "AppTitle";
+    @Input() hideCreateButton: boolean;
     static initialized: boolean;
     private loggedIn: boolean;
     constructor(
@@ -82,10 +85,11 @@ export class AppHeader {
         // this.navCtrl.setRoot( LoginPage );
         // app.showLoginPage();
         
-        this.events.publish('app', { code:'showComponent', 'component': 'LOGIN'} );
+        // this.events.publish('app', { code:'showComponent', 'component': 'LOGIN'} );
     }
     onClickPostEdit() {
-        this.events.publish('app', { code:'showComponent', 'component': 'POSTEDIT'} );
+        this.events.publish('app', { code:'showComponent', 'component': 'POST'} );
+        // this.navCtrl.push( PostEditPage );
     }
 
     translate() {

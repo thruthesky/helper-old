@@ -29,7 +29,3 @@ export let panelMenus: PanelMenus = [
     ];
 
 
-
-
-export const category: string = 'housemaid';
-

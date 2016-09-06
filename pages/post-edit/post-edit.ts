@@ -25,24 +25,25 @@ export class PostEditPage {
     private navCtrl: NavController,
     private x: Xapi
   ) {
-
   }
   ngOnInit () {
     app.title( this.appTitle, this);
+    this.post.first_name = 'JaeHo';
+    this.post.last_name = 'Song';
+    this.post.middle_name = '';
+    this.post.address = 'Unit 309, 2016 st., Pasineer cor., Quezone city, Philippines.';
     this.post.password = '1234';
     this.post.mobile = '09174678603';
     this.post.birthday = '19731016';
     this.post.gender = 'M';
-    this.post.title = "Housemaid write. This is the title.";
-    this.post.content = "Make it easy.";
-
+    this.post.title = "Title: I am looking for a japanese boss.";
+    this.post.content = "Will it really give me a boss?";
     this.onClickPost();
-
   }
 
   onClickPost() {
-    console.log( this.post );
-    this.post.category = share.category;
+    // console.log( this.post );
+    this.post.category = 'housemaid';
     this.x.post_insert( this.post,
       ( res: xi.Post ) => { console.log( res ); },
       ( e ) => { console.log( e ); }

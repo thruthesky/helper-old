@@ -1,6 +1,19 @@
-.post-list {
-
+.post-list-page {
+  section {
+    ion-card {
+      .avatar {
+        margin: 1em auto .2em;
+        width: 60vw;
+        img {
+          width: 60vw;
+          height: 60vw;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
 }
+
 
 ion-note {
   font-size: 12px;

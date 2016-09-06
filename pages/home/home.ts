@@ -10,7 +10,7 @@ import * as share from '../../providers/share/share';
   templateUrl: 'build/pages/home/home.html',
   providers: [ Xapi ],
   directives: [ AppHeader ],
-  pipes: [TranslatePipe]
+  pipes: [ TranslatePipe ]
 })
 export class HomePage implements OnDestroy {
     private appTitle: string;

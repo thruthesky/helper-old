@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Core, app } from '../../providers/core/core';
 import { AppHeader } from '../../templates/app-header';
@@ -20,6 +20,7 @@ export class PostListPage implements OnInit {
   private appTitle: string;
   private posts: xi.Posts = [];
   private page: number = 0;
+  private design:number = 1;
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
@@ -49,17 +50,26 @@ export class PostListPage implements OnInit {
   }
   onRecvPostData ( res ) {
     console.log("PostList::onRecvPostData()");
-    if ( res.data && res.data.posts ) {
-      let posts: xi.Posts = res.data.posts;
-      if ( posts.length ) {
-        posts.forEach( ( post:xi.Post ) => {
-          console.log( post.title );
-          this.posts.push( post );
-          console.log( "length: " + this.posts.length );
-        });
+    if ( res.success ) {
+      if ( res.data && res.data.posts ) {
+        let posts: xi.Posts = res.data.posts;
+        if ( posts.length ) {
+          posts.forEach( ( post:xi.Post ) => {
+            console.log( post.title );
+            this.posts.push( post );
+            console.log( "length: " + this.posts.length );
+          });
+        }
+      }
+      else {
+        console.log("No post exists under the forum.");
       }
     }
-    else console.log("No post exists under the forum.");
+    else {
+      if ( res.data ) alert( res.data );
+      else alert("Error on post list");
+    }
+    
     
   }
 

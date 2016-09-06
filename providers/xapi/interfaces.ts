@@ -88,9 +88,10 @@ export interface PostQuery {
   paged: number;
   per_page?: number;
 }
+
 export let postQuery: PostQuery = {
   xapi : 'post.page',
-  category : share.category,
+  category : 'housemaid',
   paged: 1,
   per_page : 20
 }
@@ -113,10 +114,14 @@ export type Posts = Array<Post>;
 
 export interface PostEdit {
   category: number | string;
-  title: string;
-  content: string;
+  first_name: string;
+  last_name: string;
+  middle_name: string;
+  address: string;
   password: string;
   mobile: string;
   birthday: string;
   gender: string;
+  title: string;
+  content: string;
 }

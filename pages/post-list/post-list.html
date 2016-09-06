@@ -1,7 +1,57 @@
 <app-header [appTitle]="appTitle"></app-header>
 <ion-content padding-vertical>
   <p>..</p>
-  <ion-list>
+  
+  <button primary (click)="design=1">Design 1</button>
+  <button primary (click)="design=2">Design 2</button>
+  <button primary (click)="design=3">Design 3</button>
+
+
+  <section *ngIf="design==1">
+    <ion-card  *ngFor=" let post of posts ">
+      <div class="avatar">
+      <img src="http://work.org/project/helper-0.5/app/tmp/person/1.jpg"/>
+      </div>
+
+      
+      <ion-card-content>
+        <ion-card-title>
+          {{ post.title }}
+          </ion-card-title>
+        <p>
+          {{ post.content }}
+        </p>
+      </ion-card-content>
+
+      
+    <ion-row no-padding>
+      <ion-col>
+        <button clear small danger>
+          <ion-icon name='star'></ion-icon>
+          Favorite
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button clear small danger>
+          <ion-icon name='musical-notes'></ion-icon>
+          Listen
+        </button>
+      </ion-col>
+      <ion-col text-right>
+        <button clear small danger>
+          <ion-icon name='share-alt'></ion-icon>
+          Share
+        </button>
+      </ion-col>
+    </ion-row>
+
+
+    </ion-card>
+  </section>
+
+
+
+  <ion-list *ngIf="design==2">
     <ion-item-sliding *ngFor=" let post of posts ">
     <ion-item  text-wrap>
       <h3>{{ post.title }}</h3>
@@ -27,6 +77,7 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+
 
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>

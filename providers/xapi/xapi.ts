@@ -132,7 +132,7 @@ export class Xapi {
 
 
     post_insert( data: xi.PostEdit, callback, error ) {
-        console.log('Xforum::post_insert()', data);
+        // console.log('Xforum::post_insert()', data);
         return this.post( this.serverUrl + '?xapi=post.insert',
                 data,
                 callback,
