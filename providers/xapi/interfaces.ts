@@ -1,3 +1,4 @@
+import * as share from '../share/share';
 export interface UserData {
     code?: string,
     session_id?: string,
@@ -86,6 +87,12 @@ export interface PostQuery {
   category: string;
   paged: number;
   per_page?: number;
+}
+export let postQuery: PostQuery = {
+  xapi : 'post.page',
+  category : share.category,
+  paged: 1,
+  per_page : 20
 }
 
 export interface Post {

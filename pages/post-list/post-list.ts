@@ -38,11 +38,8 @@ export class PostListPage implements OnInit {
   }
 
   getPostData(callback?) {
-    var postQuery: xi.PostQuery = <xi.PostQuery>{};
+    var postQuery: xi.PostQuery = xi.postQuery;
     // debugger; // no good to use.
-    postQuery.xapi = 'post.page';
-    postQuery.category = share.category; // this.navParams.data.id;
-    postQuery.per_page = 20;
     postQuery.paged = ++ this.page;
     this.x.get_posts( postQuery, ( res: xi.Posts ) : void => {
       this.onRecvPostData( res );
@@ -52,14 +49,17 @@ export class PostListPage implements OnInit {
   }
   onRecvPostData ( res ) {
     console.log("PostList::onRecvPostData()");
-    let posts: xi.Posts = res.data.posts;
-    if ( posts.length ) {
-      posts.forEach( ( post:xi.Post ) => {
-        console.log( post.title );
-        this.posts.push( post );
-        console.log( "length: " + this.posts.length );
-      });
+    if ( res.data && res.data.posts ) {
+      let posts: xi.Posts = res.data.posts;
+      if ( posts.length ) {
+        posts.forEach( ( post:xi.Post ) => {
+          console.log( post.title );
+          this.posts.push( post );
+          console.log( "length: " + this.posts.length );
+        });
+      }
     }
+    else console.log("No post exists under the forum.");
     
   }
 
