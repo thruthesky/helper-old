@@ -24,7 +24,7 @@ import { Camera } from 'ionic-native';
 export class PostEditPage {
   private appTitle: string = 'POSTWRITE';
   private post: xi.PostEdit = <xi.PostEdit> {};
-  imageUri;
+  private urlPrimaryPhoto: string = "assets/img/person.jpg";
   constructor(
     private navCtrl: NavController,
     private x: Xapi
@@ -48,13 +48,11 @@ export class PostEditPage {
     // imageData is either a base64 encoded string or a file URI
     // If it's base64:
       // let base64Image = 'data:image/jpeg;base64,' + imageData;
-      console.log( imageData );
-      this.imageUri = imageData;
-    }, (err) => {
+        console.log( imageData );
+        this.urlPrimaryPhoto = imageData;
+      }, (err) => {
     // Handle error
-  });
-
-
+    });
   }
 
   onClickPost() {

@@ -6,3 +6,13 @@ ion-header {
 }
 
 
+.md .app-root ion-page ion-content {
+    margin-top: 56px;
+}
+.ios .app-root ion-page ion-content {
+    margin-top: 44px;
+}
+.wp .app-root ion-page ion-content {
+    margin-top: 46px;
+}
+
