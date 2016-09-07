@@ -38,11 +38,12 @@ var isRelease = argv.indexOf('--release') > -1;
 
 gulp.task('watch', ['clean'], function(done){
   runSequence(
-    ['assets', 'sass', 'html', 'fonts', 'scripts'],
+    ['i18n', 'img', 'sass', 'html', 'fonts', 'scripts'],
     function(){
       gulpWatch('app/**/*.scss', function(){ gulp.start('sass'); });
       gulpWatch('app/**/*.html', function(){ gulp.start('html'); });
-      gulpWatch('app/assets/i18n/*.json', function(){ gulp.start('assets'); });
+      gulpWatch('app/assets/i18n/*.json', function(){ gulp.start('i18n'); });
+      gulpWatch('app/assets/img/*.', function(){ gulp.start('img'); });
       buildBrowserify({ watch: true }).on('end', done);
     }
   );
@@ -50,7 +51,7 @@ gulp.task('watch', ['clean'], function(done){
 
 gulp.task('build', ['clean'], function(done){
   runSequence(
-    ['assets', 'sass', 'html', 'fonts', 'scripts'],
+    ['i18n', 'img', 'sass', 'html', 'fonts', 'scripts'],
     function(){
       buildBrowserify({
         minify: isRelease,
@@ -65,10 +66,16 @@ gulp.task('build', ['clean'], function(done){
   );
 });
 
-gulp.task("assets", function() {
-    return gulp.src(["app/assets/i18n/*"])
+gulp.task("i18n", function() {
+    return gulp.src(["app/assets/i18n/*.json"])
         .pipe(gulp.dest("www/assets/i18n"));
 });
+gulp.task("img", function() {
+    return gulp.src(["app/assets/img/*.jpg"])
+        .pipe(gulp.dest("www/assets/img"));
+});
+
+
 
 
 gulp.task('sass', buildSass);
