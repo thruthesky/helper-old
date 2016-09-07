@@ -2,9 +2,11 @@
 <ion-content padding>
 
 
-    <section id="primary-photo">
-      <div><img [src]="urlPrimaryPhoto"></div>
-      <button primary>Upload Photo</button>
+    <section id="primary-photo" (click)="onClickPrimaryPhoto()">
+      <div class="wrap">
+        <div><img [src]="urlPrimaryPhoto"></div>
+        <button primary>Upload Photo</button>
+      </div>
     </section>
     
 

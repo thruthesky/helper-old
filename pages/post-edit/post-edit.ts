@@ -7,6 +7,8 @@ import * as xi from '../../providers/xapi/interfaces';
 import { Xapi } from '../../providers/xapi/xapi';
 import * as share from '../../providers/share/share';
 import { Camera } from 'ionic-native';
+import { AlertController } from 'ionic-angular';
+
 
 
 /*
@@ -27,6 +29,7 @@ export class PostEditPage {
   private urlPrimaryPhoto: string = "assets/img/person.jpg";
   constructor(
     private navCtrl: NavController,
+    private alertCtrl: AlertController,
     private x: Xapi
   ) {
   }
@@ -63,6 +66,35 @@ export class PostEditPage {
       ( e ) => { console.log( e ); }
     );
     
+  }
+
+ onClickPrimaryPhoto() {
+    let confirm = this.alertCtrl.create({
+      title: 'PHOTO UPLOAD',
+      message: 'Do you want to take photo? or choose photo from gallery?',
+      cssClass: 'alert-primary-photo',
+      buttons: [
+        {
+          text: 'Camera',
+          handler: () => {
+            console.log('camera clicked');
+          }
+        },
+        {
+          text: 'Gallery',
+          handler: () => {
+            console.log('gallery clicked');
+          }
+        },
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('cancel clicked');
+          }
+        }
+      ]
+    });
+    confirm.present();
   }
 
 
