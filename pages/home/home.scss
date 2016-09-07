@@ -1,35 +1,91 @@
+@mixin linear-gradient() {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b3dced+0,29b8e5+50,bce0ee+100;Blue+Pipe */
+  background: rgb(179,220,237); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(179,220,237,1) 0%, rgba(41,184,229,1) 50%, rgba(188,224,238,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(179,220,237,1) 0%,rgba(41,184,229,1) 50%,rgba(188,224,238,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(179,220,237,1) 0%,rgba(41,184,229,1) 50%,rgba(188,224,238,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3dced', endColorstr='#bce0ee',GradientType=0 ); /* IE6-9 */
+}
+
+@mixin linear-gradient2() {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#87e0fd+0,53cbf1+55,05abe0+100 */
+  background: rgb(135,224,253); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(135,224,253,0.3) 0%, rgba(83,203,241,0.3) 55%, rgba(5,171,224,0.3) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(135,224,253,0.3) 0%,rgba(83,203,241,0.3) 55%,rgba(5,171,224,0.3) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(135,224,253,0.3) 0%,rgba(83,203,241,0.3) 55%,rgba(5,171,224,0.3) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd', endColorstr='#05abe0',GradientType=0 ); /* IE6-9 */
+}
+
+
 .home-page {
   ion-content {
+    background: url("http://work.org/project/helper-0.5/app/tmp/person/blur2.jpg");
     background-color: map_get($cleanAndCrips, light);
-  }
 
-  ion-list-header {
-    background-color: map_get($cleanAndCrips, secondary);
-    color: map_get($colors, dark);
-  }
+    ion-list-header {
+      background-color: map_get($cleanAndCrips, secondary);
+      color: map_get($colors, dark);
+    }
 
-  .design-one {
-    background-color: map_get($cleanAndCrips, primary);
-  }
+    .design-one {
+      background-color: map_get($cleanAndCrips, primary);
+    }
+    .card-background-page {
+      position: relative;
+      text-align: center;
 
-  .design-two {
-    float: left;
-    width: 50vw;
-    height: 40vw;
-    text-align: center;
-    background-color: map_get($cleanAndCrips, primary);
-      ion-icon {
-        font-size: 5rem;
+      .card-title {
+        position: absolute;
+        top: 36%;
+        font-size: 2.0em;
+        width: 100%;
+        font-weight: bold;
+        color: #fff;
       }
-  }
-  .design-three {
-    float: left;
-    width: 40vw;
-    height: 40vw;
-    text-align: center;
-    background-color: map_get($cleanAndCrips, primary);
-    ion-icon {
-      font-size: 5rem;
+
+      .card-subtitle {
+        font-size: 1.0em;
+        position: absolute;
+        top: 52%;
+        width: 100%;
+        color: #fff;
+      }
+    }
+    ion-row {
+      height: 100%;
+      flex-wrap: wrap;
+      .design-two {
+        ion-card {
+          margin: 0 auto;
+          width: 95%;
+          height: 135px;
+          font-weight: 600;
+          text-align: center;
+          @include linear-gradient2();
+          ion-icon {
+            font-size: 5rem;
+            color: white;
+          }
+        }
+      }
+    }
+
+    section {
+      position: relative;
+      .design-three {
+        float: left;
+        width: 50%;
+        height: 40vw;
+        text-align: center;
+        background-color: map_get($cleanAndCrips, primary);
+        ion-icon {
+          font-size: 5rem;
+        }
+      }
     }
   }
+}
+
+.button-design-two {
+  @include linear-gradient();
 }

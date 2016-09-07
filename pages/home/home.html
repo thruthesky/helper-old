@@ -24,27 +24,37 @@
 
 /* Design 2*/
 <ion-content *ngIf="design == 2">
-  <section text-wrap>
+  <section>
     <ion-list>
-      <ion-list-header>
-        My Dashboard
-      </ion-list-header>
-      <ion-card class="design-two" no-margin *ngFor=" let item of panelMenus " (click)="( item.title == 'SETTING') ? showRadio() : openPage( item )">
-        <ion-card-header>
-          <ion-icon name="{{ item.icon }}"></ion-icon>
-        </ion-card-header>
-        <ion-card-content>
-          {{ item.title | translate }}
-        </ion-card-content>
+      <ion-card class="card-background-page">
+        <img src="http://work.org/project/helper-0.5/app/tmp/person/2.jpg" />
+        <div class="card-title">Housemaid on the Job</div>
+        <div class="card-subtitle">Fast - Easy - Convenient</div>
       </ion-card>
+      <ion-row>
+        <ion-col class="design-two" width-50 *ngFor=" let item of panelMenus " (click)=" openPage( item )">
+          <ion-card no-margin>
+            <ion-card-header>
+              <ion-icon name="{{ item.icon }}"></ion-icon>
+            </ion-card-header>
+            <ion-card-content>
+              {{ item.title | translate }}
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
     </ion-list>
   </section>
   <br clear="all"/>
-  <p>Choose Design</p>
   <hr>
   <button primary (click)="design=1">Design 1</button>
-  <button primary (click)="design=2">Design 2</button>
+  <button primary class="button-design-two"  (click)="design=2">Design 2</button>
   <button primary (click)="design=3">Design 3</button>
+  <p>Choose Design</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
 </ion-content>
 
 /* Design 3*/
@@ -54,7 +64,7 @@
       <ion-list-header>
         My Dashboard
       </ion-list-header>
-      <ion-card class="design-three" margin *ngFor=" let item of panelMenus " (click)=" openPage( item ) ">
+      <ion-card class="design-three" no-margin *ngFor=" let item of panelMenus " (click)=" openPage( item ) ">
         <ion-card-header>
           <ion-icon name="{{ item.icon }}"></ion-icon>
         </ion-card-header>

@@ -18,8 +18,6 @@ export class HomePage implements OnDestroy {
     static sub: any;
     private panelMenus = share.panelMenus;
     private design: number = 2;
-    private testRadioOpen : boolean;
-    private testRadioResult : string;
     constructor( public navCtrl: NavController,
         private x: Xapi,
         public alertCtrl: AlertController
@@ -47,46 +45,4 @@ export class HomePage implements OnDestroy {
     openPage( page ) {
         this.navCtrl.push( page.component );
     }
-
-    showRadio() {
-      let alert = this.alertCtrl.create();
-      alert.setTitle('Select your language');
-
-      alert.addInput({
-        type: 'radio',
-        label: ( Core.language == 'en' ? 'English' : ( Core.language == 'ko' ? '영어' : '영어' ) ),
-        value: 'en',
-        checked: Core.language == 'en'
-      });
-
-      alert.addInput({
-        type: 'radio',
-        label: ( Core.language == 'en' ? 'Korean' : ( Core.language == 'ko' ? '한국어' : '한국어' ) ),
-        value: 'ko',
-        checked: Core.language == 'ko'
-      });
-
-      alert.addInput({
-        type: 'radio',
-        label: ( Core.language == 'en' ? 'Chinese' : ( Core.language == 'ko' ? '중국어' : '중국어' ) ),
-        value: 'ch',
-        checked: Core.language == 'ch'
-      });
-      alert.addButton('Cancel');
-      alert.addButton({
-        text: 'Ok',
-        handler: data => {
-          console.log('Radio data:', data);
-          this.testRadioOpen = false;
-          this.testRadioResult = data;
-          Core.set( Core.code.language, data, () => location.reload() );
-        }
-      });
-
-      alert.present().then(() => {
-        this.testRadioOpen = true;
-      });
-    }
-
-
 }
