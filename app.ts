@@ -14,6 +14,7 @@ import { PostListPage } from './pages/post-list/post-list';
 import { Core } from './providers/core/core';
 import { Events } from 'ionic-angular';
 import { Xapi } from './providers/xapi/xapi';
+
 import * as xi from './providers/xapi/interfaces';
 import * as share from './providers/share/share';
 @Component({
@@ -158,14 +159,15 @@ export class MyApp {
   }
 
   initialziaeApp() {
-
+    console.log("MyApp::initialziaeApp() ...");
+    
     // Okay, so the platform is ready and our plugins are available.
     // Here you can do any higher level native things you might need.
     this.platform.ready().then(() => {
 
-      console.log("MyApp::initialziaeApp(). App ready now!");
-
+      console.log("MyApp::initialziaeApp(). App ready now!", this.platform);
       StatusBar.styleDefault();
+
 
       // this.db.createTable();
       // this.db.set( 'a', 'apple' );

@@ -32,7 +32,7 @@ export class HomePage implements OnDestroy {
       // Core.translate('home.title', (x) => this.appTitle = x );
       app.title( 'home.title', this );
       if ( HomePage.initialized ) {
-          console.log('HomePage::constructor() : already initialized !');
+          console.log('HomePage::constructor() : already initialized ... !');
           return true;
         }
         else {
