@@ -45,7 +45,7 @@ export class PostEditPage {
     this.post.gender = 'M';
     this.post.title = "Title: I am looking for a japanese boss.";
     this.post.content = "Will it really give me a boss?";
-    this.onClickPost();
+    //this.onClickPost();
 
   Camera.getPicture({destinationType: 2, saveToPhotoAlbum:true}).then((imageData) => {
     // imageData is either a base64 encoded string or a file URI
@@ -65,7 +65,7 @@ export class PostEditPage {
       ( res: xi.Post ) => { console.log( res ); },
       ( e ) => { console.log( e ); }
     );
-    
+
   }
 
  onClickPrimaryPhoto() {
