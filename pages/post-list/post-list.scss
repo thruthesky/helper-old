@@ -1,8 +1,5 @@
 .post-list-page {
   ion-content {
-    background: url("http://work.org/project/helper-0.5/app/tmp/person/blur.jpg");
-    background-size: cover;
-
   }
 }
 
@@ -26,7 +23,6 @@
       font-size: 12px;
     }
   }
-
 }
 
 
@@ -50,6 +46,20 @@
     margin-top: 14px;
   }
 }
+
+.design-four {
+  .avatar {
+    margin: 1em auto .2em;
+    width: 200px;
+    img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+    }
+  }
+}
+
+
 
 ion-label {
   margin-top: 0.5rem;

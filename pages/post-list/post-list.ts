@@ -20,7 +20,8 @@ export class PostListPage implements OnInit {
   private appTitle: string;
   private posts: xi.Posts = [];
   private page: number = 0;
-  private design:number = 3;
+  private design:number = 4;
+  private moreButton: Array = [];
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
@@ -78,7 +79,5 @@ export class PostListPage implements OnInit {
     console.log("PostListPage::doInfinite()");
     this.getPostData( () => infiniteScroll.complete() );
   }
-
-
 
 }
