@@ -14,9 +14,12 @@ import { PostListPage } from './pages/post-list/post-list';
 import { Core } from './providers/core/core';
 import { Events } from 'ionic-angular';
 import { Xapi } from './providers/xapi/xapi';
+import { app } from './providers/app/app';
+
 
 import * as xi from './providers/xapi/interfaces';
 import * as share from './providers/share/share';
+
 @Component({
   templateUrl: 'build/app.html',
   providers: [ Database, Core, Xapi ],
@@ -160,6 +163,10 @@ export class MyApp {
 
   initialziaeApp() {
     console.log("MyApp::initialziaeApp() ...");
+
+
+    alert( "App 22: " + app.isBrowser() );
+
     
     // Okay, so the platform is ready and our plugins are available.
     // Here you can do any higher level native things you might need.

@@ -6,5 +6,9 @@ export class app {
     }
 
     
-
+    static isBrowser() {
+        if ( document.URL.indexOf( 'http://' ) != -1 ) return true;
+        if ( document.URL.indexOf( 'https://' ) != -1 ) return true;
+        return false;
+    }
 }
