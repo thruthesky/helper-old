@@ -11,6 +11,7 @@ import { ForumPage } from './pages/forum/forum';
 import { SettingPage } from './pages/setting/setting';
 import { PostEditPage } from './pages/post-edit/post-edit';
 import { PostListPage } from './pages/post-list/post-list';
+import { PolicyPage } from './pages/policy/policy';
 import { Core } from './providers/core/core';
 import { Events } from 'ionic-angular';
 import { Xapi } from './providers/xapi/xapi';
@@ -122,8 +123,9 @@ export class MyApp {
       // this.nav.push( RegisterPage );
       // this.nav.push( PostListPage );
       //this.nav.push( PostEditPage );
-      //this.nav.push( PostListPage );
+      this.nav.push( PostListPage );
       // this.nav.push( PostEditPage );
+      //this.nav.push( PolicyPage );
     }, 500);
 
     // this.rootPage = LoginPage;
@@ -160,7 +162,7 @@ export class MyApp {
 
   initialziaeApp() {
     console.log("MyApp::initialziaeApp() ...");
-    
+
     // Okay, so the platform is ready and our plugins are available.
     // Here you can do any higher level native things you might need.
     this.platform.ready().then(() => {

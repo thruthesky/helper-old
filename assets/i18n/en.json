@@ -19,6 +19,9 @@
     "setting" : {
         "title" : "Settings"
     },
+    "policy" : {
+        "title" : "Policy"
+    },
 
     "HOME" : "HOME",
     "MENU" : "MENU",
@@ -32,5 +35,5 @@
     "Korean" : "Korean",
     "English" : "English",
     "Chinese" : "Chinese"
-    
+
 }

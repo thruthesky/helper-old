@@ -1,3 +1,11 @@
-.policy {
-
+.policy-page {
+  ion-content {
+    background: url("http://work.org/project/helper-0.5/app/tmp/person/blur.jpg");
+    background-size: cover;
+    ion-card {
+      ion-card-content {
+        font-size: 1.6rem;
+      }
+    }
+  }
 }
