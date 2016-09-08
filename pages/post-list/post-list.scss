@@ -1,22 +1,68 @@
 .post-list-page {
+  ion-content {
+    background: url("http://work.org/project/helper-0.5/app/tmp/person/blur.jpg");
+    background-size: cover;
+
+  }
+}
+
+
+
+.design-two {
+  ion-item {
+    ion-avatar {
+      img {
+        width: 80px;
+        height: 80px;
+        max-width: 100px;
+        max-height: 100px;
+        border-radius: 50%;
+      }
+    }
+    ion-note {
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 12px;
+    }
+  }
+
+}
+
+
+.design-three {
   section {
     ion-card {
       .avatar {
         margin: 1em auto .2em;
-        width: 60vw;
+        width: 200px;
         img {
-          width: 60vw;
-          height: 60vw;
+          width: 200px;
+          height: 200px;
           border-radius: 50%;
         }
       }
     }
   }
+  ion-note {
+    font-size: 12px;
+    align-self: flex-start;
+    margin-top: 14px;
+  }
+}
+
+ion-label {
+  margin-top: 0.5rem;
+}
+
+ion-thumbnail {
+  img {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+  }
 }
 
 
-ion-note {
-  font-size: 12px;
-  align-self: flex-start;
-  margin-top: 14px;
-}
+
