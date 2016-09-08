@@ -57,7 +57,7 @@ export class AppHeader {
         if ( AppHeader.initialized ) {
             console.log('AppHeader::constructor() : already initialized !');
             return true;
-        }        
+        }
         else {
             AppHeader.initialized = true;
             console.log('AppHeader::constructor() : initializing');
@@ -84,7 +84,7 @@ export class AppHeader {
         // console.log( LoginPage );
         // this.navCtrl.setRoot( LoginPage );
         // app.showLoginPage();
-        
+
         // this.events.publish('app', { code:'showComponent', 'component': 'LOGIN'} );
     }
     onClickPostEdit() {

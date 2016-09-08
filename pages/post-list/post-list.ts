@@ -20,7 +20,7 @@ export class PostListPage implements OnInit {
   private appTitle: string;
   private posts: xi.Posts = [];
   private page: number = 0;
-  private design:number = 1;
+  private design:number = 3;
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
@@ -69,8 +69,8 @@ export class PostListPage implements OnInit {
       if ( res.data ) alert( res.data );
       else alert("Error on post list");
     }
-    
-    
+
+
   }
 
 

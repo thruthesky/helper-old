@@ -16,11 +16,10 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#87e0fd', endColorstr='#05abe0',GradientType=0 ); /* IE6-9 */
 }
 
-
 .home-page {
   ion-content {
-    background: url("http://work.org/project/helper-0.5/app/tmp/person/blur2.jpg");
-    background-color: map_get($cleanAndCrips, light);
+    background: url("http://work.org/project/helper-0.5/app/tmp/person/blur.jpg");
+    background-size: cover;
 
     ion-list-header {
       background-color: map_get($cleanAndCrips, secondary);
@@ -89,3 +88,5 @@
 .button-design-two {
   @include linear-gradient();
 }
+
+

@@ -2,17 +2,15 @@
 <ion-content padding>
 
 
-    <section id="primary-photo" (click)="onClickPrimaryPhoto()">
+    <ion-card id="primary-photo" (click)="onClickPrimaryPhoto()">
       <div class="wrap">
         <div><img [src]="urlPrimaryPhoto"></div>
         <button primary>Upload Photo</button>
       </div>
-    </section>
-    
-
-    <ion-list>
+    </ion-card>
 
 
+    <ion-list text-wrap>
       <ion-item>
         <ion-label primary stacked>{{ 'Frist Name' | translate }}</ion-label>
         <ion-input [(ngModel)]="post.first_name" placeholder="Input First Name"></ion-input>
@@ -33,7 +31,7 @@
         <ion-input [(ngModel)]="post.address" placeholder="Input Address"></ion-input>
       </ion-item>
 
-      
+
 
       <ion-item>
         <ion-label primary stacked>{{ 'Password' | translate }}</ion-label>
