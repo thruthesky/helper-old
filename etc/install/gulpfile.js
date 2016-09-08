@@ -15,6 +15,7 @@ gulp.task('emulate:before', ['build']);
 gulp.task('deploy:before', ['build']);
 gulp.task('build:before', ['build']);
 
+
 // we want to 'watch' when livereloading
 var shouldWatch = argv.indexOf('-l') > -1 || argv.indexOf('--livereload') > -1;
 gulp.task('run:before', [shouldWatch ? 'watch' : 'build']);
@@ -43,7 +44,8 @@ gulp.task('watch', ['clean'], function(done){
       gulpWatch('app/**/*.scss', function(){ gulp.start('sass'); });
       gulpWatch('app/**/*.html', function(){ gulp.start('html'); });
       gulpWatch('app/assets/i18n/*.json', function(){ gulp.start('i18n'); });
-      gulpWatch('app/assets/img/*.', function(){ gulp.start('img'); });
+      gulpWatch('app/assets/img/*', function(){ gulp.start('img'); });
+      gulpWatch('www/**/*', function(){ gulp.start('copy-www-platform-browser'); });
       buildBrowserify({ watch: true }).on('end', done);
     }
   );
@@ -75,6 +77,10 @@ gulp.task("img", function() {
         .pipe(gulp.dest("www/assets/img"));
 });
 
+gulp.task('copy-www-platform-browser', function () {
+	gulp.src("www/**/*").pipe(gulp.dest('platforms/browser/www'));
+});
+
 
 
 
@@ -86,3 +92,4 @@ gulp.task('clean', function(){
   return del('www/build');
 });
 gulp.task('lint', tslint);
+
