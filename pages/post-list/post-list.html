@@ -24,26 +24,26 @@
       </ion-card-content>
 
 
-    <ion-row no-padding>
-      <ion-col>
-        <button clear small no-padding>
-          <ion-icon name='arrow-dropdown-circle'></ion-icon>
-          More
-        </button>
-      </ion-col>
-      <ion-col>
-        <button clear small no-padding>
-          <ion-icon name='quote'></ion-icon>
-          Comment
-        </button>
-      </ion-col>
-      <ion-col text-right>
-        <button clear small>
-          <ion-icon name='share-alt'></ion-icon>
-          Share
-        </button>
-      </ion-col>
-    </ion-row>
+      <ion-row no-padding>
+        <ion-col>
+          <button clear small no-padding>
+            <ion-icon name='arrow-dropdown-circle'></ion-icon>
+            More
+          </button>
+        </ion-col>
+        <ion-col>
+          <button clear small no-padding>
+            <ion-icon name='quote'></ion-icon>
+            Comment
+          </button>
+        </ion-col>
+        <ion-col text-right>
+          <button clear small>
+            <ion-icon name='share-alt'></ion-icon>
+            Share
+          </button>
+        </ion-col>
+      </ion-row>
 
 
     </ion-card>
@@ -67,35 +67,35 @@
 
 
   <ion-list *ngIf="design==3" class="design-three">
-      <ion-item text-wrap *ngFor=" let post of posts ">
-        <ion-thumbnail item-left>
-          <img src="http://work.org/project/helper-0.5/app/tmp/person/1.jpg">
-        </ion-thumbnail>
-        <h2>{{ post.title }}</h2>
-        <div>
-          {{ post.content }}
-        </div>
-        <ion-note item-right>3:43 pm</ion-note>
-        <ion-row no-padding>
-          <ion-col>
-            <button clear small no-padding>
-              <ion-icon name='arrow-dropdown-circle'></ion-icon>
-              More
-            </button>
-          </ion-col>
-          <ion-col>
-            <button clear small no-padding>
-              <ion-icon name='quote'></ion-icon>
-              Comment
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-item>
+    <ion-item text-wrap *ngFor=" let post of posts ">
+      <ion-thumbnail item-left>
+        <img src="http://work.org/project/helper-0.5/app/tmp/person/1.jpg">
+      </ion-thumbnail>
+      <h2>{{ post.title }}</h2>
+      <div>
+        {{ post.content }}
+      </div>
+      <ion-note item-right>3:43 pm</ion-note>
+      <ion-row no-padding>
+        <ion-col>
+          <button clear small no-padding>
+            <ion-icon name='arrow-dropdown-circle'></ion-icon>
+            More
+          </button>
+        </ion-col>
+        <ion-col>
+          <button clear small no-padding>
+            <ion-icon name='quote'></ion-icon>
+            Comment
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-item>
   </ion-list>
 
 
   <section *ngIf="design==4" class="design-four">
-    <ion-card  *ngFor=" let post of posts; let ix=index;">
+    <ion-card  *ngFor=" let post of posts; let i = index; ">
       <div class="avatar">
         <img src="http://work.org/project/helper-0.5/app/tmp/person/1.jpg"/>
       </div>
@@ -110,12 +110,14 @@
         </p>
         <ion-note item-right>{{ post.post_date | date }}</ion-note>
 
-
+        <div *ngIf="moreButton[i]">
+          Show me something
+        </div>
       </ion-card-content>
 
       <ion-row no-padding>
         <ion-col>
-          <button clear small no-padding>
+          <button clear small no-padding (click)="onSelect(i)">
             <ion-icon name='arrow-dropdown-circle'></ion-icon>
             More
           </button>

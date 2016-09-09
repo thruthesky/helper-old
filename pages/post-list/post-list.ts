@@ -21,7 +21,7 @@ export class PostListPage implements OnInit {
   private posts: xi.Posts = [];
   private page: number = 0;
   private design:number = 4;
-  private moreButton: Array = [];
+  private moreButton:[ boolean ] = [false];
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
@@ -29,6 +29,12 @@ export class PostListPage implements OnInit {
   ) {
     console.log("PostList::constructor()");
     app.title('FORUM', this);
+  }
+
+  onSelect(i){
+    console.log( this.moreButton[i] + " " + i );
+    this.moreButton[i] = this.moreButton[i] == true ? false : true;
+
   }
 
 
