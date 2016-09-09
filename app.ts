@@ -167,7 +167,7 @@ export class MyApp {
     console.log("MyApp::initialziaeApp() ...");
 
 
-    //alert( "App 22: " + app.isBrowser() );
+    //alert( "App 41: " + app.isBrowser() );
 
     // Okay, so the platform is ready and our plugins are available.
     // Here you can do any higher level native things you might need.

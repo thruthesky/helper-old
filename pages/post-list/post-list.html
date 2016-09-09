@@ -7,13 +7,14 @@
   <button primary (click)="design=4" style="padding: 2px; margin: 0; height: 15px">4</button>
 
   <section *ngIf="design==1" class="design-one">
-    <ion-card  *ngFor=" let post of posts ">
+    <ion-card  *ngFor=" let post of posts; let i = index;  ">
       <div class="avatar">
         <img src="http://work.org/project/helper-0.5/app/tmp/person/1.jpg"/>
       </div>
 
 
       <ion-card-content>
+
         <ion-card-title>
           {{ post.title }}
         </ion-card-title>
@@ -21,12 +22,23 @@
           {{ post.content }}
         </p>
         <ion-note item-right>{{ post.post_date | date }}</ion-note>
+
+        <div *ngIf="moreButton[i]">
+          <ion-item-group text-wrap>
+            <ion-item-divider light><h2>Personal Information</h2></ion-item-divider>
+            <ion-item><ion-label>Name : {{ post.first_name }} {{ post.last_name }}</ion-label></ion-item>
+            <ion-item><ion-label>Gender : {{ post.gender }}</ion-label></ion-item>
+            <ion-item><ion-label>Age : {{ post.birthday | ageCalculator  }}</ion-label></ion-item>
+            <ion-item><ion-label>Mobile # : {{ post.mobile }}</ion-label></ion-item>
+            <ion-item><ion-label>Address : {{ post.address }}</ion-label></ion-item>
+          </ion-item-group>
+        </div>
       </ion-card-content>
 
 
       <ion-row no-padding>
         <ion-col>
-          <button clear small no-padding>
+          <button clear small no-padding (click)="onSelect(i)">
             <ion-icon name='arrow-dropdown-circle'></ion-icon>
             More
           </button>
@@ -52,7 +64,7 @@
 
 
   <ion-list *ngIf="design==2" class="design-two" >
-    <ion-item  text-wrap *ngFor=" let post of posts ">
+    <ion-item  text-wrap *ngFor=" let post of posts; let i = index;  ">
       <ion-avatar item-left>
         <img src="http://work.org/project/helper-0.5/app/tmp/person/1.jpg"/>
       </ion-avatar>
@@ -61,13 +73,24 @@
         {{ post.content }}
       </div>
       <ion-note item-right>3:43 pm</ion-note>
-      <button clear item-right><ion-icon name='arrow-dropdown-circle'></ion-icon>View</button>
+      <button clear item-right (click)="onSelect(i)"><ion-icon name='arrow-dropdown-circle'></ion-icon>View</button>
+
+      <div *ngIf="moreButton[i]">
+        <ion-item-group text-wrap>
+          <ion-item-divider light><h2>Personal Information</h2></ion-item-divider>
+          <ion-item><ion-label>Name : {{ post.first_name }} {{ post.last_name }}</ion-label></ion-item>
+          <ion-item><ion-label>Gender : {{ post.gender }}</ion-label></ion-item>
+          <ion-item><ion-label>Age : {{ post.birthday | ageCalculator  }}</ion-label></ion-item>
+          <ion-item><ion-label>Mobile # : {{ post.mobile }}</ion-label></ion-item>
+          <ion-item><ion-label>Address : {{ post.address }}</ion-label></ion-item>
+        </ion-item-group>
+      </div>
     </ion-item>
   </ion-list>
 
 
   <ion-list *ngIf="design==3" class="design-three">
-    <ion-item text-wrap *ngFor=" let post of posts ">
+    <ion-item text-wrap *ngFor=" let post of posts; let i = index;  ">
       <ion-thumbnail item-left>
         <img src="http://work.org/project/helper-0.5/app/tmp/person/1.jpg">
       </ion-thumbnail>
@@ -76,9 +99,21 @@
         {{ post.content }}
       </div>
       <ion-note item-right>3:43 pm</ion-note>
+
+      <div *ngIf="moreButton[i]">
+        <ion-item-group text-wrap>
+          <ion-item-divider light><h2>Personal Information</h2></ion-item-divider>
+          <ion-item><ion-label>Name : {{ post.first_name }} {{ post.last_name }}</ion-label></ion-item>
+          <ion-item><ion-label>Gender : {{ post.gender }}</ion-label></ion-item>
+          <ion-item><ion-label>Age : {{ post.birthday | ageCalculator  }}</ion-label></ion-item>
+          <ion-item><ion-label>Mobile # : {{ post.mobile }}</ion-label></ion-item>
+          <ion-item><ion-label>Address : {{ post.address }}</ion-label></ion-item>
+        </ion-item-group>
+      </div>
+
       <ion-row no-padding>
         <ion-col>
-          <button clear small no-padding>
+          <button clear small no-padding (click)="onSelect(i)">
             <ion-icon name='arrow-dropdown-circle'></ion-icon>
             More
           </button>
@@ -99,8 +134,6 @@
       <div class="avatar">
         <img src="http://work.org/project/helper-0.5/app/tmp/person/1.jpg"/>
       </div>
-
-
       <ion-card-content>
         <ion-card-title>
           {{ post.title }}
@@ -109,12 +142,17 @@
           {{ post.content }}
         </p>
         <ion-note item-right>{{ post.post_date | date }}</ion-note>
-
         <div *ngIf="moreButton[i]">
-          Show me something
+          <ion-item-group text-wrap>
+            <ion-item-divider light><h2>Personal Information</h2></ion-item-divider>
+            <ion-item><ion-label>Name : {{ post.first_name }} {{ post.last_name }}</ion-label></ion-item>
+            <ion-item><ion-label>Gender : {{ post.gender }}</ion-label></ion-item>
+            <ion-item><ion-label>Age : {{ post.birthday | ageCalculator }}</ion-label></ion-item>
+            <ion-item><ion-label>Mobile # : {{ post.mobile }}</ion-label></ion-item>
+            <ion-item><ion-label>Address : {{ post.address }}</ion-label></ion-item>
+          </ion-item-group>
         </div>
       </ion-card-content>
-
       <ion-row no-padding>
         <ion-col>
           <button clear small no-padding (click)="onSelect(i)">
@@ -135,8 +173,6 @@
           </button>
         </ion-col>
       </ion-row>
-
-
     </ion-card>
   </section>
 
