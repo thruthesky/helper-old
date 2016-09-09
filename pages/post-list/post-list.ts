@@ -21,7 +21,7 @@ export class PostListPage implements OnInit {
   private posts: xi.Posts = [];
   private page: number = 0;
   private design:number = 4;
-  private moreButton: Array = [];
+  private moreButton = [];
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,

@@ -50,7 +50,7 @@ export class PostEditPage {
   Camera.getPicture({destinationType: 2, saveToPhotoAlbum:true}).then((imageData) => {
     // imageData is either a base64 encoded string or a file URI
     // If it's base64:
-      // let base64Image = 'data:image/jpeg;base64,' + imageData;
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
         console.log( imageData );
         this.urlPrimaryPhoto = imageData;
       }, (err) => {
@@ -96,6 +96,4 @@ export class PostEditPage {
     });
     confirm.present();
   }
-
-
 }
