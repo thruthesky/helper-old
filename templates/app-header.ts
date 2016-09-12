@@ -6,6 +6,8 @@ import { HomePage } from '../pages/home/home';
 import { TranslatePipe } from 'ng2-translate/ng2-translate';
 import { Events } from 'ionic-angular';
 import { Core, app } from '../providers/core/core';
+import {SearchPage} from '../pages/search/search';
+
 @Component({
     selector: 'app-header',
     template: `
@@ -26,7 +28,7 @@ import { Core, app } from '../providers/core/core';
             <ion-buttons right>
                 <!--<button primary login *ngIf=" ! loggedIn " (click)="onClickLogin()">{{ 'LOGIN' | translate }}</button>-->
                 <button (click)="onClickPostEdit()" *ngIf="!hideCreateButton"><ion-icon name="create"></ion-icon></button>
-                <button><ion-icon name="search"></ion-icon></button>
+                <button (click)="onClickSearch()"><ion-icon name="search"></ion-icon></button>
             </ion-buttons>
 
             <button menuToggle right>
@@ -90,6 +92,10 @@ export class AppHeader {
     onClickPostEdit() {
         this.events.publish('app', { code:'showComponent', 'component': 'POST'} );
         // this.navCtrl.push( PostEditPage );
+    }
+
+    onClickSearch () {
+      this.navCtrl.push( SearchPage );
     }
 
     translate() {

@@ -12,6 +12,7 @@ import { SettingPage } from './pages/setting/setting';
 import { PostEditPage } from './pages/post-edit/post-edit';
 import { PostListPage } from './pages/post-list/post-list';
 import { PolicyPage } from './pages/policy/policy';
+import { SearchPage } from './pages/search/search';
 import { Core } from './providers/core/core';
 import { Events } from 'ionic-angular';
 import { Xapi } from './providers/xapi/xapi';
@@ -128,7 +129,8 @@ export class MyApp {
       //this.nav.push( PostEditPage );
       //this.nav.push( PostListPage );
       // this.nav.push( PostEditPage );
-      //this.nav.push( PolicyPage );
+      //this.nav.push( PolicyPage );.
+      //this.nav.push( SearchPage );
     }, 500);
 
     // this.rootPage = LoginPage;
