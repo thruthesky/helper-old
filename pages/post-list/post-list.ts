@@ -5,7 +5,7 @@ import { AppHeader } from '../../templates/app-header';
 import { Xapi } from '../../providers/xapi/xapi';
 import * as xi from '../../providers/xapi/interfaces';
 import * as share from '../../providers/share/share';
-import { AgeCalculator } from '../../pipes/ageCalculator';
+import { AgeCalculator } from '../../pipes/age-calculator';
 
 /*
  Generated class for the PostListPage page.

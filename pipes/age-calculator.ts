@@ -7,7 +7,8 @@ export class AgeCalculator implements PipeTransform{
   transform(value, args) {
     let birthday = new Date( value ).getTime();
     let ageDifMs = Date.now() - birthday;
-    let ageDate = new Date(ageDifMs); // miliseconds from epoch
+    let ageDate = new Date(ageDifMs);
     return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 }
+

@@ -126,7 +126,7 @@ export class MyApp {
       // this.nav.push( RegisterPage );
       // this.nav.push( PostListPage );
       //this.nav.push( PostEditPage );
-      this.nav.push( PostListPage );
+      //this.nav.push( PostListPage );
       // this.nav.push( PostEditPage );
       //this.nav.push( PolicyPage );
     }, 500);
