@@ -11,12 +11,32 @@ export class SearchPage {
   searchTerm: string = '';
   searchControl: Control;
   items: any;
+  searching: any = false;
 
   constructor( public navCtrl: NavController ) {
     this.searchControl = new Control();
   }
 
+  ionViewLoaded() {
+
+    this.setFilteredItems();
+
+    this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
+
+      this.searching = false;
+      this.setFilteredItems();
+
+    });
+
+
+  }
+
+  onSearchInput(){
+    this.searching = true;
+  }
+
   setFilteredItems() {
+
 
     //this.items = this.dataService.filterItems(this.searchTerm);
 
