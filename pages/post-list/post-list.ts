@@ -5,16 +5,18 @@ import { AppHeader } from '../../templates/app-header';
 import { Xapi } from '../../providers/xapi/xapi';
 import * as xi from '../../providers/xapi/interfaces';
 import * as share from '../../providers/share/share';
+import { AgeCalculator } from '../../pipes/age-calculator';
 
 /*
-  Generated class for the PostListPage page.
+ Generated class for the PostListPage page.
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
+ See http://ionicframework.com/docs/v2/components/#navigation for more info on
+ Ionic pages and navigation.
+ */
 @Component({
   templateUrl: 'build/pages/post-list/post-list.html',
-  directives: [ AppHeader ]
+  directives: [ AppHeader ],
+  pipes: [ AgeCalculator ]
 })
 export class PostListPage implements OnInit {
   private appTitle: string;
@@ -33,6 +35,11 @@ export class PostListPage implements OnInit {
     app.title('POST LIST', this);
   }
 
+  onSelect(i){
+    //console.log( this.moreButton[i] + " " + i );
+    this.moreButton[i] = this.moreButton[i] == true ? false : true;
+  }
+
 
   ngOnInit () {
     console.log("PostList::ngOnInit()");
@@ -46,10 +53,10 @@ export class PostListPage implements OnInit {
     // debugger; // no good to use.
     postQuery.paged = ++ this.page;
     this.x.get_posts( postQuery, ( res: xi.Posts ) : void => {
-      this.onRecvPostData( res );
-      if ( callback ) callback();
-    },
-    (x) => console.log(x));
+        this.onRecvPostData( res );
+        if ( callback ) callback();
+      },
+      (x) => console.log(x));
   }
   onRecvPostData ( res ) {
     console.log("PostList::onRecvPostData()");

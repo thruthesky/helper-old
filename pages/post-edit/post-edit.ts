@@ -50,11 +50,11 @@ export class PostEditPage {
     this.post.address = 'Unit 309, 2016 st., Pasineer cor., Quezone city, Philippines.';
     this.post.password = '1234';
     this.post.mobile = '09174678603';
-    this.post.birthday = '19731016';
+    this.post.birthday = '1973/10/16';
     this.post.gender = 'M';
     this.post.title = "Title: I am looking for a japanese boss.";
     this.post.content = "Will it really give me a boss?";
-    //this.onClickPost();
+    this.onClickPost();
 
 
     let options = {

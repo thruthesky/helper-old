@@ -12,6 +12,7 @@ import { SettingPage } from './pages/setting/setting';
 import { PostEditPage } from './pages/post-edit/post-edit';
 import { PostListPage } from './pages/post-list/post-list';
 import { PolicyPage } from './pages/policy/policy';
+import { SearchPage } from './pages/search/search';
 import { Core } from './providers/core/core';
 import { Events } from 'ionic-angular';
 import { Xapi } from './providers/xapi/xapi';
@@ -139,6 +140,11 @@ export class MyApp {
       // this.nav.push( PostListPage );
       // this.nav.push( PostEditPage );
       // this.nav.push( PolicyPage );
+      //this.nav.push( PostEditPage );
+      //this.nav.push( PostListPage );
+      // this.nav.push( PostEditPage );
+      //this.nav.push( PolicyPage );.
+      // this.nav.push( SearchPage );
     }, 500);
 
     // this.rootPage = LoginPage;
@@ -175,6 +181,10 @@ export class MyApp {
 
   initialziaeApp() {
     console.log("MyApp::initialziaeApp() ...");
+
+
+
+    //alert( "App 41: " + app.isBrowser() );
 
     // Okay, so the platform is ready and our plugins are available.
     // Here you can do any higher level native things you might need.

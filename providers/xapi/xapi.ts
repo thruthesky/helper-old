@@ -13,6 +13,7 @@ import {AlertController} from 'ionic-angular';
 
 @Injectable()
 export class Xapi {
+    
     public serverUrl: string = share.XAPI_SERVER_URL;
     static panelMenu: share.PanelMenus;
     constructor(private http: Http, private alertCtrl: AlertController ) {}
@@ -193,4 +194,5 @@ export class Xapi {
                 }
                 return res;
     }
+
 }
