@@ -16,11 +16,12 @@ import { Core } from './providers/core/core';
 import { Events } from 'ionic-angular';
 import { Xapi } from './providers/xapi/xapi';
 import { app } from './providers/app/app';
-
+import { File } from 'ionic-native';
 
 import * as xi from './providers/xapi/interfaces';
 import * as share from './providers/share/share';
 
+declare var cordova: any;
 @Component({
   templateUrl: 'build/app.html',
   providers: [ Database, Core, Xapi ],
@@ -29,7 +30,15 @@ import * as share from './providers/share/share';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any;
-  pages: share.PanelMenus  = share.panelMenus;
+  pages: share.PanelMenus  = [
+      // { title: 'HOME',      component: HomePage, icon : 'home' },
+      { title: 'FORUM',     component: PostListPage, icon : 'chatboxes' },
+      { title: 'POST',  component: PostEditPage, icon : 'create' },
+      //{ title: 'LOGIN',     component: LoginPage, icon : 'person-add' },
+      { title: 'POLICY',     component: PolicyPage, icon : 'paper' },
+      { title: 'SETTING',   component: SettingPage, icon : 'options' }
+      // { title: 'REGISTER',  component: RegisterPage },
+    ];
   private events: Array<string> = [];
   static instance: MyApp;
   constructor(public platform: Platform,
@@ -40,6 +49,7 @@ export class MyApp {
       ) {
         console.log( 'MyApp Component - root component');
         MyApp.instance = this;
+        Xapi.panelMenu = this.pages;
         this.initialziaeApp();
         events.subscribe('app', this.subscribeEvent );
   }
@@ -125,10 +135,10 @@ export class MyApp {
       // this.nav.push( ForumPage );
       // this.nav.push( RegisterPage );
       // this.nav.push( PostListPage );
-      //this.nav.push( PostEditPage );
-      this.nav.push( PostListPage );
+      this.nav.push( PostEditPage );
+      // this.nav.push( PostListPage );
       // this.nav.push( PostEditPage );
-      //this.nav.push( PolicyPage );
+      // this.nav.push( PolicyPage );
     }, 500);
 
     // this.rootPage = LoginPage;
@@ -166,21 +176,20 @@ export class MyApp {
   initialziaeApp() {
     console.log("MyApp::initialziaeApp() ...");
 
-
-    alert( "App 41: " + app.isBrowser() );
-
     // Okay, so the platform is ready and our plugins are available.
     // Here you can do any higher level native things you might need.
     this.platform.ready().then(() => {
-
-      console.log("MyApp::initialziaeApp(). App ready now!", this.platform);
-      StatusBar.styleDefault();
-
-
+      
+      if ( this.platform.is('cordova') ) {
+        app.isCordova = true;
+        StatusBar.styleDefault();
+        console.log("Yes, you are on cordova");
+      }
+      else console.log("No, you are NOT on cordova");
+    
       // this.db.createTable();
       // this.db.set( 'a', 'apple' );
       // this.db.get( 'a' ).then( (re) => console.log("a: " + re ));
-
       // this.db.set('run', Math.round(new Date().getTime() / 1000 ));
       // this.db.get('run', (v) => console.log(v));
     });

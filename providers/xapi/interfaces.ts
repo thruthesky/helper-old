@@ -108,6 +108,19 @@ export interface Post {
   content: string;
   author: number;
   excerpt: string;
+  images: Array<string>;
+  urlPrimaryPhoto?: string;
+  comments: Array<{comment_title:string}>;
+  meta: {
+    first_name: Array<string>,
+    last_name: Array<string>,
+    middle_name: Array<string>,
+    mobile: Array<string>,
+    password: Array<string>,
+    address: Array<string>,
+    gender: Array<string>,
+    birthday: Array<string>
+  }
 }
 export type Posts = Array<Post>;
 
@@ -124,4 +137,12 @@ export interface PostEdit {
   gender: string;
   title: string;
   content: string;
+  file_id?: number;
+}
+
+
+export interface FileUpload {
+  id: number;
+  url: string;
+  type: string;
 }

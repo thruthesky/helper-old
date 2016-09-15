@@ -99,19 +99,20 @@ app.html 의 menu 가 어떤 과정을 거쳐서 메인에 포함되는 것인�
 
   npm install ng2-translate@2.2.2 --save --save-exact
 
+## install lodash
+
+  npm install lodash --save
+  typings install lodash --save
+
+
+## install file upload for web browser.
+
+  npm install ng2-file-upload --save
+  
+
 ## install camera plugin
 
   ionic plugin add cordova-plugin-camera
-
-## Do not install lodash.
-
-* We will not use external functional functions like Underscore or Lodash.
-* ES6 is good enough without Underscore or Lodash.
-
-
-  // ## install lodash
-  // npm install lodash --save
-  // typings install lodash --save
 
 
 ## copy gulpfile
@@ -121,6 +122,21 @@ cp app/etc/install/gulpfile.js .
 
 * windows
 copy app\etc\install\gulpfile.js .
+
+
+## Option : Live Reload on Browser Platform
+
+This is an option.
+
+* see : https://docs.google.com/document/d/1DSNPw2De2kkjfhTXwvBgdjc0pCPDu8_XoOUBxeW4Mm8/edit#heading=h.oemfaqquhmhh
+
+### Copy app/etc/install/ionic.config.json to app root on your own risk.
+
+This will cause problem.
+
+If you don't know what you are doing, don't do it.
+
+
 
 # Coding Guide
 

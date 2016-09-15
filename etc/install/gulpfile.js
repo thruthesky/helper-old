@@ -45,7 +45,7 @@ gulp.task('watch', ['clean'], function(done){
       gulpWatch('app/**/*.html', function(){ gulp.start('html'); });
       gulpWatch('app/assets/i18n/*.json', function(){ gulp.start('i18n'); });
       gulpWatch('app/assets/img/*', function(){ gulp.start('img'); });
-      gulpWatch('www/**/*', function(){ gulp.start('copy-www-platform-browser'); });
+      gulpWatch('www/**/*', function(){ gulp.start('copy-www-to-platform-browser'); });
       buildBrowserify({ watch: true }).on('end', done);
     }
   );
@@ -77,11 +77,9 @@ gulp.task("img", function() {
         .pipe(gulp.dest("www/assets/img"));
 });
 
-gulp.task('copy-www-platform-browser', function () {
+gulp.task('copy-www-to-platform-browser', function () {
 	gulp.src("www/**/*").pipe(gulp.dest('platforms/browser/www'));
 });
-
-
 
 
 gulp.task('sass', buildSass);

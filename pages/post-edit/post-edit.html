@@ -2,12 +2,19 @@
 <ion-content padding>
 
 
-    <ion-card id="primary-photo" (click)="onClickPrimaryPhoto()">
+    <ion-card *ngIf="!isCordova" id="primary-photo" (click)="onClickPrimaryPhotoBrowser()">
       <div class="wrap">
         <div><img [src]="urlPrimaryPhoto"></div>
-        <button primary>Upload Photo</button>
+        <input type="file" (change)="onBrowserUpload($event)">
       </div>
     </ion-card>
+    <ion-card *ngIf="isCordova" id="primary-photo" (click)="onClickPrimaryPhoto()">
+      <div class="wrap">
+        <div><img [src]="urlPrimaryPhoto"></div>
+        <button primary>CORDOVA UPLOAD</button>
+      </div>
+    </ion-card>
+
 
 
     <ion-list text-wrap>
@@ -62,7 +69,7 @@
 
       <ion-item>
         <ion-label primary stacked>{{ 'Content' | translate }}</ion-label>
-        <ion-input [(ngModel)]="post.content" placeholder="Input Content"></ion-input>
+        <ion-textarea [(ngModel)]="post.content" [class.focused]='isFocused' (focus)="isFocused=true" placeholder="Input Content"></ion-textarea>
       </ion-item>
 
 

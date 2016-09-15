@@ -22,13 +22,15 @@ export class PostListPage implements OnInit {
   private page: number = 0;
   private design:number = 4;
   private moreButton = [];
+  private urlDefaultPrimaryPhotoBoy = "assets/img/boy.png";
+  private urlDefaultPrimaryPhotoGirl = "assets/img/girl.png";
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
     private x: Xapi
   ) {
     console.log("PostList::constructor()");
-    app.title('FORUM', this);
+    app.title('POST LIST', this);
   }
 
 
@@ -56,9 +58,20 @@ export class PostListPage implements OnInit {
         let posts: xi.Posts = res.data.posts;
         if ( posts.length ) {
           posts.forEach( ( post:xi.Post ) => {
-            console.log( post.title );
+            // console.log( post.title );
+            if ( post.images && post.images[0] ) {
+              post.urlPrimaryPhoto = post.images[0];
+            }
+            else {
+              if ( post.meta && post.meta.gender && post.meta.gender[0] && post.meta.gender[0] == 'F' ) {
+                post.urlPrimaryPhoto = this.urlDefaultPrimaryPhotoGirl;
+              }
+              else {
+                post.urlPrimaryPhoto = this.urlDefaultPrimaryPhotoBoy;
+              }
+            }
             this.posts.push( post );
-            console.log( "length: " + this.posts.length );
+            // console.log( "length: " + this.posts.length );
           });
         }
       }

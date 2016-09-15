@@ -6,10 +6,16 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Headers, RequestOptions } from '@angular/http';
 import * as xi from './interfaces.ts';
+import * as share from '../share/share';
+import { Core } from '../core/core';
+
+import {AlertController} from 'ionic-angular';
+
 @Injectable()
 export class Xapi {
-    private serverUrl: string = "http://work.org/wordpress/wp-json/wp/v2/";
-    constructor(private http: Http) {}
+    public serverUrl: string = share.XAPI_SERVER_URL;
+    static panelMenu: share.PanelMenus;
+    constructor(private http: Http, private alertCtrl: AlertController ) {}
     /**
      * @param error - is error callback. This is called only on server fault.
      */
@@ -42,7 +48,9 @@ export class Xapi {
         let options = new RequestOptions({ headers: headers });
         body = JSON.stringify( body );
         return this.http.post( url, body, options )
-            .map( e => e.json() )
+            .map( e => {
+                this.json(e);
+            } )
             .catch( (e) => {
                 console.log( e );
                 if ( error ) error( e );
@@ -137,5 +145,52 @@ export class Xapi {
                 data,
                 callback,
                 error );
+    }
+
+    /**
+     * @code
+     *      this.x.alert("ERROR", "Failed on JSON.parse() try in onBrowserUploadComplete(). Please show this message to admin.");
+     * @endcode
+     */
+    alert( title: string, content: string ) {
+        let alert = this.alertCtrl.create({
+        title: title,
+        subTitle: content,
+        buttons: ['OK']
+        });
+        alert.present();
+    }
+
+    error( message: string, e?: any ) {
+        let error_message = '';
+        if ( e && e.message ) error_message = e.message + ' - ';
+        this.alert( 'ERROR', error_message + message );
+    }
+
+    errorCode( key: string ) {
+        Core.translate( key, (x) => {
+            this.error(x);
+        } );
+    }
+
+
+    /**
+     * Automatic report to server admin.
+     * @todo when there is error, this client automatically reports and logs into server.
+     */
+    reportError() {
+
+    }
+    json( e ) {
+
+        let res;
+                try {
+                    res = e.json();
+                }
+                catch (e) {
+                    this.reportError();
+                    this.error("Failed to parse JSON data of post() request.");
+                }
+                return res;
     }
 }

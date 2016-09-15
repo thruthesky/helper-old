@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { AppHeader } from '../../templates/app-header';
 import { Xapi } from '../../providers/xapi/xapi';
@@ -12,25 +12,29 @@ import * as share from '../../providers/share/share';
   directives: [ AppHeader ],
   pipes: [ TranslatePipe ]
 })
-export class HomePage implements OnDestroy {
+export class HomePage implements OnDestroy, OnInit {
     private appTitle: string;
     static initialized: boolean = false;
     static sub: any;
-    private panelMenus = share.panelMenus;
     private design: number = 2;
+    private panelMenus;
     constructor( public navCtrl: NavController,
         private x: Xapi,
         public alertCtrl: AlertController
     ) {
       this.initialize();
+      this.panelMenus = Xapi.panelMenu;
       console.log('HomePage: construtor: language: ' + Core.language );
+  }
+  ngOnInit() {
+      app.title( 'home.title', this );
   }
   ngOnDestroy() {
       console.log("HomePage: ngOnDescroty())");
   }
   initialize() : boolean {
-      // Core.translate('home.title', (x) => this.appTitle = x );
-      app.title( 'home.title', this );
+      
+      
       if ( HomePage.initialized ) {
           console.log('HomePage::constructor() : already initialized ... !');
           return true;

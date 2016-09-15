@@ -1,6 +1,6 @@
 {
     "home" : {
-        "title" : "My Korean Boss"
+        "title" : "My Korean Boss .."
     },
     "login" : {
         "title" : "Login",
@@ -28,6 +28,7 @@
     "LOGIN" : "LOGIN",
     "FORUM" : "Housemaid List",
     "POST" : "Register a Housemaid",
+    "POST LIST" : "Helper List ..",
     "POST CREATE SUBMIT" : "UPLOAD",
     "SETTING" : "SETTING",
     "CLOSE" : "Close",

@@ -15,6 +15,12 @@
       ion-item {
         padding-right: 16px;
       }
+
+      .focused {
+        textarea {
+          height: 10em;
+        } 
+      }
     }
   }
 }

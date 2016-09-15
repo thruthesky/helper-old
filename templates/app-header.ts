@@ -52,15 +52,15 @@ export class AppHeader {
     }
     initialize() : boolean {
         this.loggedIn = Core.loggedIn;
-        console.log("AppHeader initialize() : Core.loggedIn=" + Core.loggedIn + ", user session_id: " + Core.user.session_id );
+        // console.log("AppHeader initialize() : Core.loggedIn=" + Core.loggedIn + ", user session_id: " + Core.user.session_id );
 
         if ( AppHeader.initialized ) {
-            console.log('AppHeader::constructor() : already initialized !');
+            // console.log('AppHeader::constructor() : already initialized !');
             return true;
         }
         else {
             AppHeader.initialized = true;
-            console.log('AppHeader::constructor() : initializing');
+            // console.log('AppHeader::constructor() : initializing');
             return false;
         }
     }

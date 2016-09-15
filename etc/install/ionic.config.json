@@ -1,0 +1,14 @@
+{
+  "name": "helper-0.5",
+  "app_id": "",
+  "v2": true,
+  "typescript": true,
+  "watchPatterns": [
+    "platforms/browser/www/**/app.bundle.js",
+    "platforms/browser/www/build/**/*.css",
+    "platforms/browser/www/build/**/*.html",
+    "!platforms/browser/www/**/*.ttf",
+    "!platforms/browser/www/**/*.woff*",
+    "!platforms/browser/www/**/*.map"
+  ]
+}
