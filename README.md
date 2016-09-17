@@ -3,12 +3,20 @@ House helper app
 
 # TODO
 
+## 강좌
 
+  * TypeScript 부터. TypeScript 를 소스 언어로 하고, Javascript 를 컴파일된 언어로 취급하여 설명한다. 즉, 자바스크립트를 완전히 몰라도 할 수 있도록 한다.
+  * TypeScript 강좌는 왠만한것다 무료로 하고, 대신 화상영어 강좌를 한다. 월 10만원. 3개월치 선불.
+    * 왜냐하면 에러 메세지가 다 영어이기 때문이다.
+  * Angular 2 강좌도 한다. 10만원.
+  * Ionic 2 강좌는 20만원.
+  
 ## Is it bug that on deskstop browser, click event on list-item is not fired on first click. it works on second click.
 
 ## back-button
 It is okay not to show back-button on top.
 but when a user touches back-button on the device, the back button should work.
+
 
 
 ## 재택 강사 앱을 따로 만든다.

@@ -73,11 +73,15 @@ export class PostEditPage {
   onClickPost() {
     // console.log( this.post );
     this.post.category = 'housemaid';
-    this.x.post_insert( this.post, this.onClickPostComplete,
-      ( e ) => { console.log( e ); }
-    );
+    this.x.post_insert( this.post, (res) => this.onClickPostComplete(res), (res) => this.onClickPostServerError( res ) );
   }
+
   onClickPostComplete( res: xi.Post ) {
+    console.log( res );
+  }
+
+  onClickPostServerError( res ) {
+    this.x.error( "Error on Post. Please check if the backend server is alive.", res );
     console.log( res );
   }
 
@@ -178,7 +182,7 @@ onClickPrimaryPhotoBrowser() {
       if ( re.success ) this.onFileUpload( re.data );
       else return this.x.errorCode( re.data );
     }
-    else return this.errorMaybeTooBigSize();
+    else return this.errorMaybeServerError();
   }
 
   onBrowserUpload( $event ) {
@@ -198,8 +202,8 @@ onClickPrimaryPhotoBrowser() {
 
   }
 
-  errorMaybeTooBigSize() {
-    return this.x.error("Please check if the photo size is too big.");
+  errorMaybeServerError() {
+    return this.x.error("Please check if file server is alive and check if the photo size is too big.");
   }
 
 }

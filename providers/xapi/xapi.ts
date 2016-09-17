@@ -43,18 +43,18 @@ export class Xapi {
 
 
 
-    post( url: string, body: any, callback, error? ) {
+    post( url: string, body: any, callback, callbackServerError? ) {
         console.log("Xforum::post : " + url, body );
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         body = JSON.stringify( body );
         return this.http.post( url, body, options )
             .map( e => {
-                this.json(e);
+                this.json(e['_body']);
             } )
             .catch( (e) => {
                 console.log( e );
-                if ( error ) error( e );
+                if ( callbackServerError ) callbackServerError( e );
                 return Observable.throw( e );
             } )
             .subscribe( (res) => {
@@ -88,8 +88,8 @@ export class Xapi {
     errorHandler( err: any ) {
         let errMsg = (err.message) ?
             err.message :
-            err.status ? `${err.status} - ${err.statusText}` : 'Xapi got server error. Please check if xapi server is alive and no error has been returned.';
-        console.error('ERROR on Http.get(): ', errMsg);
+            err.status ? `${err.status} - ${err.statusText}` : 'Server error. Please check if backend server is alive and there is no error.';
+        this.error(errMsg);
         return Observable.throw(errMsg);
     }
 
@@ -140,12 +140,12 @@ export class Xapi {
     }
 
 
-    post_insert( data: xi.PostEdit, callback, error ) {
+    post_insert( data: xi.PostEdit, callback, serverError ) {
         // console.log('Xforum::post_insert()', data);
         return this.post( this.serverUrl + '?xapi=post.insert',
                 data,
                 callback,
-                error );
+                serverError );
     }
 
     /**
@@ -183,16 +183,15 @@ export class Xapi {
 
     }
     json( e ) {
-
         let res;
-                try {
-                    res = e.json();
-                }
-                catch (e) {
-                    this.reportError();
-                    this.error("Failed to parse JSON data of post() request.");
-                }
-                return res;
+        try {
+            res = JSON.parse( e );
+        }
+        catch (e) {
+            this.reportError();
+            this.error("Xapi::Json() - Failed to parse JSON data.");
+        }
+        return res;
     }
 
 }
