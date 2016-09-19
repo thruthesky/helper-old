@@ -146,7 +146,7 @@ export class MyApp {
       //this.nav.push( PostListPage );
       // this.nav.push( PostEditPage );
       //this.nav.push( PolicyPage );.
-       this.nav.push( SearchPage );
+       //this.nav.push( SearchPage );
     }, 500);
 
     // this.rootPage = LoginPage;
