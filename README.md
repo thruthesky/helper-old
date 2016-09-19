@@ -5,11 +5,6 @@ House helper app
 
 ## 강좌
 
-  * TypeScript 부터. TypeScript 를 소스 언어로 하고, Javascript 를 컴파일된 언어로 취급하여 설명한다. 즉, 자바스크립트를 완전히 몰라도 할 수 있도록 한다.
-  * TypeScript 강좌는 왠만한것다 무료로 하고, 대신 화상영어 강좌를 한다. 월 10만원. 3개월치 선불.
-    * 왜냐하면 에러 메세지가 다 영어이기 때문이다.
-  * Angular 2 강좌도 한다. 10만원.
-  * Ionic 2 강좌는 20만원.
   
 ## Is it bug that on deskstop browser, click event on list-item is not fired on first click. it works on second click.
 
@@ -109,6 +104,7 @@ app.html 의 menu 가 어떤 과정을 거쳐서 메인에 포함되는 것인�
 
 ## install lodash
 
+  npm install -g typings
   npm install lodash --save
   typings install lodash --save
 
@@ -117,10 +113,6 @@ app.html 의 menu 가 어떤 과정을 거쳐서 메인에 포함되는 것인�
 
   npm install ng2-file-upload --save
   
-
-## install camera plugin
-
-  ionic plugin add cordova-plugin-camera
 
 
 ## copy gulpfile
@@ -132,13 +124,32 @@ cp app/etc/install/gulpfile.js .
 copy app\etc\install\gulpfile.js .
 
 
+## install npm modules
+
+npm install
+
+
+## uninstall browser platform before installing camera plugin
+
+ionic platform rm browser
+
+## install camera plugin
+
+  ionic plugin add cordova-plugin-camera
+
+## install browser platform after comera plugin
+
+ionic platform add browser
+
+
+
 ## Option : Live Reload on Browser Platform
 
 This is an option.
 
 * see : https://docs.google.com/document/d/1DSNPw2De2kkjfhTXwvBgdjc0pCPDu8_XoOUBxeW4Mm8/edit#heading=h.oemfaqquhmhh
 
-### Copy app/etc/install/ionic.config.json to app root on your own risk.
+### Copy app/etc/install/ionic.config.json to app root at your own risk.
 
 This will cause problem.
 
