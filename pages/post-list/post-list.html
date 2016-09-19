@@ -29,9 +29,9 @@
         <div *ngIf="moreButton[i]">
           <ion-item-group text-wrap>
             <ion-item-divider light><h2>Personal Information</h2></ion-item-divider>
-            <ion-item><ion-label>Name : {{ post.first_name }} {{ post.last_name }}</ion-label></ion-item>
-            <ion-item><ion-label>Gender : {{ post.gender }}</ion-label></ion-item>
-            <ion-item><ion-label>Age : {{ post.birthday | ageCalculator  }}</ion-label></ion-item>
+            <ion-item><ion-label>Name : {{ post.meta.first_name[0] }} {{ post.last_name }}</ion-label></ion-item>
+            <ion-item><ion-label>Gender : {{ post.meta.gender[0] }}</ion-label></ion-item>
+            <ion-item><ion-label>Age : {{ post.meta.birthday[0] | ageCalculator  }}</ion-label></ion-item>
             <ion-item><ion-label>Mobile # : {{ post.mobile }}</ion-label></ion-item>
             <ion-item><ion-label>Address : {{ post.address }}</ion-label></ion-item>
           </ion-item-group>
