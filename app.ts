@@ -137,7 +137,7 @@ export class MyApp {
       // this.nav.push( RegisterPage );
       // this.nav.push( PostListPage );
       // this.nav.push( PostEditPage );
-       this.nav.push( PostListPage );
+      //this.nav.push( PostListPage );
       //this.nav.push( PostEditPage );
       // this.nav.push( PostListPage );
       // this.nav.push( PostEditPage );
@@ -146,11 +146,7 @@ export class MyApp {
       //this.nav.push( PostListPage );
       // this.nav.push( PostEditPage );
       //this.nav.push( PolicyPage );.
-<<<<<<< HEAD
-       //this.nav.push( SearchPage );
-=======
-      // this.nav.push( SearchPage );
->>>>>>> 91b6a700d49baf467e55e27583be68cec1660bba
+       this.nav.push( SearchPage );
     }, 500);
 
     // this.rootPage = LoginPage;

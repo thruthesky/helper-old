@@ -11,7 +11,8 @@ export class SearchPage {
   searchByName: string = '';
   searchByAddress: string = '';
   searchByAge: number;
-  searchByGender: boolean = true;
+  searchByFemale: boolean = true;
+  searchByMale: boolean = false;
   searchControl: Control;
   items: any;
   searching: any = false;
