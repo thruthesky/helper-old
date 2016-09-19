@@ -1,4 +1,7 @@
-<app-header [appTitle]="appTitle"></app-header>
+<ion-header>
+  <app-header [appTitle]="appTitle"></app-header>
+</ion-header>
+
 <ion-content no-padding>
 
 
@@ -55,7 +58,7 @@
           </button>
         </ion-col>
       </ion-row>
-      
+
 
     </ion-card>
   </section>
@@ -88,7 +91,7 @@
   </ion-list>
 
   <ion-list *ngIf="design==3" class="design-three">
-    
+
     <ion-item text-wrap *ngFor=" let post of posts; let i = index;  ">
       <ion-thumbnail item-left>
         <img [src]="post.urlPrimaryPhoto"/>

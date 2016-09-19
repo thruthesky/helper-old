@@ -8,8 +8,26 @@
 
 
 <ion-content padding no-margin>
+  <ion-label primary stacked>{{ 'Search by Name' }}</ion-label>
+  <ion-searchbar [(ngModel)]="searchByName" [formControl]="searchControl" (ionInput)="onSearchInput()" placeholder="Input Name..."></ion-searchbar>
 
-  <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
+  <ion-label primary stacked>{{ 'Search by Address' }}</ion-label>
+  <ion-searchbar [(ngModel)]="searchByAddress" [formControl]="searchControl" (ionInput)="onSearchInput()" placeholder="Input Address..."></ion-searchbar>
+
+  <ion-label primary stacked>{{ 'Search by Age' }}</ion-label>
+  <ion-searchbar [(ngModel)]="searchByAge" [formControl]="searchControl" (ionInput)="onSearchInput()" placeholder="Input Age..."></ion-searchbar>
+
+  <ion-label primary stacked>{{ 'Search by Gender' }}</ion-label>
+  <ion-list radio-group>
+    <ion-item>
+      <ion-label>{{ 'Female' }}</ion-label>
+      <ion-radio  checked="{{ searchByGender }}" value="F"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{ 'Male' }}</ion-label>
+      <ion-radio  checked="{{ !searchByGender }}" value="M"></ion-radio>
+    </ion-item>
+  </ion-list>
 
   <div *ngIf="searching" class="spinner-container">
     <ion-spinner></ion-spinner>

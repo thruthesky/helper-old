@@ -11,7 +11,7 @@ import {SearchPage} from '../pages/search/search';
 @Component({
     selector: 'app-header',
     template: `
-    <ion-header>
+
         <ion-navbar>
             <!--
             <ion-buttons left>
@@ -35,7 +35,7 @@ import {SearchPage} from '../pages/search/search';
                 <ion-icon name="menu"></ion-icon>
             </button>
         </ion-navbar>
-    </ion-header>
+
     `,
     providers: [ ],
     pipes: [ TranslatePipe ],
