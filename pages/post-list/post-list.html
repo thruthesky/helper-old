@@ -2,11 +2,12 @@
 <ion-content no-padding>
 
 
-  <button primary (click)="design=1" style="padding: 2px; margin: 0; height: 15px">1</button>
-  <button primary (click)="design=2" style="padding: 2px; margin: 0; height: 15px">2</button>
-  <button primary (click)="design=3" style="padding: 2px; margin: 0; height: 15px">3</button>
-  <button primary (click)="design=4" style="padding: 2px; margin: 0; height: 15px">4</button>
-
+<ion-nav-buttons>
+  <button primary [class.selected]="design==1" (click)="design=1">1</button>
+  <button primary [class.selected]="design==2" (click)="design=2">2</button>
+  <button primary [class.selected]="design==3" (click)="design=3">3</button>
+  <button primary [class.selected]="design==4" (click)="design=4">4</button>
+</ion-nav-buttons>
   <section *ngIf="design==1" class="design-one">
     <ion-card  *ngFor=" let post of posts; let i = index;  ">
       <div class="avatar">
@@ -14,12 +15,11 @@
       </div>
 
       <ion-card-content>
-
         <ion-card-title>
-          {{ post.title }}
+          {{ post_title }}
         </ion-card-title>
         <p>
-          {{ post.content }}
+          {{ post_content }}
         </p>
         <ion-note item-right>{{ post.post_date | date }}</ion-note>
 

@@ -1,6 +1,12 @@
 .post-list-page {
-  ion-content {
+
+  ion-nav-buttons {
+    padding: 2px; margin: 0; height: 15px;
+    button.selected {
+      background-color: yellow;
+    }
   }
+
 }
 
 
