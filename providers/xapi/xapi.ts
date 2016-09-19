@@ -16,7 +16,16 @@ export class Xapi {
     
     public serverUrl: string = share.XAPI_SERVER_URL;
     static panelMenu: share.PanelMenus;
-    constructor(private http: Http, private alertCtrl: AlertController ) {}
+    constructor(private http: Http, private alertCtrl: AlertController ) {
+
+        // this.http.get( 'http://work.org/wordpress/index.php?xapi=user.list' ).subscribe( res => {
+        //     console.log(res);
+        // });
+        
+        // this.http.post( 'http://work.org/wordpress/index.php?xapi=user.list', '' ).subscribe( res => {
+        //     console.log(res);
+        // });
+    }
     /**
      * @param error - is error callback. This is called only on server fault.
      */
@@ -45,30 +54,31 @@ export class Xapi {
 
     post( url: string, body: any, callback, callbackServerError? ) {
         console.log("Xforum::post : " + url, body );
-        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let headers = new Headers( { 'Content-Type': 'application/x-www-form-urlencoded' });
+        //headers.append('Content-Type', 'application/x-www-form-urlencoded');
         let options = new RequestOptions({ headers: headers });
-        body = JSON.stringify( body );
+        // body = JSON.stringify( body );
+        body = this.buildQuery( body );
+        console.log('url:', url);
+        console.log('body:', body);
         return this.http.post( url, body, options )
             .map( e => {
-                this.json(e['_body']);
+                return this.json(e['_body']);
             } )
             .catch( (e) => {
-                console.log( e );
+                console.log( "Xapi::post() => catch() :", e );
                 if ( callbackServerError ) callbackServerError( e );
                 return Observable.throw( e );
             } )
-            .subscribe( (res) => {
+            .subscribe( res => {
                 callback( res );
             });
     }
-
 
     ping( callback ) {
         return this.get( this.serverUrl + "?xapi=ping", callback);
     }
     
-
-
     register( data: xi.UserRegisterData, callback: (res:xi.RegisterResponse) => void ) {
         let e = encodeURIComponent;
         let q = Object.keys( data )
@@ -142,6 +152,9 @@ export class Xapi {
 
     post_insert( data: xi.PostEdit, callback, serverError ) {
         // console.log('Xforum::post_insert()', data);
+
+        //let url = this.serverUrl + '?xapi=post.insert&' + this.buildQuery( data );
+        // return this.get( url, callback, serverError );
         return this.post( this.serverUrl + '?xapi=post.insert',
                 data,
                 callback,
@@ -194,4 +207,11 @@ export class Xapi {
         return res;
     }
 
+    buildQuery( obj ) {
+        let e = encodeURIComponent;
+        let q = Object.keys( obj )
+            .map( k => e(k) + '=' + e( obj[k] ) )
+            .join( '&' );
+        return q;
+    }
 }

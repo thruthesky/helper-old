@@ -57,6 +57,7 @@ export class PostEditPage {
     this.onClickPost();
 
 
+/*
     let options = {
       sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
       destinationType: Camera.DestinationType.NATIVE_URI,
@@ -68,6 +69,7 @@ export class PostEditPage {
     }, ( message ) => {
       console.log("Error: ", message);
     });
+    */
   }
 
   onClickPost() {
