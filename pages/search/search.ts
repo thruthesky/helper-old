@@ -8,7 +8,10 @@ import 'rxjs/add/operator/debounceTime';
   providers: [ ]
 })
 export class SearchPage {
-  searchTerm: string = '';
+  searchByName: string = '';
+  searchByAddress: string = '';
+  searchByAge: number;
+  searchByGender: boolean = true;
   searchControl: Control;
   items: any;
   searching: any = false;

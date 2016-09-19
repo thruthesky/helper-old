@@ -138,13 +138,15 @@ export class MyApp {
       // this.nav.push( PostListPage );
       // this.nav.push( PostEditPage );
        this.nav.push( PostListPage );
+      //this.nav.push( PostEditPage );
+      // this.nav.push( PostListPage );
       // this.nav.push( PostEditPage );
       // this.nav.push( PolicyPage );
       //this.nav.push( PostEditPage );
       //this.nav.push( PostListPage );
       // this.nav.push( PostEditPage );
       //this.nav.push( PolicyPage );.
-      // this.nav.push( SearchPage );
+       this.nav.push( SearchPage );
     }, 500);
 
     // this.rootPage = LoginPage;
@@ -189,14 +191,14 @@ export class MyApp {
     // Okay, so the platform is ready and our plugins are available.
     // Here you can do any higher level native things you might need.
     this.platform.ready().then(() => {
-      
+
       if ( this.platform.is('cordova') ) {
         app.isCordova = true;
         StatusBar.styleDefault();
         console.log("Yes, you are on cordova");
       }
       else console.log("No, you are NOT on cordova");
-    
+
       // this.db.createTable();
       // this.db.set( 'a', 'apple' );
       // this.db.get( 'a' ).then( (re) => console.log("a: " + re ));
