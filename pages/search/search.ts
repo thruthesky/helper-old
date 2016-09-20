@@ -10,7 +10,7 @@ import 'rxjs/add/operator/debounceTime';
 export class SearchPage {
   searchByName: string = '';
   searchByAddress: string = '';
-  searchByAge: {lower: number , upper: number} = {lower: 18 , upper: 40};
+  searchByAge: {lower: number , upper: number} = { lower: 18 , upper: 50 };
   searchByFemale: boolean = true;
   searchByMale: boolean = false;
   searchControl: Control;
