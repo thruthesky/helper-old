@@ -137,5 +137,6 @@ export class SearchPage {
   
   onInput($event) {
     console.log("onInput()", this.data.address, this.data.name);
+    this.search();
   }
 }
