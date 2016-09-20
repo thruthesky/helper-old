@@ -10,17 +10,18 @@
 <ion-content padding no-margin>
   <ion-label primary stacked>{{ 'Search by Gender' }}</ion-label>
   <ion-row>
+
     <ion-col width-50>
       <ion-item>
         <ion-label>Male</ion-label>
-        <ion-checkbox [(ngModel)]="searchByMale"></ion-checkbox>
+        <ion-checkbox [(ngModel)]="data.male" (ionChange)="search()"></ion-checkbox>
       </ion-item>
     </ion-col>
 
     <ion-col width-50>
       <ion-item>
         <ion-label>Female</ion-label>
-        <ion-checkbox checked="true" [(ngModel)]="searchByFemale"></ion-checkbox>
+        <ion-checkbox [(ngModel)]="data.female" (ionChange)="search()"></ion-checkbox>
       </ion-item>
     </ion-col>
   </ion-row>
@@ -34,10 +35,10 @@
   </ion-item>
 
   <ion-label primary stacked>{{ 'Search by Address' }}</ion-label>
-  <ion-searchbar [(ngModel)]="searchByAddress" [formControl]="searchControl" (ionInput)="onSearchInput()" placeholder="Input Address..."></ion-searchbar>
+  <ion-searchbar [(ngModel)]="data.address" [formControl]="inputControl" placeholder="Input Address..."></ion-searchbar>
 
   <ion-label primary stacked>{{ 'Search by Name' }}</ion-label>
-  <ion-searchbar [(ngModel)]="searchByName" [formControl]="searchControl" (ionInput)="onSearchInput()" placeholder="Input Name..."></ion-searchbar>
+  <ion-searchbar [(ngModel)]="data.name" [formControl]="inputControl" placeholder="Input Name..."></ion-searchbar>
 
   <ion-card>
     <pre>
@@ -58,10 +59,13 @@
   </div>
 
   <ion-list>
-    <ion-item *ngFor="let item of items">
-      {{item.title}}
+    <ion-item *ngFor="let post of posts">
+      {{post.post_title}}
+      {{ post.meta.address[0] }}
+      {{ post.meta.first_name[0] }}
     </ion-item>
   </ion-list>
+
 
 
 </ion-content>

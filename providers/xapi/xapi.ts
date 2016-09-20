@@ -32,13 +32,8 @@ export class Xapi {
     get( url: string, callback, error? ) {
         console.log("Xforum::get : " + url );
         return this.http.get( url )
-        .map( (data) => {
-            try {
-                return data.json();
-            }
-            catch ( e ) {
-                console.error( "Failed on map() data.json ", data);
-            }
+        .map( e => {
+            return this.json(e['_body']);
         } )
         .catch( ( e ) => {
             error( e );
@@ -161,6 +156,14 @@ export class Xapi {
                 serverError );
     }
 
+    wp_query( queryString, successCallback, errorCallback ) {
+
+        let url = this.serverUrl + '?xapi=wordpress.wp_query&' + queryString;
+        console.log( 'wp_query: ', url );
+        return this.get( url, successCallback, errorCallback );
+
+    }
+
     /**
      * @code
      *      this.x.alert("ERROR", "Failed on JSON.parse() try in onBrowserUploadComplete(). Please show this message to admin.");
@@ -197,12 +200,17 @@ export class Xapi {
     }
     json( e ) {
         let res;
+        if ( ! e ) {
+            this.error("Xapi::Json() - Server returns empty data");
+            return e;
+        }
         try {
             res = JSON.parse( e );
         }
         catch (e) {
             this.reportError();
             this.error("Xapi::Json() - Failed to parse JSON data.");
+            console.log(e);
         }
         return res;
     }
