@@ -3,7 +3,33 @@ House helper app
 
 # TODO
 
-## 강좌
+## IE 에서 Unhandled promise rejection, Syntax error, Zone: angular 와 같은 에레 메세지를 없앨 것
+
+그래야 웹브라우저에서 동작하는 모바일 웹을 만들 수 있다.
+
+## sqlite 를 사용하지 않고 LocalStorage 를 사용한다.
+
+문제는 IE 나 파이어폭스에서 SqlStorage 가 동작하지 않는다는 것이다.
+
+* 다행스럽게 TD 를 보고 get(), set() 이 SqlStorage 와 LocalStroage 의 인터페이스가 동일해서 쉽게 변경이 가능했다.
+  문서화 한다.
+  그래서 FireFox 에서는 동작하는데, 문제는 IE 에서 zone 관련 에러가 발생한다.
+  이 에러가 발생하면, 홈페이지를 못만드는 것이다.
+  이 에러를 해 결 할 것.
+
+일반적으로 LocalStorage 는 약 5M 의 용량이 가능한데,
+
+보통 글 하나에 1KBytes 내외라면,
+
+약 5 천개의 글을 쓸 수 있다.
+
+이정도면 충분하다.
+
+* 처음 접속시, 최근 1천개의 글과 그 코멘트들을 다운로드 한다.
+* 최근 2천개의 글을 유지하고 더 많은 데이터를 보기 위해서는 인터넷에 연결해야 한다고 한다.
+* 용량이 다 차면, 기존의 데이터를 제거하는 루틴을 만든다.
+
+
 
   
 ## Is it bug that on deskstop browser, click event on list-item is not fired on first click. it works on second click.

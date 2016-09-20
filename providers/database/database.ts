@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Storage, SqlStorage } from 'ionic-angular';
+// import { Storage, SqlStorage } from 'ionic-angular';
+import { Storage, LocalStorage } from 'ionic-angular';
 @Injectable()
 export class Database {
   static storage: Storage = null;
@@ -10,7 +11,7 @@ export class Database {
       }
       else {
           console.log("Connecting to SqlStorage...");
-          Database.storage = new Storage( SqlStorage, {name: 'appDb'} );
+          Database.storage = new Storage( LocalStorage, {name: 'appDb'} );
       }
   }
   createTable() {

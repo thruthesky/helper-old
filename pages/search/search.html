@@ -8,26 +8,50 @@
 
 
 <ion-content padding no-margin>
-  <ion-label primary stacked>{{ 'Search by Name' }}</ion-label>
-  <ion-searchbar [(ngModel)]="searchByName" [formControl]="searchControl" (ionInput)="onSearchInput()" placeholder="Input Name..."></ion-searchbar>
+  <ion-label primary stacked>{{ 'Search by Gender' }}</ion-label>
+  <ion-row>
+    <ion-col width-50>
+      <ion-item>
+        <ion-label>Male</ion-label>
+        <ion-checkbox [(ngModel)]="searchByMale"></ion-checkbox>
+      </ion-item>
+    </ion-col>
+
+    <ion-col width-50>
+      <ion-item>
+        <ion-label>Female</ion-label>
+        <ion-checkbox checked="true" [(ngModel)]="searchByFemale"></ion-checkbox>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-label primary stacked>{{ 'Search by Age' }}</ion-label>
+  <ion-item>
+    <ion-range  dualKnobs="true" min="18" max="40" step="1" [(ngModel)]="searchByAge">
+      <ion-label range-left>18</ion-label>
+      <ion-label range-right>40</ion-label>
+    </ion-range>
+  </ion-item>
 
   <ion-label primary stacked>{{ 'Search by Address' }}</ion-label>
   <ion-searchbar [(ngModel)]="searchByAddress" [formControl]="searchControl" (ionInput)="onSearchInput()" placeholder="Input Address..."></ion-searchbar>
 
-  <ion-label primary stacked>{{ 'Search by Age' }}</ion-label>
-  <ion-searchbar [(ngModel)]="searchByAge" [formControl]="searchControl" (ionInput)="onSearchInput()" placeholder="Input Age..."></ion-searchbar>
+  <ion-label primary stacked>{{ 'Search by Name' }}</ion-label>
+  <ion-searchbar [(ngModel)]="searchByName" [formControl]="searchControl" (ionInput)="onSearchInput()" placeholder="Input Name..."></ion-searchbar>
 
-  <ion-label primary stacked>{{ 'Search by Gender' }}</ion-label>
-  <ion-list radio-group>
-    <ion-item>
-      <ion-label>{{ 'Female' }}</ion-label>
-      <ion-radio  checked="{{ searchByGender }}" value="F"></ion-radio>
-    </ion-item>
-    <ion-item>
-      <ion-label>{{ 'Male' }}</ion-label>
-      <ion-radio  checked="{{ !searchByGender }}" value="M"></ion-radio>
-    </ion-item>
-  </ion-list>
+  <ion-card>
+    <pre>
+      Summary
+      Name : {{searchByName}}
+      Age : {{searchByAge.lower}} - {{searchByAge.upper}}
+      Gender : {{searchByMale ? 'Male' : ''}} {{searchByFemale ? 'Female' : ''}}
+      Address : {{searchByAddress}}
+    </pre>
+  </ion-card>
+
+  <button (click)="showAgeRange()">
+    Search
+  </button>
 
   <div *ngIf="searching" class="spinner-container">
     <ion-spinner></ion-spinner>

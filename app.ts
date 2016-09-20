@@ -132,12 +132,14 @@ export class MyApp {
 
     setTimeout( () => {
       //this.nav.push( LoginPage );
-      // this.nav.push( SettingPage );
+      //this.nav.push( SettingPage );
       // this.nav.push( ForumPage );
       // this.nav.push( RegisterPage );
       // this.nav.push( PostListPage );
-       this.nav.push( PostEditPage );
+ //      this.nav.push( PostEditPage );
       // this.nav.push( PostListPage );
+      // this.nav.push( PostEditPage );
+      //this.nav.push( PostListPage );
       //this.nav.push( PostEditPage );
       // this.nav.push( PostListPage );
       // this.nav.push( PostEditPage );
@@ -147,7 +149,8 @@ export class MyApp {
       // this.nav.push( PostEditPage );
       //this.nav.push( PolicyPage );.
       // this.nav.push( SearchPage );
-    }, 500);
+      
+    }, 400);
 
     // this.rootPage = LoginPage;
     // this.rootPage = ForumPage;

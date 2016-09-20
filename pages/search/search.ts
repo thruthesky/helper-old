@@ -10,8 +10,9 @@ import 'rxjs/add/operator/debounceTime';
 export class SearchPage {
   searchByName: string = '';
   searchByAddress: string = '';
-  searchByAge: number;
-  searchByGender: boolean = true;
+  searchByAge: {lower: number , upper: number} = {lower: 18 , upper: 40};
+  searchByFemale: boolean = true;
+  searchByMale: boolean = false;
   searchControl: Control;
   items: any;
   searching: any = false;
@@ -27,7 +28,7 @@ export class SearchPage {
     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
 
       this.searching = false;
-      this.setFilteredItems();
+      //this.setFilteredItems();
 
     });
 
@@ -43,6 +44,10 @@ export class SearchPage {
 
     //this.items = this.dataService.filterItems(this.searchTerm);
 
+  }
+
+  showAgeRange() {
+    //console.log(this.searchByAge);
   }
 
 }

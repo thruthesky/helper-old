@@ -2,9 +2,9 @@
 <app-header [appTitle]="appTitle"></app-header>
 </ion-header>
 
-/* Design 1*/
-<ion-content padding *ngIf="design == 1">
-  <section>
+<ion-content padding>
+
+  <section *ngIf="design ==1">
     <ion-list >
       <ion-list-header>
         <h2>Menu</h2>
@@ -15,18 +15,8 @@
       </ion-item>
     </ion-list>
   </section>
-  <br clear="all"/>
-  <p>&nbsp;</p>
-  <p>Choose Design</p>
-  <hr>
-  <button primary (click)="design=1">Design 1</button>
-  <button primary (click)="design=2">Design 2</button>
-  <button primary (click)="design=3">Design 3</button>
-</ion-content>
 
-/* Design 2*/
-<ion-content *ngIf="design == 2">
-  <section>
+  <section *ngIf="design==2">
     <ion-list>
       <ion-card class="card-background-page">
         <img src="assets/img/tmp-2.jpg" />
@@ -47,22 +37,9 @@
       </ion-row>
     </ion-list>
   </section>
-  <br clear="all"/>
-  <hr>
 
-  <button primary (click)="design=1">Design 1</button>
-  <button primary class="button-design-two"  (click)="design=2">Design 2</button>
-  <button primary (click)="design=3">Design 3</button>
-  <p>Choose Design</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
-</ion-content>
 
-/* Design 3*/
-<ion-content padding *ngIf="design == 3">
-  <section text-wrap>
+  <section text-wrap *ngIf="design==3">
     <ion-list>
       <ion-list-header>
         My Dashboard
@@ -78,9 +55,7 @@
     </ion-list>
   </section>
   <br clear="all"/>
-  <p>Choose Design</p>
-  <hr>
-  <button primary (click)="design=1">Design 1</button>
+ <button primary (click)="design=1">Design 1</button>
   <button primary (click)="design=2">Design 2</button>
   <button primary (click)="design=3">Design 3</button>
 </ion-content>
