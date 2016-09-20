@@ -27,9 +27,9 @@
 
   <ion-label primary stacked>{{ 'Search by Age' }}</ion-label>
   <ion-item>
-    <ion-range  dualKnobs="true" min="18" max="40" step="1" [(ngModel)]="searchByAge">
-      <ion-label range-left>18</ion-label>
-      <ion-label range-right>40</ion-label>
+    <ion-range  dualKnobs="true" min="18" max="50" step="1" [(ngModel)]="searchByAge">
+      <ion-label range-left>{{ searchByAge.lower }}</ion-label>
+      <ion-label range-right>{{ searchByAge.upper }}</ion-label>
     </ion-range>
   </ion-item>
 
