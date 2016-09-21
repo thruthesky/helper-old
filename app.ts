@@ -150,8 +150,8 @@ export class MyApp {
       //this.nav.push( PostListPage );
       // this.nav.push( PostEditPage );
       //this.nav.push( PolicyPage );.
-      // this.nav.push( SearchPage );
-      
+       this.nav.push( SearchPage );
+
     }, 400);
 
     // this.rootPage = LoginPage;

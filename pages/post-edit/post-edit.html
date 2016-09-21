@@ -8,6 +8,7 @@
       <div class="wrap">
         <div><img [src]="urlPrimaryPhoto"></div>
         <input type="file" (change)="onBrowserUpload($event)">
+        <span>Photo upload</span>
       </div>
     </ion-card>
     <ion-card *ngIf="isCordova" id="primary-photo" (click)="onClickPrimaryPhoto()">

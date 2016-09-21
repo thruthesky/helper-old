@@ -7,6 +7,10 @@ House helper app
 
 * refer : https://docs.google.com/document/d/14L_h4G4OQaIepy470G1zSrenzj7KA9QOL0A8BA_3dUk/edit#heading=h.3xaxvn2cubay
 
+## file upload error on web-browser.
+
+app/tmp/error-image.png produces file upload error.
+
 
 
 ## Cache for posts
