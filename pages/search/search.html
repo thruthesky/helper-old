@@ -35,10 +35,10 @@
   </ion-item>
 
   <ion-label primary stacked>{{ 'Search by Address' }}</ion-label>
-  <ion-searchbar [(ngModel)]="data.address" [formControl]="inputControl" placeholder="Input Address..."></ion-searchbar>
+  <ion-searchbar [(ngModel)]="data.address" debounce="500" (ionInput)="onInput($event)" placeholder="Input Address..."></ion-searchbar>
 
   <ion-label primary stacked>{{ 'Search by Name' }}</ion-label>
-  <ion-searchbar [(ngModel)]="data.name" [formControl]="inputControl" placeholder="Input Name..."></ion-searchbar>
+  <ion-searchbar [(ngModel)]="data.name" debounce="500" (ionInput)="onInput($event)" placeholder="Input Name..."></ion-searchbar>
 
   <ion-card>
     <pre>

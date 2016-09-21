@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Control } from '@angular/common';
 import { NavController } from 'ionic-angular';
 import 'rxjs/add/operator/debounceTime';
 import { Xapi } from '../../providers/xapi/xapi';
@@ -27,7 +26,6 @@ export class SearchPage {
   male: boolean = false;
   female: boolean = false;
   searching: boolean = false;
-  private inputControl: Control;
   private posts;
 
   private data: SearchData = {
@@ -39,12 +37,6 @@ export class SearchPage {
 
 
   constructor( public navCtrl: NavController, private x: Xapi ) {
-    this.inputControl = new Control();
-    this.inputControl.valueChanges.debounceTime(500).subscribe(text => {
-      console.log(text);
-      if ( ! text ) return ; // this is bug. @todo : fix this not to be called when the text is empty.
-      this.search();
-    });
 
   }
 
@@ -141,5 +133,10 @@ export class SearchPage {
   }
   showError(res) {
 
+  }
+  
+  onInput($event) {
+    console.log("onInput()", this.data.address, this.data.name);
+    this.search();
   }
 }
