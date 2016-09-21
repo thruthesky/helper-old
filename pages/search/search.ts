@@ -26,6 +26,7 @@ export class SearchPage {
   male: boolean = false;
   female: boolean = false;
   searching: boolean = false;
+  private moreButton = [];
   private posts;
 
   private data: SearchData = {
@@ -63,6 +64,7 @@ export class SearchPage {
     // console.log("female: " + this.female);
     // console.log("address: " + this.address);
     // console.log("name: " + this.name);
+     console.log("Age " + this.searchByAge.lower + " between " + this.searchByAge.upper  );
 
     console.log( this.data );
 
@@ -102,7 +104,7 @@ export class SearchPage {
       first_name['compare'] = 'LIKE';
       first_name['key'] = 'first_name';
       item.push( first_name );
-      
+
       middle_name['value'] = this.data.name;
       middle_name['compare'] = 'LIKE';
       middle_name['key'] = 'middle_name';
@@ -115,13 +117,35 @@ export class SearchPage {
 
       meta.push( item );
     }
+
+    // Date minimum and maximum
+    let dateObj = new Date();
+    let month = dateObj.getUTCMonth() + 1; //months from 1-12
+    let day = dateObj.getUTCDate();
+    let year = dateObj.getUTCFullYear();
+    let minAge = (year - this.searchByAge.lower)  + "/" + month + "/" + day;
+    let maxAge = (year - this.searchByAge.upper - 1)  + "/" + month + "/" + day;
+
+    // DATE args minimum and maximum
+    let item = [];
+    item['key'] = 'birthday';
+    item['value'] = {maxAge ,  minAge};
+    item['type'] = 'date';
+    item['compare'] = 'BETWEEN';
+    meta.push( item );
+
+    //End of Date args
+
+
+
+
     let q = ['args'];
     q['args'] = [];
     q['args']['meta_query'] = meta;
     let qs = app.http_build_query( q );
     console.log(meta);
     console.log( qs );
-    
+
     this.x.wp_query( qs , res => this.onSearchComplete(res), err => console.log( err ));
 
   }
@@ -134,7 +158,7 @@ export class SearchPage {
   showError(res) {
 
   }
-  
+
   onInput($event) {
     console.log("onInput()", this.data.address, this.data.name);
     this.search();
