@@ -14,14 +14,13 @@
     <ion-col width-50>
       <ion-item>
         <ion-label>Male</ion-label>
-        <ion-checkbox [(ngModel)]="data.male" (ionChange)="search()"></ion-checkbox>
+        <ion-checkbox [(ngModel)]="data.male" (ionChange)="search($event)"></ion-checkbox>
       </ion-item>
     </ion-col>
-
     <ion-col width-50>
       <ion-item>
         <ion-label>Female</ion-label>
-        <ion-checkbox [(ngModel)]="data.female" (ionChange)="search()"></ion-checkbox>
+        <ion-checkbox [(ngModel)]="data.female" (ionChange)="search($event)"></ion-checkbox>
       </ion-item>
     </ion-col>
   </ion-row>
@@ -35,10 +34,10 @@
   </ion-item>
 
   <ion-label primary stacked>{{ 'Search by Address' }}</ion-label>
-  <ion-searchbar [(ngModel)]="data.address" debounce="500" (ionInput)="onInput($event)" placeholder="Input Address..."></ion-searchbar>
+  <ion-searchbar [(ngModel)]="data.address" debounce="500" (ionInput)="search($event)" placeholder="Input Address..."></ion-searchbar>
 
   <ion-label primary stacked>{{ 'Search by Name' }}</ion-label>
-  <ion-searchbar [(ngModel)]="data.name" debounce="500" (ionInput)="onInput($event)" placeholder="Input Name..."></ion-searchbar>
+  <ion-searchbar [(ngModel)]="data.name" debounce="500" (ionInput)="search($event)" placeholder="Input Name..."></ion-searchbar>
 
   <ion-card>
     <pre>
@@ -65,7 +64,5 @@
       {{ post.meta.first_name[0] }}
     </ion-item>
   </ion-list>
-
-
 
 </ion-content>
