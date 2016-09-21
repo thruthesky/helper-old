@@ -22,7 +22,7 @@ interface SearchData {
 export class SearchPage {
   name : string = '';
   address: string = '';
-  searchByAge: {lower: number , upper: number} = { lower: 18 , upper: 50 };
+  searchByAge: {lower: number , upper: number} = { lower: 18 , upper: 60 };
   male: boolean = false;
   female: boolean = false;
   searching: boolean = false;
@@ -42,9 +42,7 @@ export class SearchPage {
   }
 
   ionViewLoaded() {
-
-
-
+    this.search();
   }
 
   showAgeRange() {
@@ -157,10 +155,5 @@ export class SearchPage {
   }
   showError(res) {
 
-  }
-
-  onInput($event) {
-    console.log("onInput()", this.data.address, this.data.name);
-    this.search();
   }
 }

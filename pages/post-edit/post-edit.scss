@@ -2,12 +2,23 @@
   ion-content {
     #primary-photo {
       cursor: pointer;
+        position: relative;
       .wrap {
         margin: 1em auto;
         width: 40vw;
         div {
           width: 40vw;
           height: 40vw;
+        }
+        input {
+          position: absolute;
+          z-index: 100;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          opacity: 0.01;
+          font-size: 16em;
         }
       }
     }

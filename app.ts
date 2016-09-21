@@ -37,8 +37,9 @@ export class MyApp {
       { title: 'POST',  component: PostEditPage, icon : 'create' },
       //{ title: 'LOGIN',     component: LoginPage, icon : 'person-add' },
       { title: 'POLICY',     component: PolicyPage, icon : 'paper' },
-      //{ title: 'SETTING',   component: SettingPage, icon : 'options' }
-      { title: 'SEARCH',   component: SearchPage, icon : 'options' }
+      { title: 'SEARCH',   component: SearchPage, icon : 'options' },
+      { title: 'SETTING',   component: SettingPage, icon : 'options' }
+
       // { title: 'REGISTER',  component: RegisterPage },
     ];
   private events: Array<string> = [];

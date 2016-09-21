@@ -14,37 +14,47 @@
     <ion-col width-50>
       <ion-item>
         <ion-label>Male</ion-label>
-        <ion-checkbox [(ngModel)]="data.male" (ionChange)="search()"></ion-checkbox>
+        <ion-checkbox [(ngModel)]="data.male" (ionChange)="search($event)"></ion-checkbox>
       </ion-item>
     </ion-col>
-
     <ion-col width-50>
       <ion-item>
         <ion-label>Female</ion-label>
-        <ion-checkbox [(ngModel)]="data.female" (ionChange)="search()"></ion-checkbox>
+        <ion-checkbox [(ngModel)]="data.female" (ionChange)="search($event)"></ion-checkbox>
       </ion-item>
     </ion-col>
   </ion-row>
 
   <ion-label primary stacked>{{ 'Search by Age' }}</ion-label>
   <ion-item>
-    <ion-range  dualKnobs="true" min="18" max="50" step="1" [(ngModel)]="searchByAge" (ionChange)="search()" debounce="500">
+    <ion-range  dualKnobs="true" min="{{ searchByAge.lower }}" max="{{ searchByAge.upper }}" step="1" [(ngModel)]="searchByAge" (ionChange)="search()" debounce="500">
       <ion-label range-left>{{ searchByAge.lower }}</ion-label>
       <ion-label range-right>{{ searchByAge.upper }}</ion-label>
     </ion-range>
   </ion-item>
 
   <ion-label primary stacked>{{ 'Search by Address' }}</ion-label>
-  <ion-searchbar [(ngModel)]="data.address" debounce="500" (ionInput)="onInput($event)" placeholder="Input Address..."></ion-searchbar>
+  <ion-searchbar [(ngModel)]="data.address" debounce="500" (ionInput)="search($event)" placeholder="Input Address..."></ion-searchbar>
 
   <ion-label primary stacked>{{ 'Search by Name' }}</ion-label>
-  <ion-searchbar [(ngModel)]="data.name" debounce="500" (ionInput)="onInput($event)" placeholder="Input Name..."></ion-searchbar>
+  <ion-searchbar [(ngModel)]="data.name" debounce="500" (ionInput)="search($event)" placeholder="Input Name..."></ion-searchbar>
 
 
+<p>
+  Searching:
+  Age between {{ searchByAge.lower }} and {{ searchByAge.upper }}
+  <span *ngIf="data.male">and Male</span>
+  <span *ngIf="data.female">and Female</span>
+  <span *ngIf="data.address">and address like "{{data.address}}"</span>
+  <span *ngIf="data.name">and name like "{{data.name}}"</span>
+</p>
 
+
+<!--
   <button (click)="showAgeRange()">
     Search
   </button>
+  -->
 
   <div *ngIf="searching" class="spinner-container">
     <ion-spinner></ion-spinner>
