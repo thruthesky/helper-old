@@ -3,19 +3,13 @@ House helper app
 
 # TODO
 
-## IE 에서 Unhandled promise rejection, Syntax error, Zone: angular 와 같은 에레 메세지를 없앨 것
+## IE "Unhandled promise rejection, Syntax error, Zone"
 
-그래야 웹브라우저에서 동작하는 모바일 웹을 만들 수 있다.
+* refer : https://docs.google.com/document/d/14L_h4G4OQaIepy470G1zSrenzj7KA9QOL0A8BA_3dUk/edit#heading=h.3xaxvn2cubay
 
-## sqlite 를 사용하지 않고 LocalStorage 를 사용한다.
 
-문제는 IE 나 파이어폭스에서 SqlStorage 가 동작하지 않는다는 것이다.
 
-* 다행스럽게 TD 를 보고 get(), set() 이 SqlStorage 와 LocalStroage 의 인터페이스가 동일해서 쉽게 변경이 가능했다.
-  문서화 한다.
-  그래서 FireFox 에서는 동작하는데, 문제는 IE 에서 zone 관련 에러가 발생한다.
-  이 에러가 발생하면, 홈페이지를 못만드는 것이다.
-  이 에러를 해 결 할 것.
+## Cache for posts
 
 일반적으로 LocalStorage 는 약 5M 의 용량이 가능한데,
 
@@ -34,65 +28,24 @@ House helper app
   
 ## Is it bug that on deskstop browser, click event on list-item is not fired on first click. it works on second click.
 
+* double check this error.
+
 ## back-button
 It is okay not to show back-button on top.
 but when a user touches back-button on the device, the back button should work.
 
 
+## What to do on next
 
-## 재택 강사 앱을 따로 만든다.
+* Philippines App
+refer : http://dev.withcenter.com/wordpress/2016/09/21/philippines-app/ 
 
-## 필리핀 앱을 만든다.
+* Homebase Enlgish Teacher
+refer : http://dev.withcenter.com/wordpress/2016/09/21/homebased-english-teachers-app/
 
-헬로필리핀과 나란히 명칭이 "필리핀앱" 인 필리핀앱을 만든다.
 
-
-## 화상영어 앱 개발.
-  * 홈페이지가 워드프레스로 되어져 있으므로, 앱과 워드프레스 글/질문/요청 연결.
-  * 앱에 화상솔루션 추가.
-  * 선생님 정보 목록, 수업 시간표 확인, 신청, 등.
-  * 영어 퀴즈 작성.
-  * 영어 회화 교재 작성해서 넣음.
-  * 한마디로 토탈 영어 공부 앱.
-
-## 문제 발생.
-
-* 컴포넌트 view 를 보여 줄 때마다, 새로운 컴포넌트 instance 를 생성한다.
-
-  * 이 때, root @Component decorator 에서만 providers 로 service 를 한번만 instance 를 생성하고, 다른 컴포넌트에서는 service 인스턴스를 생성하지 않고 그냥 static 속성만 사용한다.
-  * Core 가 바로 그러하다.
-  * 이러한 문제는 service 의 constructor() 에 코드가 많이 입력되면 발생한다. 가능한 한 constructor() 에 코드를 넣지 않는다.
-
-* 문제: root component 에서 this.platform.ready.then() 이 호출 되기 전에 DB 접속을 한다.
-  * 즉, this.platform.ready().then() 이 호출되어야 plugin 이 사용가능하다고 하는데, 실제로 웹 브라우저에서는 그 전에 plugin 이 사용 가능 한 것 같다.
-  * this.platform.ready().then() 이 전에 plugin 이 사용가능한지 확인을 한번 한다.
-
-* 문서화:
-  * circular 방식으로 컴포넌트를 import 하고 내부적으로 사용하면, ( 컴포넌트에서 자식 컴포넌트를 포함하는데, 자식 컴포넌트에서 부모 컴포넌트를 import 하려 할 때 에러 발생. )
-    온갖 에러가 발생한다.
-    * 문제: home.ts 와 app-header.ts 역시 circular 호출인데, 에러가 안난다.
-    특히, Unexpected directive value 'undefined' on the View of component 'LoginPage' 와 같은 에러가 발생한다.
-
-  * 또한
-    import { NavController } from 'ionic-angular'; // 와 같이하고,
-    providers: [ NavController ], // 와 같이하면,
-
-    Uncaught EXCEPTION: Error in ./AppHeader class AppHeader - inline template 4:20 ORIGINAL EXCEPTION: TypeError: this.navCtrl.setRoot is not a function at AppHeader.onClickHome 와 같이 에러가 난다.
-
-    어떤 때에 providers: [...] 에 추가를 해야하는지 말아야하는지,
-
-    또한 에러 메세지가 providers: [ ... ] 와 관련이 없는 메세지라서 에러 메세지 해결이 너무 힘들다.
-    
-
-## create wordpress tables.
-
-  * create all the wordpress tables onto app db.
-    * first download 50 latest posts with and 10 per each category.
-    * after 1 minutes from last download, do the same over and over again.
-  * and show posts from load db.
-  * show only from local db !!
-    * Even if it has to download from remote server, save into local db and display from local db.
-
+* English Tutorial App
+refer :http://dev.withcenter.com/wordpress/2016/09/21/english-app-online-english-tutorial-app/
 
 
 ## don't move when home button clicked if the user is at home already.
@@ -110,10 +63,6 @@ put it back.
 
 * by web view language
 * by user's choice
-
-## 의문점
-
-app.html 의 menu 가 어떤 과정을 거쳐서 메인에 포함되는 것인가?
 
 
 # INSTALLATION
@@ -198,6 +147,8 @@ If you don't know what you are doing, don't do it.
 
 ## How to get categories from wordpress
 
+
+
 * it is important to use 'res.forEach(...)', because we don't know which one will resoved first.
 
     private categories: Array<xi.Category> = [];
@@ -228,36 +179,10 @@ If you don't know what you are doing, don't do it.
 
 @todo fix problem.
 
-
-
 Since every component and service instantiates on every view,
 
   code that must be initialized only one time should be coded like below.
 
-
-  export class AppHeader {
-    static initialized: boolean = false;
-  static sub: any;
-    constructor( ... ) {
-        
-      if ( this.init() ) {
-        SettingPage.sub.unsubscribe();
-      }
-      SettingPage.sub = Core.event.subscribe( (x: string) => this.coreEvent(x) );
-
-    }
-    
-    init() : boolean {
-        if ( AppHeader.initialized ) {
-            console.log('AppHeader::constructor() : already initialized !');
-            return true;
-        }        
-        else {
-            AppHeader.initialized = true;
-            console.log('AppHeader::constructor() : initializing');
-            return false;
-        }
-    }
 
 ## Language Tranlsation
 

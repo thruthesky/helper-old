@@ -37,7 +37,8 @@ export class MyApp {
       { title: 'POST',  component: PostEditPage, icon : 'create' },
       //{ title: 'LOGIN',     component: LoginPage, icon : 'person-add' },
       { title: 'POLICY',     component: PolicyPage, icon : 'paper' },
-      { title: 'SETTING',   component: SettingPage, icon : 'options' }
+      //{ title: 'SETTING',   component: SettingPage, icon : 'options' }
+      { title: 'SEARCH',   component: SearchPage, icon : 'options' }
       // { title: 'REGISTER',  component: RegisterPage },
     ];
   private events: Array<string> = [];
@@ -148,7 +149,7 @@ export class MyApp {
       //this.nav.push( PostListPage );
       // this.nav.push( PostEditPage );
       //this.nav.push( PolicyPage );.
-       this.nav.push( SearchPage );
+      // this.nav.push( SearchPage );
       
     }, 400);
 
