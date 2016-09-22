@@ -5,7 +5,7 @@ import { Core, app } from '../../providers/core/core';
 import { TranslatePipe } from 'ng2-translate/ng2-translate';
 import * as xi from '../../providers/xapi/interfaces';
 import { Xapi } from '../../providers/xapi/xapi';
-import { Camera } from 'ionic-native';
+import { Camera, Transfer } from 'ionic-native';
 import { AlertController } from 'ionic-angular';
 import * as share from '../../providers/share/share';
 import {FileUploader} from 'ng2-file-upload';
@@ -29,18 +29,25 @@ export class PostEditPage {
   private uploader:FileUploader = new FileUploader({ url: share.XAPI_UPLOAD_URL });
   private result:any = null;
 
+
+  // cordova plugin file Transfer
+  private fileTransfer: Transfer;
+
   constructor(
     private navCtrl: NavController,
     private alertCtrl: AlertController,
     private x: Xapi
   ) {
     this.isCordova = app.isCordova;
+    //this.isCordova = true;
     if ( this.isCordova ) {
-
+      this.initAppUpload(); // app file upload routine is different from web browser.
     }
     else {
       this.initBrowserUpload();
     }
+  }
+  initAppUpload() {
   }
   ngOnInit () {
     app.title( this.appTitle, this);
@@ -56,20 +63,38 @@ export class PostEditPage {
     this.post.content = "Will it really give me a boss?";
     this.onClickPost();
 
+  }
 
-/*
-    let options = {
-      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: Camera.DestinationType.NATIVE_URI,
-      quality: 50
+  appFileUpload( filepath : string ) {
+    console.log( 'appFileUpload()', filepath );
+    this.fileTransfer = new Transfer();
+    let options: any;
+    options = {
+      fileKey: 'file',
+      fileName: 'name.jpg',
+      headers: {}
     };
-    Camera.getPicture( options ).then((imageData) => {
-      console.log( imageData );
-      this.urlPrimaryPhoto = imageData;
-    }, ( message ) => {
-      console.log("Error: ", message);
-    });
-    */
+    
+    this.fileTransfer.upload( filepath, share.XAPI_UPLOAD_URL, options)
+      .then( res => {
+        console.log('success', res );
+        let re; // result of json parse
+        try {
+          re = JSON.parse( res.response );
+        }
+        catch ( e ) {
+          this.x.error("JSON parse error on fileTransfer.uploader()");
+          return;
+        }
+        
+        console.log( re );
+        this.urlPrimaryPhoto = re.data.url;
+        this.onFileUpload( re.data );
+
+      },
+      error => {
+        console.log('error', error);
+      });
   }
 
   onClickPost() {
@@ -91,7 +116,8 @@ onClickPrimaryPhotoBrowser() {
   console.log("onClickPrimaryPhotoBrowser::");
 }
 
- onClickPrimaryPhoto() {
+ onClickPrimaryPhotoApp() {
+
 
     let confirm = this.alertCtrl.create({
       title: 'PHOTO UPLOAD',
@@ -100,15 +126,11 @@ onClickPrimaryPhotoBrowser() {
       buttons: [
         {
           text: 'Camera',
-          handler: () => {
-            console.log('camera clicked');
-          }
+          handler: () => this.onClickCameraButton()
         },
         {
           text: 'Gallery',
-          handler: () => {
-            console.log('gallery clicked');
-          }
+          handler: () => this.onClickGalleryButton()
         },
         {
           text: 'Cancel',
@@ -121,6 +143,31 @@ onClickPrimaryPhotoBrowser() {
     confirm.present();
   }
 
+
+
+  onClickCameraButton() {
+    console.log('onClickCameraButton()');
+    this.appTakePhoto( Camera.PictureSourceType.CAMERA);
+  }
+  onClickGalleryButton() {
+    console.log('onClickGalleryButton()');
+    this.appTakePhoto( Camera.PictureSourceType.PHOTOLIBRARY );
+  }
+
+  appTakePhoto( type: number ) {
+    let options = {
+      sourceType: type,
+      destinationType: Camera.DestinationType.NATIVE_URI,
+      quality: 100
+    };
+    Camera.getPicture( options ).then((imageData) => {
+      console.log( imageData );
+      //this.urlPrimaryPhoto = imageData;
+      this.appFileUpload( imageData );
+    }, ( message ) => {
+      console.log("Error: ", message);
+    });
+  }
 
   initBrowserUpload() {
 
@@ -187,6 +234,9 @@ onClickPrimaryPhotoBrowser() {
     else return this.errorMaybeServerError();
   }
 
+  /**
+   * This is called when a user selected a file to upload.
+   */
   onBrowserUpload( $event ) {
     try {
       this.uploader.addToQueue( $event.target.files );

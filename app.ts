@@ -138,7 +138,7 @@ export class MyApp {
       // this.nav.push( ForumPage );
       // this.nav.push( RegisterPage );
       // this.nav.push( PostListPage );
- //      this.nav.push( PostEditPage );
+      //this.nav.push( PostEditPage );
       // this.nav.push( PostListPage );
       // this.nav.push( PostEditPage );
       //this.nav.push( PostListPage );
@@ -148,9 +148,11 @@ export class MyApp {
       // this.nav.push( PolicyPage );
       //this.nav.push( PostEditPage );
       //this.nav.push( PostListPage );
-      // this.nav.push( PostEditPage );
+       //this.nav.push( PostEditPage );
       //this.nav.push( PolicyPage );.
-       this.nav.push( SearchPage );
+       //this.nav.push( SearchPage );
+
+
 
     }, 400);
 

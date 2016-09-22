@@ -3,6 +3,11 @@ House helper app
 
 # TODO
 
+## Push notification or offline alarm.
+
+This is very important.
+
+
 ## IE "Unhandled promise rejection, Syntax error, Zone"
 
 * refer : https://docs.google.com/document/d/14L_h4G4OQaIepy470G1zSrenzj7KA9QOL0A8BA_3dUk/edit#heading=h.3xaxvn2cubay
@@ -116,9 +121,28 @@ ionic platform rm browser
 
   ionic plugin add cordova-plugin-camera
 
+## install file-transfer-plugin
+
+    ionic plugin add cordova-plugin-file-transfer
+
+
+    * add below in config.xml
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+
+## add white list
+
+  ionic plugin add cordova-plugin-whitelist --save
+
+## add resouce path in index.html
+
+  <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src	'self' 'unsafe-inline' *; img-src 'self' data: *">
+
 ## install browser platform after comera plugin
 
 ionic platform add browser
+
+
+
 
 
 
