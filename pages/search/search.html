@@ -49,26 +49,9 @@
   <span *ngIf="data.name">and name like "{{data.name}}"</span>
 </p>
 
-
-<!--
-  <button (click)="showAgeRange()">
-    Search
-  </button>
-  -->
-
   <div *ngIf="searching" class="spinner-container">
     <ion-spinner></ion-spinner>
   </div>
-
-  <!--ion-list text-wrap >
-    <ion-item *ngFor="let post of posts">
-      {{post.post_title}}
-      {{ post.meta.address[0] }}
-      {{ post.meta.first_name[0] }}
-      {{  post.meta.last_name[0]}}
-      {{ post.meta.birthday[0] | ageCalculator }}
-    </ion-item>
-  </ion-list-->
 
   <ion-list>
     <ion-item text-wrap *ngFor=" let post of posts; let i = index;  ">
