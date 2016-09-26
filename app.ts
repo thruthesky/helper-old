@@ -32,16 +32,16 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any;
   pages: share.PanelMenus  = [
-      // { title: 'HOME',      component: HomePage, icon : 'home' },
-      { title: 'FORUM',     component: PostListPage, icon : 'chatboxes' },
-      { title: 'POST',  component: PostEditPage, icon : 'create' },
-      //{ title: 'LOGIN',     component: LoginPage, icon : 'person-add' },
-      { title: 'POLICY',     component: PolicyPage, icon : 'paper' },
-      { title: 'SEARCH',   component: SearchPage, icon : 'search' },
-      { title: 'SETTING',   component: SettingPage, icon : 'options' }
+    // { title: 'HOME',      component: HomePage, icon : 'home' },
+    { title: 'FORUM',     component: PostListPage, icon : 'chatboxes' },
+    { title: 'POST',  component: PostEditPage, icon : 'create' },
+    //{ title: 'LOGIN',     component: LoginPage, icon : 'person-add' },
+    { title: 'POLICY',     component: PolicyPage, icon : 'paper' },
+    { title: 'SEARCH',   component: SearchPage, icon : 'search' },
+    { title: 'SETTING',   component: SettingPage, icon : 'options' }
 
-      // { title: 'REGISTER',  component: RegisterPage },
-    ];
+    // { title: 'REGISTER',  component: RegisterPage },
+  ];
   private events: Array<string> = [];
   static instance: MyApp;
   constructor(public platform: Platform,
