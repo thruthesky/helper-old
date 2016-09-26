@@ -60,14 +60,6 @@ refer :http://dev.withcenter.com/wordpress/2016/09/21/english-app-online-english
 ## don't move when home button clicked if the user is at home already.
 
 
-## Put back button on top left. "<-"
-
-Ionic 2's natural navigation is to use "<-" back button.
-
-But somehow it disappeared.
-
-put it back.
-
 ## Translate all language
 
 * by web view language
