@@ -27,7 +27,7 @@
 
   <ion-label primary stacked>{{ 'Search by Age' }}</ion-label>
   <ion-item>
-    <ion-range  dualKnobs="true" min="{{ searchByAge.lower }}" max="{{ searchByAge.upper }}" step="1" [(ngModel)]="searchByAge" (ionChange)="search()" debounce="500">
+    <ion-range  dualKnobs="true" min="{{ ageRange.lower }}" max="{{ ageRange.upper }}" step="1" [(ngModel)]="searchByAge" (ionChange)="search()" debounce="500">
       <ion-label range-left>{{ searchByAge.lower }}</ion-label>
       <ion-label range-right>{{ searchByAge.upper }}</ion-label>
     </ion-range>
@@ -49,29 +49,14 @@
   <span *ngIf="data.name">and name like "{{data.name}}"</span>
 </p>
 
-
-<!--
-  <button (click)="showAgeRange()">
-    Search
-  </button>
-  -->
-
   <div *ngIf="searching" class="spinner-container">
     <ion-spinner></ion-spinner>
   </div>
 
-  <ion-list text-wrap >
-    <ion-item *ngFor="let post of posts">
-      {{post.post_title}}
-      {{ post.meta.address[0] }}
-      {{ post.meta.first_name[0] }}
-    </ion-item>
-  </ion-list>
-
-  <!--ion-list>
+  <ion-list>
     <ion-item text-wrap *ngFor=" let post of posts; let i = index;  ">
       <ion-avatar item-left>
-        <img [src]="post.urlPrimaryPhoto"/>
+        <img [src]="urlDefaultPrimaryPhotoBoy"/>
       </ion-avatar>
       <h3>{{ post.post_title }}</h3>
       <div>
@@ -91,6 +76,6 @@
         </ion-item-group>
       </div>
     </ion-item>
-  </ion-list-->
+  </ion-list>
 
 </ion-content>

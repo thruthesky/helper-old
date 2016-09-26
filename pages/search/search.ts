@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import 'rxjs/add/operator/debounceTime';
 import { Xapi } from '../../providers/xapi/xapi';
 import { app } from '../../providers/app/app';
+import { AgeCalculator } from '../../pipes/age-calculator';
 
 interface SearchData {
   name: string;
@@ -15,19 +16,27 @@ interface SearchData {
   }
 }
 
+interface AgeSearchRange {
+  lower: number;
+  upper: number;
+}
+
 @Component({
   templateUrl: 'build/pages/search/search.html',
-  providers: [ ]
+  pipes: [ AgeCalculator ]
 })
 export class SearchPage {
   name : string = '';
   address: string = '';
-  searchByAge: {lower: number , upper: number} = { lower: 18 , upper: 60 };
+  searchByAge: AgeSearchRange = { lower: 18 , upper: 60 };
+  ageRange:  AgeSearchRange = { lower: 18 , upper: 60 };
   male: boolean = false;
   female: boolean = false;
   searching: boolean = false;
   private moreButton = [];
   private posts;
+  private urlDefaultPrimaryPhotoBoy = "assets/img/boy.png";
+  private urlDefaultPrimaryPhotoGirl = "assets/img/girl.png";
 
   private data: SearchData = {
     name: '',
@@ -62,7 +71,7 @@ export class SearchPage {
     // console.log("female: " + this.female);
     // console.log("address: " + this.address);
     // console.log("name: " + this.name);
-     console.log("Age " + this.searchByAge.lower + " between " + this.searchByAge.upper  );
+    console.log("Age " + this.searchByAge.lower + " between " + this.searchByAge.upper  );
 
     console.log( this.data );
 
@@ -155,5 +164,10 @@ export class SearchPage {
   }
   showError(res) {
 
+  }
+
+  onSelect(i){
+    //console.log( this.moreButton[i] + " " + i );
+    this.moreButton[i] = this.moreButton[i] == true ? false : true;
   }
 }
