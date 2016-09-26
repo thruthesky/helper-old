@@ -2,7 +2,7 @@
 <app-header [appTitle]="appTitle"></app-header>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
   <section *ngIf="design ==1">
     <ion-list >
@@ -24,7 +24,7 @@
         <div class="card-subtitle">Fast - Easy - Convenient</div>
       </ion-card>
       <ion-row>
-        <ion-col class="design-two" width-50 *ngFor=" let item of panelMenus " (click)=" openPage( item )">
+        <ion-col class="design-two" width-33 *ngFor=" let item of panelMenus " (click)=" openPage( item )">
           <ion-card no-margin>
             <ion-card-header>
               <ion-icon name="{{ item.icon }}"></ion-icon>
