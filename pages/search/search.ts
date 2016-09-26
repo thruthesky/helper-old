@@ -29,7 +29,7 @@ export class SearchPage {
   name : string = '';
   address: string = '';
   searchByAge: AgeSearchRange = { lower: 18 , upper: 60 };
-  ageRange:  AgeSearchRange = { lower: 18 , upper: 60 };
+  ageRange:  AgeSearchRange = this.searchByAge;
   male: boolean = false;
   female: boolean = false;
   searching: boolean = false;

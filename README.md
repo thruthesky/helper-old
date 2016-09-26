@@ -195,6 +195,26 @@ If you don't know what you are doing, don't do it.
     },
     (x) => console.log(x));
 
+## How to get a post
+
+this.x.get_post( post_ID, re => {
+      console.log( "PostEditPage::loadPost() success callback. ", re );
+      let post = re.data;
+      this.post.first_name = post.meta.first_name[0];
+      this.post.last_name = post.meta.last_name[0];
+      this.post.middle_name = post.meta.middle_name[0];
+      this.post.address = post.meta.address[0];
+      this.post.mobile = post.meta.mobile[0];
+      this.post.birthday = post.meta.birthday[0];
+      this.post.gender = post.meta.gender[0];
+      this.post.title = post.post_title;
+      this.post.content = post.post_content;
+      this.post.ID = this.post_ID;
+    },
+    err => {
+      console.log( "PostEditPage::loadPost() error callback. This may be a server error.", err );
+    });
+    
 ## Component and Service Initialization
 
 @todo fix problem.

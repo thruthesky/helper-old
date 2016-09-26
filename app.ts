@@ -148,11 +148,10 @@ export class MyApp {
       // this.nav.push( PolicyPage );
       //this.nav.push( PostEditPage );
       //this.nav.push( PostListPage );
-       //this.nav.push( PostEditPage );
+       //this.nav.push( PostEditPage, { 'post_ID': 182 } );
       //this.nav.push( PolicyPage );.
        //this.nav.push( SearchPage );
-
-
+       this.nav.push( PostListPage );
 
     }, 400);
 

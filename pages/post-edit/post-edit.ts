@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { AppHeader } from '../../templates/app-header';
 import { Core, app } from '../../providers/core/core';
 import { TranslatePipe } from 'ng2-translate/ng2-translate';
@@ -33,8 +33,12 @@ export class PostEditPage {
   // cordova plugin file Transfer
   private fileTransfer: Transfer;
 
+
+  // post edit id
+  private post_ID: number = 0;
   constructor(
     private navCtrl: NavController,
+    private navParams: NavParams,
     private alertCtrl: AlertController,
     private x: Xapi
   ) {
@@ -46,11 +50,21 @@ export class PostEditPage {
     else {
       this.initBrowserUpload();
     }
+
+
+    this.post.single_image = 1;
+    console.log( "PostEditPage::constructor()");
+    this.post_ID = this.navParams.get('post_ID');
+    if ( this.post_ID ) {
+      console.log("PostEditPage:: post edit ID=" + this.post_ID);
+      this.loadPost(this.post_ID);
+    }
   }
   initAppUpload() {
   }
   ngOnInit () {
     app.title( this.appTitle, this);
+    /*
     this.post.first_name = 'JaeHo';
     this.post.last_name = 'Song';
     this.post.middle_name = '';
@@ -61,8 +75,9 @@ export class PostEditPage {
     this.post.gender = 'M';
     this.post.title = "Title: I am looking for a japanese boss.";
     this.post.content = "Will it really give me a boss?";
-    this.onClickPost();
+    //this.onClickPost();
 
+*/
   }
 
   appFileUpload( filepath : string ) {
@@ -103,8 +118,15 @@ export class PostEditPage {
     this.x.post_insert( this.post, (res) => this.onClickPostComplete(res), (res) => this.onClickPostServerError( res ) );
   }
 
-  onClickPostComplete( res: xi.Post ) {
+  onClickPostComplete( res: xi.PostResponse ) {
     console.log( res );
+    if ( res.success ) {
+      this.x.alert("SUCCESS", "Post upload success");
+      this.navCtrl.pop();
+    }
+    else {
+      this.x.alert("ERROR", res.data);
+    }
   }
 
   onClickPostServerError( res ) {
@@ -258,4 +280,31 @@ onClickPrimaryPhotoBrowser() {
     return this.x.error("Please check if file server is alive and check if the photo size is too big.");
   }
 
+  loadPost( post_ID ) {
+    this.x.get_post( post_ID, re => {
+      console.log( "PostEditPage::loadPost() success callback. ", re );
+      let post = re.data;
+      let m = post.meta;
+      
+      this.post.first_name = m.first_name ? m.first_name[0] : '' ;
+      this.post.last_name = m.last_name ? m.last_name[0] : '';
+      this.post.middle_name = m.middle_name ? m.middle_name[0] : '';
+      this.post.address = m.address ? m.address[0] : '';
+      this.post.mobile = m.mobile ? m.mobile[0] : '';
+      this.post.birthday = m.birthday ? m.birthday[0] : '';
+      this.post.gender = m.gender ? m.gender[0] : '';
+      this.post.title = post.post_title ? post.post_title : '';
+      this.post.content = post.post_content ? post.post_content : '';
+      this.post.ID = this.post_ID;
+
+      if ( post.images ) {
+        if ( post.images[0] && post.images[0].guid ) {
+          this.urlPrimaryPhoto = post.images[0].guid;
+        }
+      }
+    },
+    err => {
+      console.log( "PostEditPage::loadPost() error callback. This may be a server error.", err );
+    });
+  }
 }

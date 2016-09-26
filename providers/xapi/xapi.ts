@@ -129,8 +129,22 @@ export class Xapi {
     /**
      * Gets a post.
      */
-    get_post() {
-
+    get_post( post_ID : number | string, successCallback, errorCallback? ) {
+        let url = this.serverUrl + '?xapi=wordpress.get_post&post_ID=' + post_ID;
+        return this.get( url, successCallback, errorCallback);
+    }
+    delete_post( post_ID : any, successCallback, errorCallback? ) {
+        let url: string;
+        if ( typeof post_ID == 'number' || typeof post_ID == 'string' ) {
+            url = this.serverUrl + '?xapi=wordpress.delete_post&post_ID=' + post_ID;
+        }
+        else {
+            let obj = post_ID;
+            post_ID = obj.post_ID;
+            let password = obj.password;
+            url = this.serverUrl + '?xapi=wordpress.delete_post&post_ID=' + post_ID + '&password=' + password;
+        }
+        return this.get( url, successCallback, errorCallback);
     }
 
     /**
@@ -140,7 +154,7 @@ export class Xapi {
         let params = Object.keys( arg )
                         .map( k => k + '=' + arg[k] )
                         .join( '&' );
-        let url = this.serverUrl + 'posts?' + params;
+        let url = this.serverUrl + '?' + params;
         return this.get( url, callback, serverError );
     }
 
@@ -148,8 +162,10 @@ export class Xapi {
     post_insert( data: xi.PostEdit, callback, serverError ) {
         // console.log('Xforum::post_insert()', data);
 
-        //let url = this.serverUrl + '?xapi=post.insert&' + this.buildQuery( data );
-        // return this.get( url, callback, serverError );
+        /* TEST
+        let url = this.serverUrl + '?xapi=post.insert&' + this.buildQuery( data );
+        return this.get( url, callback, serverError );
+        */
         return this.post( this.serverUrl + '?xapi=post.insert',
                 data,
                 callback,

@@ -124,8 +124,14 @@ export interface Post {
 }
 export type Posts = Array<Post>;
 
+export interface PostResponse {
+  success: boolean;
+  data: string;
+}
+
 
 export interface PostEdit {
+  ID?: number;
   category: number | string;
   first_name: string;
   last_name: string;
@@ -138,8 +144,8 @@ export interface PostEdit {
   title: string;
   content: string;
   file_id?: number;
+  single_image?: number;
 }
-
 
 export interface FileUpload {
   id: number;
