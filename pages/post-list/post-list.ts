@@ -23,7 +23,7 @@ export class PostListPage implements OnInit {
   private appTitle: string;
   private posts: xi.Posts = [];
   private page: number = 0;
-  private design:number = 1;
+  private design:number = 4;
   private moreButton = [];
   private urlDefaultPrimaryPhotoBoy = "assets/img/boy.png";
   private urlDefaultPrimaryPhotoGirl = "assets/img/girl.png";
@@ -146,6 +146,6 @@ export class PostListPage implements OnInit {
         }
       ]
     });
-    prompt.present(); 
+    prompt.present();
   }
 }

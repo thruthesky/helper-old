@@ -7,7 +7,7 @@
       <button menuClose *ngFor="let p of pages" (click)="openPage(p)">
         <!--button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)"-->
 
-        <ion-icon name="{{ p.icon }}" *ngIf="p.icon"></ion-icon>
+        <ion-icon text-center name="{{ p.icon }}" *ngIf="p.icon"></ion-icon> <br/>
         {{ p.title | translate }}
 
       </button>

@@ -12,7 +12,7 @@ import {FileUploader} from 'ng2-file-upload';
 
 import * as _ from 'lodash';
 
-// 
+//
 @Component({
   templateUrl: 'build/pages/post-edit/post-edit.html',
   directives: [ AppHeader ],
@@ -24,6 +24,8 @@ export class PostEditPage {
   private post: xi.PostEdit = <xi.PostEdit> {};
   private urlPrimaryPhoto: string = "assets/img/person.jpg";
   private isCordova: boolean = false;
+
+  private design: number = 2;
 
   // for n2-file-uploader
   private uploader:FileUploader = new FileUploader({ url: share.XAPI_UPLOAD_URL });
@@ -89,7 +91,7 @@ export class PostEditPage {
       fileName: 'name.jpg',
       headers: {}
     };
-    
+
     this.fileTransfer.upload( filepath, share.XAPI_UPLOAD_URL, options)
       .then( res => {
         console.log('success', res );
@@ -101,7 +103,7 @@ export class PostEditPage {
           this.x.error("JSON parse error on fileTransfer.uploader()");
           return;
         }
-        
+
         console.log( re );
         this.urlPrimaryPhoto = re.data.url;
         this.onFileUpload( re.data );
@@ -225,7 +227,7 @@ onClickPrimaryPhotoBrowser() {
 
   /**
    * @note this method is called on file upload success.
-   * 
+   *
    * @todo let mobile upload to call this method.
    */
   private onFileUpload( file: xi.FileUpload ) {
@@ -235,7 +237,7 @@ onClickPrimaryPhotoBrowser() {
 
   /**
    * This method is called when the uploaded has been finished.
-   * 
+   *
    * It will do error check up.
    */
   private onBrowserUploadComplete() {
@@ -285,7 +287,7 @@ onClickPrimaryPhotoBrowser() {
       console.log( "PostEditPage::loadPost() success callback. ", re );
       let post = re.data;
       let m = post.meta;
-      
+
       this.post.first_name = m.first_name ? m.first_name[0] : '' ;
       this.post.last_name = m.last_name ? m.last_name[0] : '';
       this.post.middle_name = m.middle_name ? m.middle_name[0] : '';
