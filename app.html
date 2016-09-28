@@ -4,15 +4,17 @@
   </ion-toolbar>
   <ion-content>
     <ion-list>
-      <button menuClose *ngFor="let p of pages" (click)="openPage(p)">
+      <ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
         <!--button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)"-->
 
         <ion-icon text-center name="{{ p.icon }}" *ngIf="p.icon"></ion-icon> <br/>
         {{ p.title | translate }}
 
-      </button>
-      <button menuClose><ion-icon name="close-circle"></ion-icon> {{ 'CLOSE' | translate }}</button>
-      <!--button ion-item menuClose><ion-icon name="close-circle"></ion-icon> {{ 'CLOSE' | translate }}</button-->
+      </ion-item>
+      <ion-item menuClose>
+        <ion-icon name="close-circle"></ion-icon>
+        {{ 'CLOSE' | translate }}
+      </ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>

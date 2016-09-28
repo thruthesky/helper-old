@@ -25,7 +25,6 @@ export class PostEditPage {
   private urlPrimaryPhoto: string = "assets/img/person.jpg";
   private isCordova: boolean = false;
 
-  private design: number = 2;
 
   // for n2-file-uploader
   private uploader:FileUploader = new FileUploader({ url: share.XAPI_UPLOAD_URL });

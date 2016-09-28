@@ -3,20 +3,7 @@
 </ion-header>
 
 <ion-content>
-
-  <section *ngIf="design ==1">
-    <ion-list >
-      <ion-list-header>
-        <h2>Menu</h2>
-      </ion-list-header>
-      <ion-item class="design-one" *ngFor=" let item of panelMenus " (click)=" openPage( item ) ">
-        <ion-icon name="{{ item.icon }}" *ngIf="item.icon"></ion-icon>
-        {{ item.title | translate }}
-      </ion-item>
-    </ion-list>
-  </section>
-
-  <section *ngIf="design==2">
+  <section>
     <ion-list>
       <ion-card class="card-background-page">
         <img src="assets/img/tmp-3.png" />
@@ -37,25 +24,4 @@
       </ion-row>
     </ion-list>
   </section>
-
-
-  <section text-wrap *ngIf="design==3">
-    <ion-list>
-      <ion-list-header>
-        My Dashboard
-      </ion-list-header>
-      <ion-card class="design-three" no-margin *ngFor=" let item of panelMenus " (click)=" openPage( item ) ">
-        <ion-card-header>
-          <ion-icon name="{{ item.icon }}"></ion-icon>
-        </ion-card-header>
-        <ion-card-content>
-          {{ item.title | translate }}
-        </ion-card-content>
-      </ion-card>
-    </ion-list>
-  </section>
-  <br clear="all"/>
- <button primary (click)="design=1">Design 1</button>
-  <button primary (click)="design=2">Design 2</button>
-  <button primary (click)="design=3">Design 3</button>
 </ion-content>

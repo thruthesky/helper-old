@@ -16,7 +16,6 @@ export class HomePage implements OnDestroy, OnInit {
     private appTitle: string;
     static initialized: boolean = false;
     static sub: any;
-    private design: number = 2;
     private panelMenus;
     constructor( public navCtrl: NavController,
         private x: Xapi,
@@ -33,8 +32,8 @@ export class HomePage implements OnDestroy, OnInit {
       console.log("HomePage: ngOnDescroty())");
   }
   initialize() : boolean {
-      
-      
+
+
       if ( HomePage.initialized ) {
           console.log('HomePage::constructor() : already initialized ... !');
           return true;

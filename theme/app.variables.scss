@@ -64,3 +64,6 @@ $funAndCheerful : (
 ion-header .toolbar-background {
   @include linear-gradient-header();
 }
+
+// overiding menu width
+$menu-width: 140px;
